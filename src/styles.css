@@ -220,8 +220,8 @@ a { color: inherit; text-decoration: none; }
 .representative-video { display: grid; grid-template-columns: 265px minmax(0, 1fr); overflow: hidden; border: 1px solid var(--ink); border-radius: 16px; background: white; }
 .representative-poster { position: relative; display: block; min-height: 465px; padding: 0; overflow: hidden; border: 0; border-right: 1px solid var(--ink); background: #111; cursor: pointer; }
 .representative-poster img { display: block; width: 100%; height: 100%; min-height: 465px; object-fit: cover; transition: transform .3s ease, filter .3s ease; }
-.representative-poster > span { position: absolute; right: 14px; bottom: 14px; display: inline-flex; gap: 8px; min-height: 38px; padding: 0 14px; align-items: center; border-radius: 999px; background: rgba(17,17,17,.9); color: white; font-size: 12px; font-weight: 700; }
-.representative-poster > span b { font-size: 10px; }
+.representative-poster > span { position: absolute; right: 14px; bottom: 14px; display: inline-flex; width: 46px; height: 46px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(17,17,17,.9); color: white; }
+.representative-poster > span b { font-size: 15px; font-weight: 400; transform: translateX(1px); }
 .representative-poster:hover img, .representative-poster:focus-visible img { transform: scale(1.025); filter: brightness(.88); }
 .representative-poster:focus-visible { outline: 3px solid var(--cj-blue); outline-offset: -4px; }
 .representative-video-copy { display: flex; min-width: 0; padding: 34px 30px; flex-direction: column; justify-content: center; }
@@ -262,6 +262,19 @@ a { color: inherit; text-decoration: none; }
 .video-modal-player { width: min(360px, calc(56.25vh - 84px), 100%); width: min(360px, calc(56.25dvh - 84px), 100%); aspect-ratio: 9 / 16; margin: 0 auto; overflow: hidden; border-radius: 12px; background: #111; }
 .video-modal-player iframe { display: block; width: 100%; height: 100%; border: 0; background: #111; }
 .video-modal-description { width: min(360px, 100%); margin: 13px auto 2px !important; color: var(--muted) !important; font-size: 12px !important; line-height: 1.65 !important; }
+.format-video-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.format-video-card { min-width: 0; margin: 0; }
+.format-video-card iframe { display: block; width: 100%; aspect-ratio: 9 / 16; border: 1px solid var(--ink); border-radius: 11px; background: #111; }
+.format-video-card figcaption { padding-top: 11px; }
+.format-video-card figcaption strong { display: block; color: var(--ink); font-size: 13px; line-height: 1.5; }
+.format-video-card figcaption span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.speaker-scene-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.speaker-scene-grid figure { min-width: 0; margin: 0; }
+.speaker-scene-frame { display: grid; aspect-ratio: 4 / 5; overflow: hidden; place-items: center; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
+.speaker-scene-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.speaker-scene-grid figcaption { padding-top: 11px; }
+.speaker-scene-grid figcaption strong { display: block; color: var(--ink); font-size: 13px; line-height: 1.5; }
+.speaker-scene-grid figcaption span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.6; }
 .clip-comparison { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 .clip-comparison video, .clip-comparison iframe { display: block; width: 100%; border: 1px solid var(--ink); border-radius: 12px; background: #111; object-fit: contain; }
 .clip-comparison video { max-height: 640px; aspect-ratio: 9 / 16; }
@@ -516,7 +529,8 @@ a { color: inherit; text-decoration: none; }
   .representative-video { grid-template-columns: 118px minmax(0, 1fr); border-radius: 12px; }
   .representative-poster { min-height: 258px; border-right: 1px solid var(--ink); }
   .representative-poster img { min-height: 258px; }
-  .representative-poster > span { right: 8px; bottom: 8px; min-height: 30px; padding-inline: 10px; font-size: 10px; }
+  .representative-poster > span { right: 8px; bottom: 8px; width: 34px; height: 34px; }
+  .representative-poster > span b { font-size: 12px; }
   .representative-video-copy { padding: 19px 14px; }
   .representative-video-copy h3 { margin-top: 7px !important; font-size: 18px !important; line-height: 1.42; }
   .representative-video-copy > p { margin-top: 8px !important; font-size: 12px !important; }
@@ -527,6 +541,10 @@ a { color: inherit; text-decoration: none; }
   .final-video-row { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 9px; }
   .final-video-row div strong { font-size: 13px; }
   .final-video-row button { min-width: 96px; gap: 10px; padding-inline: 11px; font-size: 12px; }
+  .format-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 9px; }
+  .speaker-scene-grid { gap: 7px; }
+  .speaker-scene-grid figcaption strong { font-size: 11px; }
+  .speaker-scene-grid figcaption span { font-size: 10px; line-height: 1.5; }
   .clip-comparison { grid-template-columns: 1fr; gap: 28px; }
   .audio-source-list { grid-template-columns: 1fr; }
   .bubble-gallery { grid-template-columns: repeat(2, 1fr); }

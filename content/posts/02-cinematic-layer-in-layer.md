@@ -262,26 +262,26 @@ Round 06에서는 CUT 5-1~5-10의 30개 초기 후보를 만들고 QA에서 문�
 
 ![실사형 장면을 고정 세트·주요 행동·미세 연기·금지 동작으로 나눈 Layer-in-Layer 구조](assets/projects/explainers/drama-layer-in-layer.jpg)
 
-### Layer 1 · Scene Lock
+### Layer 1 · 장면 고정
 
 - 배우·의상·소품과 세트 구조
 - 시간대, 주광원과 전체 색온도
 - 카메라 위치·렌즈감과 화면비
 - 앞 컷에서 이어지는 상태
 
-### Layer 2 · Primary Action
+### Layer 2 · 주요 행동
 
 - 컷에서 반드시 일어나야 할 한 가지 변화
 - 시작점·종료점, 방향과 속도
 - 인물과 카메라 중 이번 컷의 주된 움직임
 
-### Layer 3 · Performance Detail
+### Layer 3 · 행동 디테일
 
 - 시선, 눈꺼풀, 턱, 호흡과 손의 미세한 반응
 - 대사 전 생각, 발화 시작, 강조와 발화 뒤 정적
 - 주요 행동을 방해하지 않는 작은 반응
 
-### Layer 4 · Negative Motion
+### Layer 4 · 금지 동작
 
 - 얼굴·손·의상·소품의 변형과 복제 금지
 - 배경 구조와 광원 변화 금지

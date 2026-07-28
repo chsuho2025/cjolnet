@@ -71,9 +71,9 @@ function shortAnimationVideoDescription(video) {
     return "프로모션 편집 · 첫 장면의 주목도와 핵심 사건 전달에 맞춰 장면 길이와 사운드 밀도를 조정했습니다.";
   }
   if (video.group === "전령새 왕녀님") {
-    return "회차형 애니메이션 · 인물 관계와 대화 흐름이 이어지도록 발화와 리액션을 장면 단위로 편집했습니다.";
+    return "에피소드형 애니메이션 · 인물 관계와 대화 흐름이 이어지도록 발화와 리액션을 장면 단위로 편집했습니다.";
   }
-  return "회차형 애니메이션 · 원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다.";
+  return "에피소드형 애니메이션 · 원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다.";
 }
 
 const projects = [
@@ -644,12 +644,12 @@ function portfolioArtifactMarkup(type) {
             aria-haspopup="dialog"
           >
             <img src="assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg" alt="" />
-            <span aria-hidden="true"><b>▶</b> 재생</span>
+            <span aria-hidden="true"><b>▶</b></span>
           </button>
           <div class="representative-video-copy">
             <span class="representative-kicker">추천 · 대표작</span>
             <h3 id="outputGalleryTitle">${escapeHtml(shortAnimationDisplayTitle(representative))}</h3>
-            <p>${escapeHtml(representative.duration)} · 회차형 애니메이션</p>
+            <p>${escapeHtml(representative.duration)} · 에피소드형 애니메이션</p>
             <small>원작 장면을 세로형 영상으로 재구성하고 모션·대사·사운드를 한 편으로 완성했습니다.</small>
             <div class="representative-actions">
               <button
@@ -662,10 +662,10 @@ function portfolioArtifactMarkup(type) {
                 data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
                 aria-haspopup="dialog"
               >
-                대표작 재생 <b aria-hidden="true">→</b>
+                영상 보기 <b aria-hidden="true">▶</b>
               </button>
               <button class="video-library-open" type="button" data-video-library-open aria-haspopup="dialog">
-                다른 애니메이션 <span>${additionalVideos.length}편</span>
+                다른 작품 보기 <span>${additionalVideos.length}편</span>
               </button>
             </div>
           </div>
@@ -676,7 +676,7 @@ function portfolioArtifactMarkup(type) {
           <header>
             <div>
               <span>최종 영상 · ${additionalVideos.length}편</span>
-              <strong id="videoLibraryTitle">애니메이션 더 보기</strong>
+              <strong id="videoLibraryTitle">다른 작품 보기</strong>
             </div>
             <button type="button" data-video-library-close aria-label="목록 닫기">×</button>
           </header>
@@ -726,26 +726,78 @@ function portfolioArtifactMarkup(type) {
 
   if (type === "short-format-gallery") {
     const formats = [
-      ["episode-09.jpg", "회차형 · 9화", "사건 전개와 인물 감정의 연결을 우선한 세로형 에피소드"],
-      ["episode-11.jpg", "회차형 · 11화", "대사·리액션·전환을 회차 단위로 조립한 완결형 구성"],
-      ["summary.jpg", "요약형", "원작의 핵심 사건을 짧은 시간 안에 재배열한 진입 포맷"],
-      ["teaser.jpg", "프로모션형", "첫 장면의 후킹과 다음 행동 유도를 우선한 짧은 편집"],
+      {
+        title: "에피소드형 애니메이션 · 9화",
+        description: "사건 전개와 인물 감정의 연결을 우선한 세로형 에피소드",
+        youtube: shortAnimationVideos[0].youtube,
+      },
+      {
+        title: "에피소드형 애니메이션 · 11화",
+        description: "대사·리액션·전환을 에피소드 단위로 조립한 완결형 구성",
+        youtube: shortAnimationVideos[2].youtube,
+      },
+      {
+        title: "프로모션형 애니메이션 · 1~6화",
+        description: "원작의 핵심 사건을 짧은 시간 안에 재배열한 유입용 구성",
+        youtube: shortAnimationVideos[5].youtube,
+      },
+      {
+        title: "프로모션형 애니메이션 · 9화",
+        description: "첫 장면의 후킹과 다음 행동 유도를 우선한 15초 터치형 편집",
+        youtube: shortAnimationVideos[3].youtube,
+      },
     ];
     return `
       <section class="artifact-block" aria-labelledby="shortFormatTitle">
         <div class="artifact-heading">
-          <span>포맷별 출력 자료</span>
+          <span>포맷별 완성 영상 · YouTube 원본</span>
           <h3 id="shortFormatTitle">같은 IP를 목적이 다른 네 가지 편집 구조로 제작</h3>
-          <p>회차형·요약형·프로모션형은 단순히 길이만 다르지 않습니다. 관객이 먼저 알아야 할 정보와 컷의 종료 조건을 포맷별로 다시 정의했습니다.</p>
+          <p>에피소드형·프로모션형은 단순히 길이만 다르지 않습니다. 관객이 먼저 알아야 할 정보와 컷의 종료 조건을 포맷별로 다시 정의했습니다.</p>
         </div>
-        <div class="output-gallery output-gallery--source">
+        <div class="format-video-grid">
           ${formats
+            .map(
+              (format) => `
+                <figure class="format-video-card">
+                  <iframe
+                    src="${escapeHtml(youtubeEmbedUrl(format.youtube))}?rel=0&amp;playsinline=1"
+                    title="${escapeHtml(format.title)}"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                  <figcaption><strong>${escapeHtml(format.title)}</strong><span>${escapeHtml(format.description)}</span></figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "speaker-scene-comparison") {
+    const speakerScenes = [
+      ["speaker-female.png", "여성 화자 중심 생성", "여성 화자의 발화 구간만 움직이고 상대 인물은 고정"],
+      ["speaker-male.png", "남성 화자 중심 생성", "남성 화자의 입·턱 움직임과 시선 변화만 분리 생성"],
+      ["speaker-composite.jpg", "발화 주체별 결과 합성", "두 결과의 통과 구간을 편집해 하나의 대화 장면으로 연결"],
+    ];
+    return `
+      <section class="artifact-block speaker-scene-comparison" aria-labelledby="speakerSceneTitle">
+        <div class="artifact-heading">
+          <span>다중 화자 장면 제작</span>
+          <h3 id="speakerSceneTitle">화자별 생성 결과를 한 장면으로 합성</h3>
+          <p>한 번에 두 인물의 발화를 만들지 않고, 말하는 인물만 움직인 두 결과를 따로 검수한 뒤 편집에서 연결했습니다.</p>
+        </div>
+        <div class="speaker-scene-grid">
+          ${speakerScenes
             .map(
               ([src, title, description]) => `
                 <figure>
-                  <a href="assets/projects/short-animation/outputs/${src}" target="_blank" rel="noreferrer" title="${title} 원본 보기">
-                    <img src="assets/projects/short-animation/outputs/${src}" alt="${title} 출력 화면" loading="lazy" />
-                  </a>
+                  <div class="speaker-scene-frame">
+                    <img src="assets/projects/short-animation/${src}" alt="${title}" loading="lazy" />
+                  </div>
                   <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
                 </figure>
               `,
@@ -1419,7 +1471,12 @@ function initializeFinalVideoModal(container) {
       modalDescription.textContent = button.dataset.videoDescription || "";
 
       const iframe = document.createElement("iframe");
-      iframe.src = `${button.dataset.videoSrc}?autoplay=1&rel=0`;
+      const videoUrl = new URL(button.dataset.videoSrc, window.location.href);
+      videoUrl.searchParams.set("autoplay", "1");
+      videoUrl.searchParams.set("rel", "0");
+      videoUrl.searchParams.set("playsinline", "1");
+      videoUrl.searchParams.set("origin", window.location.origin);
+      iframe.src = videoUrl.toString();
       iframe.title = `${button.dataset.videoTitle || "최종 영상"} 재생`;
       iframe.allow =
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
