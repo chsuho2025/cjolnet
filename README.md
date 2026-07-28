@@ -21,3 +21,5 @@
 - `content/posts/02-cinematic-layer-in-layer.md`
 
 제목, 태그, 상태와 미디어 경로는 `src/app.js`의 `projects`에서 수정합니다.
+
+배포 확인용 업데이트: 2026-07-28 16:10 KST
