@@ -1,12 +1,12 @@
 const toolMatrix = [
-  { name: "Kling AI", level: "상", use: "Image-to-Video · 모션 제어" },
-  { name: "ChatGPT · Gemini", level: "상", use: "기획 · 구조화 · 프롬프트" },
-  { name: "Premiere Pro", level: "상", use: "영상 편집 · 사운드 · 출력" },
-  { name: "Photoshop", level: "중", use: "레이어 분리 · 첫 프레임" },
-  { name: "After Effects", level: "중", use: "합성 · 템플릿 렌더" },
-  { name: "ElevenLabs", level: "중", use: "TTS · 연기 지시 · SFX" },
-  { name: "Next.js · TypeScript", level: "중", use: "AI 제작 도구 구현" },
-  { name: "Supabase · API", level: "중", use: "상태 · 작업 큐 · 생성 연동" },
+  { name: "Premiere", level: "상", use: "컷 편집, 대사 싱크, 색보정, 사운드 믹싱" },
+  { name: "After Effects", level: "중", use: "모션 그래픽, 애니메이션" },
+  { name: "Photoshop", level: "중", use: "레이어 분리, 마스킹, 이미지 합성·보정" },
+  {
+    name: "생성형 AI 활용 역량",
+    use: "Adobe Firefly, Gemini Nano Banana Series, Gemini Omni Series, ChatGPT Images Series, Midjourney, Kling AI, ElevenLabs (Text to Speech·Sound Effects·Eleven Music), Supertone Play",
+    wide: true,
+  },
 ];
 
 const shortAnimationVideos = [
@@ -258,12 +258,12 @@ function renderToolOverview() {
   toolOverview.innerHTML = toolMatrix
     .map(
       (tool) => `
-        <div class="tool-item">
+        <div class="tool-item${tool.wide ? " tool-item--wide" : ""}">
           <div>
             <strong>${escapeHtml(tool.name)}</strong>
             <span>${escapeHtml(tool.use)}</span>
           </div>
-          <b>${escapeHtml(tool.level)}</b>
+          ${tool.level ? `<b>${escapeHtml(tool.level)}</b>` : ""}
         </div>
       `,
     )
