@@ -606,8 +606,152 @@ function antiframeDemoMarkup() {
   `;
 }
 
+function antiframePreproductionDemoMarkup() {
+  return `
+    <section class="antiframe-demo antiframe-product-demo" data-antiframe-preproduction aria-labelledby="preproductionDemoTitle">
+      <div class="demo-head">
+        <p>실제 제품 코드 기반 데모 · API 미연결</p>
+        <h3 id="preproductionDemoTitle">대본이 제작 조건으로 컴파일되는 전공정</h3>
+        <span>운영 프로젝트의 <code>formatOptions</code>, 100~1,000자 검증, 장면 수 추정 로직을 포트폴리오 안에서 직접 실행할 수 있게 옮겼습니다.</span>
+      </div>
+      <ol class="product-stepper" aria-label="전공정 단계">
+        <li class="is-current" data-pre-step-marker="0"><span>01</span><strong>영상 유형</strong></li>
+        <li data-pre-step-marker="1"><span>02</span><strong>영상 주제</strong></li>
+        <li data-pre-step-marker="2"><span>03</span><strong>카테고리</strong></li>
+        <li data-pre-step-marker="3"><span>04</span><strong>대본 입력</strong></li>
+      </ol>
+      <div class="product-workspace">
+        <header>
+          <div><span data-pre-label>영상 유형</span><h4 data-pre-title>어떤 영상으로 만들까요?</h4></div>
+          <b data-pre-count>1/4</b>
+        </header>
+        <div class="product-panel is-active" data-pre-panel="0">
+          <div class="product-option-grid">
+            <button type="button" class="is-selected" data-pre-format="shortform"><strong>숏폼</strong><span>세로 9:16 비율로 짧게 설명해요.</span></button>
+            <button type="button" data-pre-format="longform"><strong>롱폼</strong><span>가로 16:9 비율로 차분하게 설명해요.</span></button>
+          </div>
+        </div>
+        <div class="product-panel" data-pre-panel="1" hidden>
+          <label class="product-field">
+            <span>영상 주제</span>
+            <input type="text" data-pre-subject value="도시 열섬 현상은 왜 생길까?" />
+          </label>
+        </div>
+        <div class="product-panel" data-pre-panel="2" hidden>
+          <div class="product-option-grid product-option-grid--three">
+            <button type="button" data-pre-category="역사"><strong>역사</strong><span>사건과 시대 흐름</span></button>
+            <button type="button" data-pre-category="경제"><strong>경제</strong><span>시장과 산업 구조</span></button>
+            <button type="button" data-pre-category="과학" class="is-selected"><strong>과학</strong><span>원리와 기술 개념</span></button>
+            <button type="button" data-pre-category="트렌드"><strong>트렌드</strong><span>사회 변화와 이슈</span></button>
+            <button type="button" data-pre-category="정책"><strong>정책</strong><span>제도와 공공 이슈</span></button>
+            <button type="button" data-pre-category="기타"><strong>기타</strong><span>대본에 맞춰 구성</span></button>
+          </div>
+        </div>
+        <div class="product-panel" data-pre-panel="3" hidden>
+          <label class="product-field">
+            <span>대본 입력</span>
+            <textarea data-pre-script>여름철 도시는 주변 지역보다 더 뜨거워집니다. 아스팔트와 콘크리트가 낮 동안 받은 열을 저장했다가 밤에도 내보내기 때문입니다. 나무 그늘과 옥상 녹화, 차열 포장은 도심의 표면 온도를 낮추는 대안이 될 수 있습니다.</textarea>
+          </label>
+          <div class="script-measure"><span data-pre-script-count>0/1,000자</span><b>·</b><span data-pre-cut-count>장면 -개</span></div>
+        </div>
+        <div class="product-summary" data-pre-summary hidden>
+          <span>프로젝트 입력값</span>
+          <h4 data-pre-summary-title>도시 열섬 현상은 왜 생길까?</h4>
+          <dl>
+            <div><dt>출력 형식</dt><dd data-pre-summary-format>숏폼 · 9:16</dd></div>
+            <div><dt>분류</dt><dd data-pre-summary-category>과학</dd></div>
+            <div><dt>예상 장면</dt><dd data-pre-summary-cuts>3개</dd></div>
+            <div><dt>다음 자동 단계</dt><dd>의미 단위 분할 → 장면 정보 구조화</dd></div>
+          </dl>
+          <p>이 데모는 실제 서비스의 입력 검증과 상태 전환만 재현하며 프로젝트 저장·생성 API는 호출하지 않습니다.</p>
+        </div>
+        <footer class="product-actions">
+          <button type="button" class="secondary" data-pre-prev>이전</button>
+          <p data-pre-message>영상 유형을 선택해 주세요.</p>
+          <button type="button" data-pre-next>다음</button>
+        </footer>
+      </div>
+    </section>
+  `;
+}
+
+function antiframeSceneReviewDemoMarkup() {
+  const scenes = [
+    ["01", "도시의 온도 차이", "도시는 같은 시간에도 주변보다 더 뜨거울 수 있습니다.", "영상 자료", "검토 대기"],
+    ["02", "열이 쌓이는 표면", "아스팔트와 건물은 낮 동안 받은 열을 오래 저장합니다.", "스톡 영상", "검토 대기"],
+    ["03", "온도를 낮추는 방법", "녹지와 차열 포장은 도심 표면의 온도를 낮춥니다.", "AI 이미지", "검토 대기"],
+  ];
+  return `
+    <section class="antiframe-demo antiframe-product-demo" data-antiframe-review aria-labelledby="sceneReviewDemoTitle">
+      <div class="demo-head">
+        <p>실제 제품 코드 기반 데모 · API 미연결</p>
+        <h3 id="sceneReviewDemoTitle">생성 완료와 제작 승인을 분리한 장면 검토</h3>
+        <span>운영 작업실의 장면 카드와 승인 흐름을 옮겼습니다. 화면 자료가 존재해도 사람이 확인하기 전에는 다음 공정의 확정값이 되지 않습니다.</span>
+      </div>
+      <div class="review-demo-toolbar">
+        <div><span>영상 초안</span><strong>도시 열섬 현상은 왜 생길까?</strong></div>
+        <dl><div><dt>승인</dt><dd data-review-approved>0</dd></div><div><dt>수정</dt><dd data-review-revise>0</dd></div><div><dt>대기</dt><dd data-review-pending>3</dd></div></dl>
+      </div>
+      <div class="review-scene-grid">
+        ${scenes
+          .map(
+            ([number, title, narration, source, status], index) => `
+              <button type="button" class="review-scene-card${index === 0 ? " is-selected" : ""}" data-review-scene="${index}">
+                <span class="review-scene-index">${number}</span>
+                <div class="review-scene-visual"><b>${source}</b><i aria-hidden="true"></i></div>
+                <strong>${title}</strong>
+                <p>${narration}</p>
+                <small data-review-status>${status}</small>
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="review-decision">
+        <div><span>선택한 장면</span><strong data-review-title>01 · 도시의 온도 차이</strong><p>내레이션·자료 적합성·앞뒤 장면 연결을 확인한 뒤 상태를 결정합니다.</p></div>
+        <div>
+          <button type="button" class="secondary" data-review-action="revise">수정 대상으로 표시</button>
+          <button type="button" data-review-action="approve">이 장면 승인</button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function antiframeRecoveryDemoMarkup() {
+  return `
+    <section class="antiframe-demo antiframe-product-demo" data-antiframe-recovery aria-labelledby="recoveryDemoTitle">
+      <div class="demo-head">
+        <p>실제 상태 구조 기반 데모 · API 미연결</p>
+        <h3 id="recoveryDemoTitle">실패 지점만 다시 실행하는 복구 범위</h3>
+        <span>외부 API 또는 렌더 워커가 멈췄을 때 이미 완료한 결과를 지우지 않고, 실패한 작업만 재시도하도록 상태를 분리했습니다.</span>
+      </div>
+      <div class="recovery-scenario">
+        <button type="button" class="is-selected" data-failure-mode="scene"><strong>장면 02 자료 실패</strong><span>다른 장면·대본·음성은 유지</span></button>
+        <button type="button" data-failure-mode="render"><strong>최종 렌더 실패</strong><span>모든 장면 결과와 설정은 유지</span></button>
+      </div>
+      <ol class="recovery-pipeline">
+        <li data-recovery-stage="script"><span>01</span><strong>대본·장면 구조</strong><small>완료</small></li>
+        <li data-recovery-stage="voice"><span>02</span><strong>장면별 내레이션</strong><small>완료</small></li>
+        <li data-recovery-stage="scene"><span>03</span><strong>화면 자료</strong><small>실행 전</small></li>
+        <li data-recovery-stage="render"><span>04</span><strong>최종 영상</strong><small>대기</small></li>
+      </ol>
+      <div class="recovery-console">
+        <div><span data-recovery-label>시뮬레이션 준비</span><p data-recovery-copy>오류 상황을 선택하고 실행하면 보존되는 결과와 재시도 범위를 확인할 수 있습니다.</p></div>
+        <div>
+          <button type="button" class="secondary" data-recovery-fail>오류 재현</button>
+          <button type="button" data-recovery-retry disabled>해당 범위만 재시도</button>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function portfolioArtifactMarkup(type) {
   if (type === "antiframe-demo") return antiframeDemoMarkup();
+  if (type === "antiframe-preproduction-demo") return antiframePreproductionDemoMarkup();
+  if (type === "antiframe-scene-review-demo") return antiframeSceneReviewDemoMarkup();
+  if (type === "antiframe-recovery-demo") return antiframeRecoveryDemoMarkup();
 
   if (type === "short-output-gallery") {
     const representative = shortAnimationVideos[0];
@@ -1114,6 +1258,77 @@ function portfolioArtifactMarkup(type) {
     `;
   }
 
+  if (type === "drama-research-results") {
+    const tests = [
+      ["T1", "Round 06 기준 팩 유지", "30개 후보", "30/30", "인물·연령·헤어·의상과 청문회장 공간 기준 통과"],
+      ["T2", "Round 06 1차 산출물 QC", "30개 후보", "27/30", "후반 합성을 방해하는 요소가 있는 3개 후보만 재생성"],
+      ["T3", "Round 07 1차 산출물 QC", "84개 후보", "82/84", "가짜 UI 문자·아이콘과 불필요한 배경 인물 2개 후보 교체"],
+      ["T4", "부분 교정 뒤 배치 완결성", "114개 후보", "114/114", "38개 컷마다 A·B·C 후보가 모두 선택 가능한 상태"],
+    ];
+    return `
+      <section class="artifact-block drama-research-report" aria-labelledby="dramaResearchTitle">
+        <div class="research-report-head">
+          <div>
+            <span>INTERNAL PRODUCTION TEST · ACR-2026-07</span>
+            <h3 id="dramaResearchTitle">인물·공간 일관성 제작 프로토콜 검증</h3>
+            <p>같은 인물·의상·공간 참조를 유지하고 컷마다 구도만 달리한 후보를 대상으로, 다음 공정에 넘길 수 있는지를 제작 승인 기준으로 평가했습니다.</p>
+          </div>
+          <dl>
+            <div><dt>검수 컷</dt><dd>38</dd></div>
+            <div><dt>활성 후보</dt><dd>114</dd></div>
+            <div><dt>1차 통과</dt><dd>95.6%</dd></div>
+          </dl>
+        </div>
+        <div class="research-question-grid">
+          <article><span>RQ 1</span><strong>기준 팩은 무엇을 고정하는가?</strong><p>배우 정체성·의상·세트 구조·광원이 여러 컷에서 제작 기준을 유지하는지 확인했습니다.</p></article>
+          <article><span>RQ 2</span><strong>실패를 후보 단위로 격리할 수 있는가?</strong><p>오류가 발견된 결과만 교체하고 이미 통과한 컷과 후보는 보존할 수 있는지 확인했습니다.</p></article>
+          <article><span>RQ 3</span><strong>생성 완료와 제작 승인을 구분할 수 있는가?</strong><p>파일 존재가 아니라 캐릭터·공간·구도·합성 여백을 통과한 결과만 선택 가능 상태로 넘겼습니다.</p></article>
+        </div>
+        <div class="research-method">
+          <div>
+            <span>평가 단위</span>
+            <p>컷별 A·B·C 첫 프레임 후보 1장</p>
+          </div>
+          <div>
+            <span>통제 조건</span>
+            <p>선택 배우, 청문회 의상, 공간 기준 이미지와 장면 기능</p>
+          </div>
+          <div>
+            <span>변경 조건</span>
+            <p>카메라 거리·각도, 전경 정보량과 영상 시작 자세</p>
+          </div>
+          <div>
+            <span>치명 오류</span>
+            <p>다른 얼굴·공간, 왜곡, 가짜 UI, 합성 영역 침범과 동작 여백 부족</p>
+          </div>
+        </div>
+        <div class="research-table-wrap">
+          <table>
+            <thead><tr><th>시험</th><th>검증 항목</th><th>표본</th><th>결과</th><th>판정 기록</th></tr></thead>
+            <tbody>
+              ${tests
+                .map(
+                  ([id, name, sample, result, note]) => `
+                    <tr><td>${id}</td><td>${name}</td><td>${sample}</td><td><strong>${result}</strong></td><td>${note}</td></tr>
+                  `,
+                )
+                .join("")}
+            </tbody>
+          </table>
+        </div>
+        <div class="research-result-strip">
+          <div><span>1차 통과</span><strong>109 / 114</strong><small>95.6%</small></div>
+          <div><span>교정 대상</span><strong>5 / 114</strong><small>4.4%</small></div>
+          <div><span>부분 교정 후</span><strong>114 / 114</strong><small>선택 가능</small></div>
+        </div>
+        <aside class="research-limit">
+          <strong>해석 범위와 한계</strong>
+          <p>이 결과는 동일 컷을 대상으로 한 통제군 비교가 아니라 실제 제작 배치의 내부 QC 기록입니다. 따라서 기준 팩이 일관성을 통계적으로 향상시켰다고 단정하지 않습니다. 첫 프레임 단계의 결론이며, 영상 생성 이후 얼굴 드리프트·립싱크·동작 연속성은 별도 프레임 단위 검증이 필요합니다.</p>
+        </aside>
+      </section>
+    `;
+  }
+
   if (type === "drama-storyboard-document") {
     const storyboard = window.aiDramaStoryboardData;
     if (!storyboard) return "";
@@ -1527,6 +1742,240 @@ function initializeAntiframeDemo(container) {
   });
 }
 
+function initializeAntiframePreproduction(container) {
+  const demo = container.querySelector("[data-antiframe-preproduction]");
+  if (!demo) return;
+
+  const steps = [
+    ["영상 유형", "어떤 영상으로 만들까요?"],
+    ["영상 주제", "무엇을 설명할까요?"],
+    ["영상 카테고리", "어떤 분야에 가까운가요?"],
+    ["대본 입력", "어떤 대본으로 시작할까요?"],
+  ];
+  let step = 0;
+  let format = "shortform";
+  let category = "과학";
+  let summaryOpen = false;
+  const subject = demo.querySelector("[data-pre-subject]");
+  const script = demo.querySelector("[data-pre-script]");
+  const previous = demo.querySelector("[data-pre-prev]");
+  const next = demo.querySelector("[data-pre-next]");
+  const message = demo.querySelector("[data-pre-message]");
+  const summary = demo.querySelector("[data-pre-summary]");
+
+  const estimateCuts = () => {
+    const length = script.value.trim().length;
+    return length ? Math.max(3, Math.min(18, Math.round(length / 85))) : 0;
+  };
+
+  const updateMeasure = () => {
+    const length = script.value.length;
+    demo.querySelector("[data-pre-script-count]").textContent = `${length.toLocaleString()}/1,000자`;
+    demo.querySelector("[data-pre-cut-count]").textContent =
+      length < 100 ? "최소 분량은 100자입니다." : `장면 ${estimateCuts()}개`;
+  };
+
+  const render = () => {
+    demo.querySelectorAll("[data-pre-panel]").forEach((panel, index) => {
+      panel.hidden = summaryOpen || index !== step;
+      panel.classList.toggle("is-active", !summaryOpen && index === step);
+    });
+    demo.querySelectorAll("[data-pre-step-marker]").forEach((marker, index) => {
+      marker.classList.toggle("is-current", !summaryOpen && index === step);
+      marker.classList.toggle("is-complete", summaryOpen || index < step);
+    });
+    summary.hidden = !summaryOpen;
+    demo.querySelector(".product-workspace > header").hidden = summaryOpen;
+    demo.querySelector("[data-pre-label]").textContent = steps[step][0];
+    demo.querySelector("[data-pre-title]").textContent = steps[step][1];
+    demo.querySelector("[data-pre-count]").textContent = `${step + 1}/4`;
+    previous.textContent = summaryOpen ? "입력값 수정" : step === 0 ? "처음" : "이전";
+    previous.disabled = !summaryOpen && step === 0;
+    next.hidden = summaryOpen;
+    next.textContent = step === 3 ? "제작 조건 확인" : "다음";
+    if (!summaryOpen) message.textContent = `${steps[step][0]}을 확인해 주세요.`;
+    updateMeasure();
+  };
+
+  demo.querySelectorAll("[data-pre-format]").forEach((button) => {
+    button.addEventListener("click", () => {
+      format = button.dataset.preFormat;
+      demo.querySelectorAll("[data-pre-format]").forEach((item) => item.classList.toggle("is-selected", item === button));
+    });
+  });
+
+  demo.querySelectorAll("[data-pre-category]").forEach((button) => {
+    button.addEventListener("click", () => {
+      category = button.dataset.preCategory;
+      demo.querySelectorAll("[data-pre-category]").forEach((item) => item.classList.toggle("is-selected", item === button));
+    });
+  });
+
+  script.addEventListener("input", updateMeasure);
+  previous.addEventListener("click", () => {
+    if (summaryOpen) {
+      summaryOpen = false;
+      step = 3;
+    } else {
+      step = Math.max(0, step - 1);
+    }
+    render();
+  });
+  next.addEventListener("click", () => {
+    if (step === 1 && !subject.value.trim()) {
+      message.textContent = "영상 주제를 입력해야 다음 단계로 이동할 수 있습니다.";
+      subject.focus();
+      return;
+    }
+    if (step === 3) {
+      const length = script.value.trim().length;
+      if (length < 100 || length > 1000) {
+        message.textContent = "대본은 100자 이상 1,000자 이하로 입력해 주세요.";
+        script.focus();
+        return;
+      }
+      demo.querySelector("[data-pre-summary-title]").textContent = subject.value.trim();
+      demo.querySelector("[data-pre-summary-format]").textContent =
+        format === "shortform" ? "숏폼 · 9:16" : "롱폼 · 16:9";
+      demo.querySelector("[data-pre-summary-category]").textContent = category;
+      demo.querySelector("[data-pre-summary-cuts]").textContent = `${estimateCuts()}개`;
+      message.textContent = "제작 조건이 구조화됐습니다.";
+      summaryOpen = true;
+      render();
+      return;
+    }
+    step += 1;
+    render();
+  });
+
+  render();
+}
+
+function initializeAntiframeReview(container) {
+  const demo = container.querySelector("[data-antiframe-review]");
+  if (!demo) return;
+
+  const titles = ["01 · 도시의 온도 차이", "02 · 열이 쌓이는 표면", "03 · 온도를 낮추는 방법"];
+  const statuses = ["pending", "pending", "pending"];
+  let selected = 0;
+  const cards = [...demo.querySelectorAll("[data-review-scene]")];
+
+  const render = () => {
+    cards.forEach((card, index) => {
+      const status = statuses[index];
+      card.classList.toggle("is-selected", index === selected);
+      card.classList.toggle("is-approved", status === "approved");
+      card.classList.toggle("needs-revision", status === "revise");
+      card.setAttribute("aria-pressed", String(index === selected));
+      card.querySelector("[data-review-status]").textContent =
+        status === "approved" ? "승인 완료" : status === "revise" ? "수정 필요" : "검토 대기";
+    });
+    demo.querySelector("[data-review-title]").textContent = titles[selected];
+    demo.querySelector("[data-review-approved]").textContent = statuses.filter((status) => status === "approved").length;
+    demo.querySelector("[data-review-revise]").textContent = statuses.filter((status) => status === "revise").length;
+    demo.querySelector("[data-review-pending]").textContent = statuses.filter((status) => status === "pending").length;
+  };
+
+  cards.forEach((card, index) => {
+    card.addEventListener("click", () => {
+      selected = index;
+      render();
+    });
+  });
+  demo.querySelectorAll("[data-review-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      statuses[selected] = button.dataset.reviewAction === "approve" ? "approved" : "revise";
+      render();
+    });
+  });
+
+  render();
+}
+
+function initializeAntiframeRecovery(container) {
+  const demo = container.querySelector("[data-antiframe-recovery]");
+  if (!demo) return;
+
+  let mode = "scene";
+  let phase = "ready";
+  const failButton = demo.querySelector("[data-recovery-fail]");
+  const retryButton = demo.querySelector("[data-recovery-retry]");
+  const label = demo.querySelector("[data-recovery-label]");
+  const copy = demo.querySelector("[data-recovery-copy]");
+  const stage = (name) => demo.querySelector(`[data-recovery-stage="${name}"]`);
+
+  const setStage = (name, status, text) => {
+    const item = stage(name);
+    item.className = status ? `is-${status}` : "";
+    item.querySelector("small").textContent = text;
+  };
+
+  const render = () => {
+    if (phase === "ready") {
+      setStage("script", "complete", "완료");
+      setStage("voice", "complete", "완료");
+      setStage("scene", "", mode === "scene" ? "실행 전" : "완료");
+      setStage("render", "", mode === "render" ? "실행 전" : "대기");
+      label.textContent = "시뮬레이션 준비";
+      copy.textContent =
+        mode === "scene"
+          ? "장면 02의 자료 생성만 실패하는 상황입니다."
+          : "완료된 장면을 조립하는 최종 렌더만 실패하는 상황입니다.";
+      failButton.disabled = false;
+      retryButton.disabled = true;
+    } else if (phase === "failed" && mode === "scene") {
+      setStage("script", "complete", "보존");
+      setStage("voice", "complete", "보존");
+      setStage("scene", "failed", "장면 02 실패");
+      setStage("render", "blocked", "대기");
+      label.textContent = "재시도 범위 · 장면 02 화면 자료";
+      copy.textContent = "다른 장면과 승인된 대본·내레이션은 유지합니다. 장면 02의 자료 검색·생성만 다시 실행합니다.";
+      failButton.disabled = true;
+      retryButton.disabled = false;
+    } else if (phase === "failed") {
+      setStage("script", "complete", "보존");
+      setStage("voice", "complete", "보존");
+      setStage("scene", "complete", "보존");
+      setStage("render", "failed", "작업 실패");
+      label.textContent = "재시도 범위 · 최종 영상 조립";
+      copy.textContent = "장면 파일·내레이션·BGM·자막이 든 렌더 패키지는 유지하고 렌더 작업만 새로 생성합니다.";
+      failButton.disabled = true;
+      retryButton.disabled = false;
+    } else {
+      setStage("script", "complete", "완료");
+      setStage("voice", "complete", "완료");
+      setStage("scene", "complete", "완료");
+      setStage("render", "complete", "완료");
+      label.textContent = "부분 재시도 완료";
+      copy.textContent =
+        mode === "scene"
+          ? "장면 02만 교체한 뒤 기존 장면과 함께 최종 제작 준비 상태로 돌아왔습니다."
+          : "기존 렌더 패키지를 다시 사용해 최종 영상만 완성했습니다.";
+      failButton.disabled = false;
+      retryButton.disabled = true;
+    }
+  };
+
+  demo.querySelectorAll("[data-failure-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      mode = button.dataset.failureMode;
+      phase = "ready";
+      demo.querySelectorAll("[data-failure-mode]").forEach((item) => item.classList.toggle("is-selected", item === button));
+      render();
+    });
+  });
+  failButton.addEventListener("click", () => {
+    phase = "failed";
+    render();
+  });
+  retryButton.addEventListener("click", () => {
+    phase = "recovered";
+    render();
+  });
+
+  render();
+}
+
 function initializeFinalVideoModal(container) {
   const modal = container.querySelector("[data-video-modal]");
   if (!modal) return;
@@ -1669,6 +2118,9 @@ async function renderArticle(project) {
     const articleBody = articleView.querySelector(".article-body");
     articleBody.innerHTML = markdownToHtml(markdown);
     initializeAntiframeDemo(articleBody);
+    initializeAntiframePreproduction(articleBody);
+    initializeAntiframeReview(articleBody);
+    initializeAntiframeRecovery(articleBody);
     initializeFinalVideoModal(articleBody);
     decorateArticleContent(articleBody, project);
     const next = projects[(projects.indexOf(project) + 1) % projects.length];
