@@ -2,15 +2,6 @@ const toolMatrix = [
   { name: "Premiere", level: "상", use: "컷 편집, 대사 싱크, 색보정, 사운드 믹싱" },
   { name: "After Effects", level: "중", use: "모션 그래픽, 애니메이션" },
   { name: "Photoshop", level: "중", use: "레이어 분리, 마스킹, 이미지 합성·보정" },
-  {
-    name: "생성형 AI 활용 역량",
-    wide: true,
-    groups: [
-      ["이미지 생성·편집", "Adobe Firefly, Gemini Nano Banana Series, ChatGPT Images Series, Midjourney"],
-      ["영상 생성", "Gemini Omni Series, Kling AI"],
-      ["음성·사운드", "ElevenLabs (Text to Speech·Sound Effects·Eleven Music), Supertone Play"],
-    ],
-  },
 ];
 
 const shortAnimationVideos = [
@@ -89,6 +80,7 @@ const projects = [
   {
     slug: "webtoon-ai-short-animation",
     title: "자사 IP 기반 AI 애니메이션 제작",
+    period: "2025.08 - 2026.04",
     thumbnail: "assets/thumbnails/project-01-ai-animation-v2.jpg",
     thumbnailAlt: "컷과 말풍선이 있는 펼친 만화책 3D 아이콘",
     recommended: true,
@@ -108,6 +100,7 @@ const projects = [
   {
     slug: "antiframe",
     title: "자연어 기반 AI 영상 편집 툴 개발",
+    period: "2026.05 - 현재",
     thumbnail: "assets/thumbnails/project-02-antiframe.jpg",
     thumbnailAlt: "공중에 떠 있는 파란색과 보라색 채팅 말풍선 3D 아이콘",
     summary:
@@ -126,6 +119,7 @@ const projects = [
   {
     slug: "ai-drama",
     title: "AI 드라마 제작과 인물·공간의 일관성 연구",
+    period: "2026.07 - 현재",
     thumbnail: "assets/thumbnails/project-03-ai-drama.jpg",
     thumbnailAlt: "공중에 떠 있는 검은색 바디와 다채로운 상단의 영상 슬레이트 3D 아이콘",
     summary:
@@ -144,6 +138,7 @@ const projects = [
   {
     slug: "prombank",
     title: "AI 콘텐츠 프롬프트 공유 플랫폼 ‘프롬뱅크’ 운영",
+    period: "2024.03 - 2025.06",
     thumbnail: "assets/thumbnails/project-04-prombank.jpg",
     thumbnailAlt: "네 개의 프롬프트 말풍선 상자가 공중에 떠 있는 3D 아이콘",
     summary:
@@ -162,8 +157,9 @@ const projects = [
   {
     slug: "music-tts-pronunciation",
     title: "AI 음성 콘텐츠를 위한 음악 고유명사 발음사전",
-    thumbnail: "assets/thumbnails/project-05-tts-pronunciation-v2.jpg",
-    thumbnailAlt: "마이크와 음성 파형 카드가 공중에 떠 있는 3D 아이콘",
+    period: "2026.03 - 2026.06",
+    thumbnail: "assets/thumbnails/project-05-tts-pronunciation-v3.jpg",
+    thumbnailAlt: "단순한 보라색 마이크와 두 개의 음성 파형 카드가 공중에 떠 있는 3D 아이콘",
     summary:
       "곡명·아티스트명 약 3만 5천 개를 발음사전 후보로 정리하고, 초기 약 3,500건을 직접 조사했습니다. 등록 뒤에는 실제 추천 문장으로 발음과 끊어읽기를 다시 검수했습니다.",
     role: "발음 수동 조사, 근거·소요 시간 기록, 테스트 문장 제작, 주 단위 적용 확인",
@@ -277,19 +273,7 @@ function renderToolOverview() {
         <div class="tool-item${tool.wide ? " tool-item--wide" : ""}">
           <div>
             <strong>${escapeHtml(tool.name)}</strong>
-            ${
-              tool.groups
-                ? `<div class="tool-ai-groups">
-                    ${tool.groups
-                      .map(
-                        ([label, names]) => `
-                          <p><b>${escapeHtml(label)}</b><span>${escapeHtml(names)}</span></p>
-                        `,
-                      )
-                      .join("")}
-                  </div>`
-                : `<span>${escapeHtml(tool.use)}</span>`
-            }
+            <span>${escapeHtml(tool.use)}</span>
           </div>
           ${
             tool.level
@@ -321,6 +305,7 @@ function renderProjects() {
             />
           </div>
           <div class="project-content">
+            <p class="project-period">작업 기간 <span>${escapeHtml(project.period)}</span></p>
             <h3>${escapeHtml(project.title)}</h3>
             <p class="project-summary">${escapeHtml(project.summary)}</p>
           </div>
@@ -329,6 +314,25 @@ function renderProjects() {
       `,
     )
     .join("");
+}
+
+function initializeAiToolsModal() {
+  const openButton = document.querySelector("[data-ai-tools-open]");
+  const modal = document.querySelector("[data-ai-tools-modal]");
+  const closeButton = modal?.querySelector("[data-ai-tools-close]");
+  if (!openButton || !modal || !closeButton) return;
+
+  const closeModal = () => {
+    if (!modal.open) return;
+    modal.close();
+    openButton.focus();
+  };
+
+  openButton.addEventListener("click", () => modal.showModal());
+  closeButton.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
 }
 
 function projectRequirementsMarkup(project) {
@@ -1569,6 +1573,7 @@ function updateProgress() {
 
 renderProjects();
 renderToolOverview();
+initializeAiToolsModal();
 route();
 window.addEventListener("hashchange", route);
 window.addEventListener("scroll", updateProgress, { passive: true });

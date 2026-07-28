@@ -46,9 +46,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="src/styles.css?v=19" />
-    <script src="src/storyboard-data.js?v=19" defer></script>
-    <script src="src/app.js?v=19" defer></script>
+    <link rel="stylesheet" href="src/styles.css?v=20" />
+    <script src="src/storyboard-data.js?v=20" defer></script>
+    <script src="src/app.js?v=20" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -68,24 +68,52 @@
     <main id="main-content" tabindex="-1">
       <div id="homeView">
         <section class="hero wrap" aria-labelledby="heroTitle">
-          <h1 id="heroTitle">AI 콘텐츠 제작<br />포트폴리오 블로그</h1>
+          <h1 id="heroTitle">AI 콘텐츠 제작 포트폴리오 블로그</h1>
           <p class="hero-description">
-            실제 결과물과 제작 소스, 실패 원인과 수정 기준을 중심으로
-            이미지·영상·음성 생성부터 후반 작업과 제작 파이프라인까지
-            정리했습니다.
+            실제 결과물과 제작 소스, 실패 원인과 수정 기준을 중심으로<br />
+            이미지·비디오·오디오 생성부터 후반 작업과 제작 파이프라인까지 정리했습니다.
           </p>
         </section>
 
-        <section class="tool-overview wrap" aria-labelledby="toolTitle">
-          <div class="tool-overview-heading">
-            <h2 id="toolTitle">사용 Tool 및 숙련도</h2>
-          </div>
-          <div class="tool-overview-grid" id="toolOverview"></div>
+        <section class="home-featured wrap" aria-label="사용 도구와 대표작">
+          <section class="tool-overview" aria-labelledby="toolTitle">
+            <div class="home-panel-heading">
+              <h2 id="toolTitle">사용 Tool 및 숙련도</h2>
+              <button type="button" class="ai-tools-open" data-ai-tools-open aria-haspopup="dialog">
+                생성형 AI 활용 역량 <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <div class="tool-overview-grid" id="toolOverview"></div>
+          </section>
+
+          <section class="featured-work" aria-labelledby="featuredWorkTitle">
+            <div class="home-panel-heading">
+              <h2 id="featuredWorkTitle">대표작 보기</h2>
+              <a href="#project/webtoon-ai-short-animation">제작 기록 보기 <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="featured-work-card">
+              <div class="featured-work-player">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/PwsN7nyzPyk"
+                  title="점괘보는 공녀님 AI 애니메이션 9화"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="featured-work-copy">
+                <span>회차형 AI 애니메이션 · 2분 24초</span>
+                <h3>점괘보는 공녀님<br />AI 애니메이션 9화</h3>
+                <p>원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다.</p>
+              </div>
+            </div>
+          </section>
         </section>
 
         <section class="showcase wrap" id="work" aria-labelledby="workTitle">
           <div class="section-heading">
-            <h2 id="workTitle">프로젝트</h2>
+            <h2 id="workTitle">프로젝트 작업 기록</h2>
           </div>
           <div class="project-grid" id="projectGrid"></div>
         </section>
@@ -95,13 +123,42 @@
       <article id="articleView" class="article-view" aria-live="polite" hidden></article>
     </main>
 
+    <dialog class="ai-tools-modal" data-ai-tools-modal aria-labelledby="aiToolsModalTitle">
+      <div class="ai-tools-modal-panel">
+        <header>
+          <div>
+            <span>생성형 AI 활용 역량</span>
+            <h2 id="aiToolsModalTitle">제작 공정별 활용 범위</h2>
+          </div>
+          <button type="button" data-ai-tools-close aria-label="생성형 AI 활용 역량 닫기">×</button>
+        </header>
+        <div class="ai-capability-grid">
+          <article>
+            <span>01</span>
+            <h3>이미지 생성</h3>
+            <p>레퍼런스 분석, 스타일·캐릭터 일관성 설계, 첫 프레임과 합성용 소스 제작</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>비디오 생성</h3>
+            <p>첫 프레임 기반 모션 설계, 카메라·동작 제어, 후보 비교와 부분 재생성</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>오디오 생성</h3>
+            <p>캐릭터별 TTS, 발음·감정 디렉팅, 효과음·배경음악 생성과 최종 믹싱</p>
+          </article>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="site-footer">
       <div class="wrap footer-inner">
         <a class="brand brand--footer" href="#home">
           <span class="brand-mark" aria-hidden="true"></span>
           <span>최수호 포트폴리오 블로그</span>
         </a>
-        <p>2026</p>
+        <p>2026년 7월 업데이트</p>
       </div>
     </footer>
   </body>
