@@ -70,6 +70,11 @@ const shortAnimationVideos = [
   },
 ];
 
+function shortAnimationDisplayTitle(video) {
+  const episode = video.episode.replace(" · 터치형", "");
+  return `${video.group} AI 애니메이션 ${episode}`;
+}
+
 const projects = [
   {
     slug: "webtoon-ai-short-animation",
@@ -534,19 +539,20 @@ function portfolioArtifactMarkup(type) {
   if (type === "antiframe-demo") return antiframeDemoMarkup();
 
   if (type === "short-output-gallery") {
-    const groups = ["점괘보는 공녀님", "전령새 왕녀님"];
+    const representative = shortAnimationVideos[0];
+    const additionalVideos = shortAnimationVideos.slice(1);
     const videoRowMarkup = (video, index) => `
       <li class="final-video-row">
-        <span class="final-video-index">${String(index + 1).padStart(2, "0")}</span>
+        <span class="final-video-index">${String(index + 2).padStart(2, "0")}</span>
         <div>
-          <strong>${escapeHtml(video.episode)}</strong>
+          <strong>${escapeHtml(shortAnimationDisplayTitle(video))}</strong>
           <span>${escapeHtml(video.duration)}</span>
         </div>
         <button
           type="button"
           data-final-video
           data-video-src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
-          data-video-title="${escapeHtml(`${video.group} · ${video.episode}`)}"
+          data-video-title="${escapeHtml(shortAnimationDisplayTitle(video))}"
           data-video-duration="${escapeHtml(video.duration)}"
           aria-haspopup="dialog"
         >
@@ -557,29 +563,49 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block final-video-library" aria-labelledby="outputGalleryTitle">
         <div class="artifact-heading">
-          <span>최종 영상 · 9편</span>
-          <h3 id="outputGalleryTitle">완성 영상 바로 보기</h3>
-          <p>작품과 회차를 선택하면 현재 화면 위에서 원본 화질로 재생됩니다.</p>
+          <span>대표작</span>
+          <h3 id="outputGalleryTitle">점괘보는 공녀님 AI 애니메이션 9화</h3>
         </div>
-        <div class="final-video-groups">
-          ${groups
-            .map((group) => {
-              const videos = shortAnimationVideos.filter((video) => video.group === group);
-              return `
-                <section class="final-video-group" aria-labelledby="finalVideoGroup${groups.indexOf(group)}">
-                  <h4 id="finalVideoGroup${groups.indexOf(group)}">${escapeHtml(group)}</h4>
-                  <ol>
-                    ${videos
-                      .map((video) => videoRowMarkup(video, shortAnimationVideos.indexOf(video)))
-                      .join("")}
-                  </ol>
-                </section>
-              `;
-            })
-            .join("")}
+        <div class="representative-video">
+          <div class="representative-video-meta">
+            <span>01</span>
+            <div>
+              <strong>${escapeHtml(shortAnimationDisplayTitle(representative))}</strong>
+              <small>${escapeHtml(representative.duration)}</small>
+            </div>
+          </div>
+          <div class="representative-actions">
+            <button
+              class="representative-play"
+              type="button"
+              data-final-video
+              data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
+              data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
+              data-video-duration="${escapeHtml(representative.duration)}"
+              aria-haspopup="dialog"
+            >
+              대표작 보기 <b aria-hidden="true">→</b>
+            </button>
+            <button class="video-library-open" type="button" data-video-library-open aria-haspopup="dialog">
+              애니메이션 더 보기 <span>${additionalVideos.length}편</span>
+            </button>
+          </div>
         </div>
-        <p class="artifact-note">회차형은 사건 순서와 감정 연결을, 프로모션형은 첫 장면의 후킹과 원작 유입을 기준으로 장면 선택과 편집 밀도를 달리했습니다.</p>
       </section>
+      <dialog class="video-library-modal" data-video-library-modal aria-labelledby="videoLibraryTitle">
+        <div class="video-library-panel">
+          <header>
+            <div>
+              <span>최종 영상 · ${additionalVideos.length}편</span>
+              <strong id="videoLibraryTitle">애니메이션 더 보기</strong>
+            </div>
+            <button type="button" data-video-library-close aria-label="목록 닫기">×</button>
+          </header>
+          <ol class="video-library-list">
+            ${additionalVideos.map(videoRowMarkup).join("")}
+          </ol>
+        </div>
+      </dialog>
       <dialog class="video-modal" data-video-modal aria-labelledby="videoModalTitle">
         <div class="video-modal-panel">
           <header>
@@ -605,29 +631,89 @@ function portfolioArtifactMarkup(type) {
         </div>
         <div class="clip-comparison">
           <figure>
-            <iframe
-              src="${escapeHtml(youtubeEmbedUrl("https://youtube.com/shorts/rfWtxjCl_Ek?feature=share"))}"
-              title="Kling 생성 샘플 01"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+            <video controls preload="metadata" playsinline aria-label="모션 후보 A 재생" src="assets/projects/short-animation/clips/motion-candidate-a.mp4"></video>
             <figcaption><strong>후보 A</strong><span>표정, 시선과 인물 고정 상태 확인</span></figcaption>
           </figure>
           <figure>
-            <iframe
-              src="${escapeHtml(youtubeEmbedUrl("https://youtube.com/shorts/pBQAog5Hy1M?feature=share"))}"
-              title="Kling 생성 샘플 02"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+            <video controls preload="metadata" playsinline aria-label="모션 후보 B 재생" src="assets/projects/short-animation/clips/motion-candidate-b.mp4"></video>
             <figcaption><strong>후보 B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
           </figure>
         </div>
         <p class="artifact-note">두 클립은 완성본이 아니라 편집 전 생성 후보입니다. 좋은 결과만 제시하지 않고, 실제로 비교하고 선택한 단위를 함께 남겼습니다.</p>
+      </section>
+    `;
+  }
+
+  if (type === "short-format-gallery") {
+    const formats = [
+      ["episode-09.jpg", "회차형 · 9화", "사건 전개와 인물 감정의 연결을 우선한 세로형 에피소드"],
+      ["episode-11.jpg", "회차형 · 11화", "대사·리액션·전환을 회차 단위로 조립한 완결형 구성"],
+      ["summary.jpg", "요약형", "원작의 핵심 사건을 짧은 시간 안에 재배열한 진입 포맷"],
+      ["teaser.jpg", "프로모션형", "첫 장면의 후킹과 다음 행동 유도를 우선한 짧은 편집"],
+    ];
+    return `
+      <section class="artifact-block" aria-labelledby="shortFormatTitle">
+        <div class="artifact-heading">
+          <span>포맷별 출력 자료</span>
+          <h3 id="shortFormatTitle">같은 IP를 목적이 다른 네 가지 편집 구조로 제작</h3>
+          <p>회차형·요약형·프로모션형은 단순히 길이만 다르지 않습니다. 관객이 먼저 알아야 할 정보와 컷의 종료 조건을 포맷별로 다시 정의했습니다.</p>
+        </div>
+        <div class="output-gallery output-gallery--source">
+          ${formats
+            .map(
+              ([src, title, description]) => `
+                <figure>
+                  <a href="assets/projects/short-animation/outputs/${src}" target="_blank" rel="noreferrer" title="${title} 원본 보기">
+                    <img src="assets/projects/short-animation/outputs/${src}" alt="${title} 출력 화면" loading="lazy" />
+                  </a>
+                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "short-audio-sources") {
+    const audioSources = [
+      {
+        title: "다중 화자 합성 오디오",
+        duration: "5.7초",
+        description: "화자 경계와 대사 사이의 빈 시간을 분리해 만든 합성 소스입니다. 발화가 겹치지 않는지, 청자 리액션이 들어갈 호흡이 남는지를 확인할 수 있습니다.",
+        src: "assets/projects/short-animation/audio/multi-speaker-mix.m4a",
+      },
+      {
+        title: "오디오 선행 장면 전환",
+        duration: "18.3초",
+        description: "다음 장면의 소리를 화면 컷보다 먼저 진입시킨 편집 소스입니다. 이미지 변화가 시작되기 전에 장소와 사건의 방향을 청각적으로 예고했습니다.",
+        src: "assets/projects/short-animation/audio/audio-lead-transition.m4a",
+      },
+    ];
+    return `
+      <section class="artifact-block" aria-labelledby="shortAudioTitle">
+        <div class="artifact-heading">
+          <span>오디오 원본</span>
+          <h3 id="shortAudioTitle">타임라인에서 실제로 사용한 음성·전환 소스</h3>
+          <p>최종 영상만으로는 확인하기 어려운 화자 분리와 장면 전환 판단을 오디오 단위로 분리했습니다.</p>
+        </div>
+        <div class="audio-source-list">
+          ${audioSources
+            .map(
+              (audioSource, index) => `
+                <article class="audio-source">
+                  <header>
+                    <span>${String(index + 1).padStart(2, "0")}</span>
+                    <div><strong>${audioSource.title}</strong><small>${audioSource.duration}</small></div>
+                  </header>
+                  <audio controls preload="metadata" aria-label="${audioSource.title} 재생" src="${audioSource.src}"></audio>
+                  <p>${audioSource.description}</p>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
       </section>
     `;
   }
@@ -870,6 +956,16 @@ function portfolioArtifactMarkup(type) {
             )
             .join("")}
         </div>
+        <details class="storyboard-original-preview">
+          <summary>
+            <span><small>전체 구조 확인용</small><strong>58개 컷 원본 문서 미리보기</strong></span>
+            <b aria-hidden="true">＋</b>
+          </summary>
+          <a href="assets/projects/ai-drama/storyboard-final.jpg" target="_blank" rel="noreferrer" title="스토리보드 전체 미리보기 원본 열기">
+            <img src="assets/projects/ai-drama/storyboard-final.jpg" alt="AI 드라마 58개 컷 스토리보드 전체 미리보기" loading="lazy" />
+          </a>
+          <p>전체 미리보기는 장면별 행과 정보량을 확인하기 위한 보조 자료입니다. 컷의 장면·대사·사운드·제작 규칙은 위의 확대 카드 또는 엑셀 원본에서 확인할 수 있습니다.</p>
+        </details>
         <a class="document-download" href="assets/projects/ai-drama/ai-drama-storyboard-final-v2.xlsx" download>
           <span>엑셀 원본 · 시트 4개</span>
           <strong>AI 드라마 스토리보드 최종본 v2</strong>
@@ -925,6 +1021,67 @@ function portfolioArtifactMarkup(type) {
             <div class="evidence-reader">${sceneItems.map(evidenceFigureMarkup).join("")}</div>
           </details>
         </div>
+      </section>
+    `;
+  }
+
+  if (type === "drama-generation-rounds") {
+    const roundItems = [
+      [
+        "sources/first-frame-round06-overview-01.jpg",
+        "Round 06 · 청문회 핵심 구도",
+        "CUT 5-1~5-5의 A/B/C 후보. 동일 인물·의상·공간 기준을 재사용하면서 증인석, 정면 CU, 전체 세트와 인서트의 편집 역할을 구분했습니다.",
+      ],
+      [
+        "sources/first-frame-round06-overview-02.jpg",
+        "Round 06 · 대화와 리액션 구도",
+        "CUT 5-6~5-10 후보. 말하는 인물만이 아니라 듣는 인물, 투숏과 공간 인서트가 한 시퀀스로 연결되는지를 함께 검수했습니다.",
+      ],
+      [
+        "sources/first-frame-round07-overview-01.jpg",
+        "Round 07 · 미완성 컷 보강",
+        "프롬프트마다 의도적으로 다른 카메라 위치와 정보 밀도를 부여했습니다. 반복 샘플링이 아니라 연출 선택지를 비교하기 위한 A/B/C입니다.",
+      ],
+      [
+        "sources/first-frame-round07-overview-07.jpg",
+        "Round 07 · 결말부 연기와 매체 시선",
+        "손-마이크 인서트, 기자단 WS, 증인 정면 MS·CU를 묶어 마지막 발언 전후의 압박과 공개성의 규모를 설계했습니다.",
+      ],
+    ];
+    return `
+      <section class="artifact-block drama-rounds" aria-labelledby="dramaRoundsTitle">
+        <div class="artifact-heading">
+          <span>첫 프레임 생성·검수 기록</span>
+          <h3 id="dramaRoundsTitle">컷 단위 후보를 라운드로 묶어 연속성까지 검수</h3>
+          <p>Round 06에서는 10개 컷의 30개 초기 후보와 수정 3개를, Round 07에서는 28개 컷의 84개 초기 후보와 수정 2개를 보존했습니다. 수정은 전체 재생성이 아니라 QA에서 실패한 컷에만 적용했습니다.</p>
+        </div>
+        <div class="round-metrics" aria-label="첫 프레임 생성 기록">
+          <div><span>Round 06</span><strong>10컷 · 33개</strong><small>초기 30 + 수정 3</small></div>
+          <div><span>Round 07</span><strong>28컷 · 86개</strong><small>초기 84 + 수정 2</small></div>
+        </div>
+        <div class="drama-round-reader">
+          ${roundItems
+            .map(
+              ([src, title, description]) => `
+                <figure>
+                  <a href="assets/projects/ai-drama/${src}" target="_blank" rel="noreferrer" title="${title} 원본 보기">
+                    <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
+                  </a>
+                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
+        </div>
+        <figure class="candidate-contact-sheet">
+          <a href="assets/projects/ai-drama/sources/contact-cut-5-11.jpg" target="_blank" rel="noreferrer" title="CUT 5-11 후보 원본 보기">
+            <img src="assets/projects/ai-drama/sources/contact-cut-5-11.jpg" alt="CUT 5-11 첫 프레임 후보 A B C 비교" loading="lazy" />
+          </a>
+          <figcaption>
+            <strong>CUT 5-11 · 화면 합성 영역을 남기는 세 가지 선택지</strong>
+            <span>A는 정보 화면 자체, B는 기자단을 포함한 관찰 시점, C는 공간 규모와 리모컨 동작을 함께 보여줍니다. 실제 UI 문구는 생성 이미지에 맡기지 않고 후반 합성 대상으로 남겼습니다.</span>
+          </figcaption>
+        </figure>
       </section>
     `;
   }
@@ -1077,19 +1234,37 @@ function initializeFinalVideoModal(container) {
   const modal = container.querySelector("[data-video-modal]");
   if (!modal) return;
 
+  const libraryModal = container.querySelector("[data-video-library-modal]");
+  const libraryOpenButton = container.querySelector("[data-video-library-open]");
+  const libraryCloseButton = libraryModal?.querySelector("[data-video-library-close]");
   const modalTitle = modal.querySelector("[data-video-modal-title]");
   const modalDuration = modal.querySelector("[data-video-modal-duration]");
   const modalPlayer = modal.querySelector("[data-video-modal-player]");
   const closeButton = modal.querySelector("[data-video-modal-close]");
   let triggerButton = null;
+  let returnToLibrary = false;
 
   const closeModal = () => {
     if (modal.open) modal.close();
   };
 
+  const closeLibrary = () => {
+    if (libraryModal?.open) libraryModal.close();
+  };
+
+  libraryOpenButton?.addEventListener("click", () => libraryModal?.showModal());
+  libraryCloseButton?.addEventListener("click", closeLibrary);
+  libraryModal?.addEventListener("click", (event) => {
+    if (event.target === libraryModal) closeLibrary();
+  });
+  libraryModal?.addEventListener("close", () => {
+    if (!modal.open) libraryOpenButton?.focus();
+  });
+
   container.querySelectorAll("[data-final-video]").forEach((button) => {
     button.addEventListener("click", () => {
       triggerButton = button;
+      returnToLibrary = Boolean(button.closest("[data-video-library-modal]"));
       modalTitle.textContent = button.dataset.videoTitle || "최종 영상";
       modalDuration.textContent = button.dataset.videoDuration || "";
 
@@ -1101,6 +1276,7 @@ function initializeFinalVideoModal(container) {
       iframe.referrerPolicy = "strict-origin-when-cross-origin";
       iframe.allowFullscreen = true;
       modalPlayer.replaceChildren(iframe);
+      if (libraryModal?.open) libraryModal.close();
       modal.showModal();
     });
   });
@@ -1111,7 +1287,12 @@ function initializeFinalVideoModal(container) {
   });
   modal.addEventListener("close", () => {
     modalPlayer.replaceChildren();
-    triggerButton?.focus();
+    if (returnToLibrary && libraryModal) {
+      libraryModal.showModal();
+      triggerButton?.focus();
+    } else {
+      triggerButton?.focus();
+    }
   });
 }
 
@@ -1126,7 +1307,6 @@ async function renderArticle(project) {
       <div class="article-hero-inner">
         <a class="back-link" href="#work"><span aria-hidden="true">←</span> 프로젝트 목록</a>
         <h1>${escapeHtml(project.title)}</h1>
-        <p class="article-lead">${escapeHtml(project.summary)}</p>
       </div>
     </header>
     ${projectRequirementsMarkup(project)}
@@ -1169,7 +1349,7 @@ function showHome(anchor = "home") {
   articleView.innerHTML = "";
   homeView.hidden = false;
   document.body.classList.remove("is-article");
-  document.title = "최수호 | 생성형 AI 콘텐츠 제작 포트폴리오";
+  document.title = "최수호 | AI 콘텐츠 제작 포트폴리오 블로그";
 
   requestAnimationFrame(() => {
     if (anchor === "home") {
