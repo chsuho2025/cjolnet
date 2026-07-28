@@ -4,8 +4,12 @@ const toolMatrix = [
   { name: "Photoshop", level: "중", use: "레이어 분리, 마스킹, 이미지 합성·보정" },
   {
     name: "생성형 AI 활용 역량",
-    use: "Adobe Firefly, Gemini Nano Banana Series, Gemini Omni Series, ChatGPT Images Series, Midjourney, Kling AI, ElevenLabs (Text to Speech·Sound Effects·Eleven Music), Supertone Play",
     wide: true,
+    groups: [
+      ["이미지 생성·편집", "Adobe Firefly, Gemini Nano Banana Series, ChatGPT Images Series, Midjourney"],
+      ["영상 생성", "Gemini Omni Series, Kling AI"],
+      ["음성·사운드", "ElevenLabs (Text to Speech·Sound Effects·Eleven Music), Supertone Play"],
+    ],
   },
 ];
 
@@ -94,10 +98,7 @@ const projects = [
       ["ElevenLabs", "중"],
       ["Gemini · Firefly", "중"],
     ],
-    media: {
-      type: "youtube",
-      youtube: "https://youtube.com/shorts/PwsN7nyzPyk?feature=share",
-    },
+    media: null,
     article: "content/posts/01-webtoon-ai-short-animation.md",
   },
   {
@@ -117,11 +118,7 @@ const projects = [
       ["After Effects", "중"],
       ["FFmpeg", "중"],
     ],
-    media: {
-      type: "image",
-      src: "assets/projects/antiframe/format-select.png",
-      alt: "Antiframe의 영상 형식 선택 화면",
-    },
+    media: null,
     article: "content/posts/02-antiframe.md",
   },
   {
@@ -136,7 +133,8 @@ const projects = [
     contributionNote: "",
     tools: [
       ["ChatGPT · Codex", "상"],
-      ["이미지 생성 모델", "상"],
+      ["Gemini Nano Banana Series", "상"],
+      ["ChatGPT Images Series", "상"],
       ["Photoshop", "중"],
       ["Premiere Pro", "상"],
       ["ElevenLabs", "중"],
@@ -156,9 +154,9 @@ const projects = [
     contributionNote: "",
     tools: [
       ["ChatGPT · Gemini", "상"],
-      ["이미지·영상 생성 도구", "중"],
-      ["TTS · 사운드 생성", "중"],
-      ["서비스 기획·운영", "상"],
+      ["Adobe Firefly · Midjourney", "중"],
+      ["Kling AI", "중"],
+      ["ElevenLabs · Supertone Play", "중"],
     ],
     media: null,
     article: "content/posts/04-prombank.md",
@@ -202,7 +200,7 @@ function mediaMarkup(project) {
       <div class="video-shell youtube-pending">
         <img src="${escapeHtml(project.media.poster)}" alt="" />
         <div>
-          <span>YOUTUBE MASTER</span>
+          <span>YouTube 원본</span>
           <strong>${escapeHtml(project.media.label)}</strong>
           <small>YouTube 원본 링크 연결 후 이 자리에서 고화질로 재생됩니다.</small>
         </div>
@@ -257,9 +255,21 @@ function renderToolOverview() {
         <div class="tool-item${tool.wide ? " tool-item--wide" : ""}">
           <div>
             <strong>${escapeHtml(tool.name)}</strong>
-            <span>${escapeHtml(tool.use)}</span>
+            ${
+              tool.groups
+                ? `<div class="tool-ai-groups">
+                    ${tool.groups
+                      .map(
+                        ([label, names]) => `
+                          <p><b>${escapeHtml(label)}</b><span>${escapeHtml(names)}</span></p>
+                        `,
+                      )
+                      .join("")}
+                  </div>`
+                : `<span>${escapeHtml(tool.use)}</span>`
+            }
           </div>
-          ${tool.level ? `<b>${escapeHtml(tool.level)}</b>` : ""}
+          ${tool.level ? `<b class="tool-level">${escapeHtml(tool.level)}</b>` : ""}
         </div>
       `,
     )
@@ -510,7 +520,7 @@ function antiframeDemoMarkup() {
   return `
     <section class="antiframe-demo" data-antiframe-demo aria-labelledby="demoTitle">
       <div class="demo-head">
-        <p>STATIC PRODUCT DEMO · API NOT CONNECTED</p>
+        <p>포트폴리오용 정적 데모 · 외부 API 미연결</p>
         <h3 id="demoTitle">필요한 장면만 말로 수정해보기</h3>
         <span>아래 입력은 외부 API를 호출하지 않습니다. 실제 제품의 장면 선택 → 자연어 요청 → 변경 범위 확인 흐름만 재현했습니다.</span>
       </div>
@@ -570,57 +580,60 @@ function portfolioArtifactMarkup(type) {
   if (type === "antiframe-demo") return antiframeDemoMarkup();
 
   if (type === "short-output-gallery") {
+    const featuredVideos = [shortAnimationVideos[0], shortAnimationVideos[6], shortAnimationVideos[3]];
+    const archiveVideos = shortAnimationVideos.filter((video) => !featuredVideos.includes(video));
     const groups = ["점괘보는 공녀님", "전령새 왕녀님"];
+    const videoCardMarkup = (video) => `
+      <figure class="youtube-card">
+        <iframe
+          src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
+          title="${escapeHtml(`${video.group} ${video.episode}`)}"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <figcaption>
+          <strong>${escapeHtml(video.group)} · ${escapeHtml(video.episode)}</strong>
+          <span>${escapeHtml(video.duration)} · 9:16</span>
+        </figcaption>
+      </figure>
+    `;
     return `
       <section class="artifact-block" aria-labelledby="outputGalleryTitle">
         <div class="artifact-heading">
-          <span>FINAL DELIVERABLES · YOUTUBE MASTER</span>
+          <span>결과 영상 · YouTube 원본</span>
           <h3 id="outputGalleryTitle">두 작품의 회차형·프로모션형 완성 영상 9편</h3>
-          <p>네이버웹툰 지원용 포트폴리오 PDF에 수록한 YouTube 원본을 직접 연결했습니다. 사이트용 재압축 없이 화질과 사운드를 그대로 검토할 수 있습니다.</p>
+          <p>작품과 포맷의 차이를 빠르게 볼 수 있도록 회차형 2편과 프로모션형 1편을 먼저 배치했습니다. 나머지 6편도 아래 전체 결과물에서 확인할 수 있습니다.</p>
         </div>
-        ${groups
-          .map((group) => {
-            const videos = shortAnimationVideos.filter((video) => video.group === group);
-            return `
-              <section class="video-group" aria-label="${escapeHtml(group)} 결과 영상">
-                <div class="video-group-title">
-                  <h4>${escapeHtml(group)}</h4>
-                  <span>${videos.length} DELIVERABLES</span>
-                </div>
-                <div class="youtube-gallery">
-                  ${videos
-                    .map(
-                      (video) => `
-                        <figure class="youtube-card">
-                          ${
-                            video.youtube
-                              ? `<iframe
-                                  src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
-                                  title="${escapeHtml(`${video.group} ${video.episode}`)}"
-                                  loading="lazy"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                  referrerpolicy="strict-origin-when-cross-origin"
-                                  allowfullscreen
-                                ></iframe>`
-                              : `<div class="youtube-card-pending">
-                                  <img src="${escapeHtml(video.poster)}" alt="" loading="lazy" />
-                                  <span>YOUTUBE LINK</span>
-                                  <strong>고화질 영상 연결 예정</strong>
-                                </div>`
-                          }
-                          <figcaption>
-                            <strong>${escapeHtml(video.episode)}</strong>
-                            <span>${escapeHtml(video.duration)} · 9:16</span>
-                          </figcaption>
-                        </figure>
-                      `,
-                    )
-                    .join("")}
-                </div>
-              </section>
-            `;
-          })
-          .join("")}
+        <div class="youtube-gallery youtube-gallery--featured">
+          ${featuredVideos.map(videoCardMarkup).join("")}
+        </div>
+        <details class="video-archive">
+          <summary>
+            <span>전체 결과물</span>
+            <strong>나머지 6편 작품별로 보기</strong>
+            <b aria-hidden="true">＋</b>
+          </summary>
+          <div class="video-archive-body">
+            ${groups
+              .map((group) => {
+                const videos = archiveVideos.filter((video) => video.group === group);
+                return `
+                  <section class="video-group" aria-label="${escapeHtml(group)} 추가 결과 영상">
+                    <div class="video-group-title">
+                      <h4>${escapeHtml(group)}</h4>
+                      <span>${videos.length}편</span>
+                    </div>
+                    <div class="youtube-gallery youtube-gallery--archive">
+                      ${videos.map(videoCardMarkup).join("")}
+                    </div>
+                  </section>
+                `;
+              })
+              .join("")}
+          </div>
+        </details>
         <p class="artifact-note">회차형은 사건 순서와 감정 연결을, 프로모션형은 첫 장면의 후킹과 원작 유입을 기준으로 장면 선택과 편집 밀도를 달리했습니다.</p>
       </section>
     `;
@@ -630,7 +643,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block" aria-labelledby="motionCompareTitle">
         <div class="artifact-heading">
-          <span>GENERATION CANDIDATES</span>
+          <span>모션 후보 비교</span>
           <h3 id="motionCompareTitle">동일 장면의 모션 후보를 나란히 검수</h3>
           <p>한 번의 결과를 정답으로 채택하지 않고, 같은 첫 프레임에서 생성한 후보를 얼굴 보존·행동 순서·종료 프레임 기준으로 비교했습니다.</p>
         </div>
@@ -644,7 +657,7 @@ function portfolioArtifactMarkup(type) {
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
-            <figcaption><strong>Candidate A</strong><span>표정, 시선과 인물 고정 상태 확인</span></figcaption>
+            <figcaption><strong>후보 A</strong><span>표정, 시선과 인물 고정 상태 확인</span></figcaption>
           </figure>
           <figure>
             <iframe
@@ -655,10 +668,10 @@ function portfolioArtifactMarkup(type) {
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
-            <figcaption><strong>Candidate B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
+            <figcaption><strong>후보 B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
           </figure>
         </div>
-        <p class="artifact-note">두 클립은 완성본이 아니라 편집 전 생성 후보입니다. 포트폴리오에서는 좋은 결과만 숨기지 않고 실제 선택 단위를 함께 제시합니다.</p>
+        <p class="artifact-note">두 클립은 완성본이 아니라 편집 전 생성 후보입니다. 좋은 결과만 제시하지 않고, 실제로 비교하고 선택한 단위를 함께 남겼습니다.</p>
       </section>
     `;
   }
@@ -679,7 +692,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block" aria-labelledby="postproductionVideoTitle">
         <div class="artifact-heading">
-          <span>POST-PRODUCTION EVIDENCE · YOUTUBE</span>
+          <span>후반 제작 결과 · YouTube 원본</span>
           <h3 id="postproductionVideoTitle">생성 결과를 편집 문법으로 완성한 사례</h3>
           <p>생성 모델이 한 번에 해결하기 어려운 화자 제어와 씬 연결을 분리 생성·타임라인 합성·오디오 선행 방식으로 해결했습니다.</p>
         </div>
@@ -721,7 +734,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block" aria-labelledby="bubbleGalleryTitle">
         <div class="artifact-heading">
-          <span>DIALOGUE SYSTEM</span>
+          <span>대사·연기 자료</span>
           <h3 id="bubbleGalleryTitle">말풍선을 텍스트가 아닌 연기·타이밍 정보로 분류</h3>
           <p>말풍선의 모양과 문장 부호를 발화 강도, 정적, 화자 전환과 TTS 디렉팅의 단서로 사용했습니다.</p>
         </div>
@@ -755,7 +768,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block artifact-workflow" aria-labelledby="workflowTitle">
         <div class="artifact-heading">
-          <span>END-TO-END WORKFLOW</span>
+          <span>제작 워크플로우</span>
           <h3 id="workflowTitle">산출물과 되돌아갈 조건까지 정의한 8단계 제작 흐름</h3>
         </div>
         <ol>
@@ -779,7 +792,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block system-map" aria-labelledby="systemMapTitle">
         <div class="artifact-heading">
-          <span>SERVICE ARCHITECTURE</span>
+          <span>서비스 구조</span>
           <h3 id="systemMapTitle">입력·생성·검수·렌더를 상태로 연결한 구조</h3>
           <p>브라우저에서 무거운 렌더링까지 처리하지 않고, 웹의 제작 상태와 로컬 렌더 워커를 작업 큐로 분리했습니다.</p>
         </div>
@@ -809,7 +822,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block change-scope" aria-labelledby="scopeTitle">
         <div class="artifact-heading">
-          <span>CHANGE-SCOPE POLICY</span>
+          <span>수정 범위 기준</span>
           <h3 id="scopeTitle">자연어 요청을 ‘무엇을 다시 만들지’로 변환</h3>
         </div>
         <div class="scope-table" role="table" aria-label="수정 요청별 변경 범위">
@@ -889,7 +902,7 @@ function portfolioArtifactMarkup(type) {
             .map(
               (item) => `
                 <article class="storyboard-cut">
-                  <header><span>CUT ${escapeHtml(item.cut)}</span><strong>${escapeHtml(item.duration)}</strong></header>
+                  <header><span>컷 ${escapeHtml(item.cut)}</span><strong>${escapeHtml(item.duration)}</strong></header>
                   <dl>
                     <div><dt>장면·카메라</dt><dd>${escapeHtml(item.scene)}</dd></div>
                     <div><dt>대사</dt><dd>${escapeHtml(item.dialogue)}</dd></div>
@@ -902,7 +915,7 @@ function portfolioArtifactMarkup(type) {
             .join("")}
         </div>
         <a class="document-download" href="assets/projects/ai-drama/ai-drama-storyboard-final-v2.xlsx" download>
-          <span>XLSX · 4 SHEETS</span>
+          <span>엑셀 원본 · 시트 4개</span>
           <strong>AI 드라마 스토리보드 최종본 v2</strong>
           <b>원본 엑셀 내려받기 →</b>
         </a>
@@ -911,36 +924,50 @@ function portfolioArtifactMarkup(type) {
   }
 
   if (type === "drama-preproduction-gallery") {
-    const items = [
+    const characterItems = [
       ["casting-overview.jpg", "캐스팅 후보와 선택", "개별 이미지의 미감보다 반복 생성 가능한 얼굴 특징을 기준으로 비교"],
       ["character-angle-pack.jpg", "캐릭터 각도 팩", "정면·45도·측면에서 얼굴·헤어·체형이 유지되는 기준"],
       ["wardrobe-pack.jpg", "의상 팩", "장면과 인물별 의상·소재·실루엣을 컷마다 다시 정의하지 않도록 고정"],
       ["expression-pack.jpg", "표정 팩", "중립부터 압박·당황·긴장까지 허용할 연기 범위를 기준 이미지로 관리"],
+    ];
+    const sceneItems = [
       ["location-pack.jpg", "청문회장 공간 팩", "좌석·출입구·증인석·카메라 축과 광원을 여러 시점으로 잠금"],
-      ["preproduction-overview.jpg", "첫 프레임 전 준비", "캐릭터·공간·의상·표정 기준을 한 화면에서 점검"],
       ["generated-candidates-01.jpg", "컷별 후보 3안", "구도 정확도·인물 일관성·영상화 가능성·앞뒤 연결성으로 선택"],
       ["generated-candidates-02.jpg", "추가 컷 후보 3안", "같은 인물과 공간 기준을 재사용해 컷마다 선택·탈락 근거를 기록"],
     ];
+    const evidenceFigureMarkup = ([src, title, description]) => `
+      <figure>
+        <a href="assets/projects/ai-drama/${src}" target="_blank" rel="noreferrer" title="${title} 원본 크기로 보기">
+          <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
+        </a>
+        <figcaption><strong>${title}</strong><span>${description}</span><b>이미지를 누르면 원본 크기로 열립니다.</b></figcaption>
+      </figure>
+    `;
     return `
       <section class="artifact-block" aria-labelledby="dramaEvidenceTitle">
         <div class="artifact-heading">
-          <span>ACTUAL PRODUCTION ARTIFACTS</span>
+          <span>실제 제작 자료</span>
           <h3 id="dramaEvidenceTitle">대본에서 첫 프레임 후보까지 실제 제작 자료</h3>
-          <p>완성 예정 항목을 설명으로 채우지 않고, 현재까지 제작이 끝난 자료와 그 자료가 다음 공정에서 수행하는 역할을 함께 제시합니다.</p>
+          <p>전체 기준을 먼저 보고, 필요한 경우 인물과 공간 자료를 펼쳐볼 수 있도록 구성했습니다. 각 자료는 다음 생성 단계에서 고정하거나 검수할 항목을 정의합니다.</p>
         </div>
-        <div class="evidence-reader">
-          ${items
-            .map(
-              ([src, title, description]) => `
-                <figure>
-                  <a href="assets/projects/ai-drama/${src}" target="_blank" rel="noreferrer" title="${title} 원본 크기로 보기">
-                    <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
-                  </a>
-                  <figcaption><strong>${title}</strong><span>${description}</span><b>이미지를 누르면 원본 크기로 열립니다.</b></figcaption>
-                </figure>
-              `,
-            )
-            .join("")}
+        <div class="evidence-reader evidence-featured">
+          ${evidenceFigureMarkup(["preproduction-overview.jpg", "첫 프레임 전 준비", "캐릭터·공간·의상·표정 기준을 한 화면에서 점검"])}
+        </div>
+        <div class="evidence-groups">
+          <details class="evidence-group">
+            <summary>
+              <span><small>인물 일관성 기준 · 4개 자료</small><strong>캐스팅·각도·의상·표정 자료 보기</strong></span>
+              <b aria-hidden="true">＋</b>
+            </summary>
+            <div class="evidence-reader">${characterItems.map(evidenceFigureMarkup).join("")}</div>
+          </details>
+          <details class="evidence-group">
+            <summary>
+              <span><small>공간·첫 프레임 검수 · 3개 자료</small><strong>공간 팩과 컷별 후보 보기</strong></span>
+              <b aria-hidden="true">＋</b>
+            </summary>
+            <div class="evidence-reader">${sceneItems.map(evidenceFigureMarkup).join("")}</div>
+          </details>
         </div>
       </section>
     `;
@@ -950,7 +977,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block" aria-labelledby="dramaFailureTitle">
         <div class="artifact-heading">
-          <span>REJECTED OUTPUTS · REVISION ROUTE</span>
+          <span>탈락 결과 · 수정 경로</span>
           <h3 id="dramaFailureTitle">그럴듯해도 편집할 수 없는 결과를 탈락시킨 기준</h3>
           <p>AI가 임의의 글자·아이콘·UI를 생성하면 개별 이미지는 풍부해 보이지만 컷 간 정보와 후반 합성 기준이 무너집니다.</p>
         </div>
@@ -978,7 +1005,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block prombank-artifact" aria-labelledby="prombankTemplateTitle">
         <div class="artifact-heading">
-          <span>REUSABLE PROMPT CASE</span>
+          <span>재사용 가능한 프롬프트 사례</span>
           <h3 id="prombankTemplateTitle">한 문장을 복사하는 자료가 아닌 네 칸의 제작 기록</h3>
           <p>프롬프트의 길이를 경쟁하지 않고, 다른 제작자가 자신의 장면에 맞게 바꾸면서도 핵심 조건을 잃지 않도록 사례를 구조화했습니다.</p>
         </div>
@@ -1095,20 +1122,13 @@ async function renderArticle(project) {
   homeView.hidden = true;
   articleView.hidden = false;
   document.body.classList.add("is-article");
-  document.title = `${project.title} | AI 콘텐츠 포트폴리오`;
+  document.title = `${project.title} | 최수호 포트폴리오`;
   articleView.innerHTML = `
     <header class="article-hero">
       <div class="article-hero-inner">
         <a class="back-link" href="#work"><span aria-hidden="true">←</span> 프로젝트 목록</a>
         <h1>${escapeHtml(project.title)}</h1>
         <p class="article-lead">${escapeHtml(project.summary)}</p>
-        <div class="article-byline">
-          <div class="author-avatar" aria-hidden="true">S</div>
-          <div>
-            <strong>최수호</strong>
-            <p data-read-meta>상세 제작 기록 · 분량 계산 중</p>
-          </div>
-        </div>
       </div>
     </header>
     ${projectRequirementsMarkup(project)}
@@ -1123,14 +1143,6 @@ async function renderArticle(project) {
     const markdown = await response.text();
     if (requestId !== renderRequest || location.hash !== `#project/${project.slug}`) return;
     const articleBody = articleView.querySelector(".article-body");
-    const articleCharacterCount = markdown
-      .replace(/!\[[^\]]*\]\([^)]+\)|\[\[[^\]]+\]\]|[#>*`|_-]/g, "")
-      .replace(/\s/g, "").length;
-    const readMinutes = Math.max(4, Math.ceil(articleCharacterCount / 800));
-    const readMeta = articleView.querySelector("[data-read-meta]");
-    if (readMeta) {
-      readMeta.textContent = `${articleCharacterCount.toLocaleString("ko-KR")}자 · 약 ${readMinutes}분 분량`;
-    }
     articleBody.innerHTML = markdownToHtml(markdown);
     initializeAntiframeDemo(articleBody);
     const next = projects[(projects.indexOf(project) + 1) % projects.length];
@@ -1138,7 +1150,7 @@ async function renderArticle(project) {
       "beforeend",
       `
         <a class="article-next" href="#project/${next.slug}">
-          <span>NEXT PROJECT<strong>${escapeHtml(next.title)}</strong></span>
+          <span>다음 프로젝트<strong>${escapeHtml(next.title)}</strong></span>
           <b aria-hidden="true">↗</b>
         </a>
       `,
@@ -1158,7 +1170,7 @@ function showHome(anchor = "home") {
   articleView.innerHTML = "";
   homeView.hidden = false;
   document.body.classList.remove("is-article");
-  document.title = "AI 콘텐츠 제작과 제작 워크플로우";
+  document.title = "최수호 | 생성형 AI 콘텐츠 제작 포트폴리오";
 
   requestAnimationFrame(() => {
     if (anchor === "home") {
