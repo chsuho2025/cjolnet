@@ -162,8 +162,8 @@ const projects = [
   {
     slug: "music-tts-pronunciation",
     title: "AI 음성 콘텐츠를 위한 음악 고유명사 발음사전",
-    thumbnail: "assets/thumbnails/project-05-tts-pronunciation.jpg",
-    thumbnailAlt: "스튜디오 마이크 형태의 3D 아이콘",
+    thumbnail: "assets/thumbnails/project-05-tts-pronunciation-v2.jpg",
+    thumbnailAlt: "마이크와 음성 파형 카드가 공중에 떠 있는 3D 아이콘",
     summary:
       "곡명·아티스트명 약 3만 5천 개를 발음사전 후보로 정리하고, 초기 약 3,500건을 직접 조사했습니다. 등록 뒤에는 실제 추천 문장으로 발음과 끊어읽기를 다시 검수했습니다.",
     role: "발음 수동 조사, 근거·소요 시간 기록, 테스트 문장 제작, 주 단위 적용 확인",
@@ -194,6 +194,10 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function multilineHtml(value) {
+  return escapeHtml(value || "").replaceAll("\n", "<br />");
 }
 
 function mediaMarkup(project) {
@@ -958,51 +962,91 @@ function portfolioArtifactMarkup(type) {
   }
 
   if (type === "drama-storyboard-document") {
-    const cuts = [
-      {
-        cut: "1-1",
-        duration: "5초",
-        scene: "산사 전경을 정면 대칭에 가깝게 담는 새벽 EWS. 삼각대 고정, 팬·틸트·돌리·줌 없이 풍경의 미세한 변화만 허용합니다.",
-        dialogue: "대사 없음",
-        sound: "새벽 산바람, 먼 새소리, 낮고 긴 범종 1회. 단음 피아노와 얇은 저음 드론.",
-        rule: "인물 없이 고요함을 먼저 체감시키는 Establishing Shot",
-      },
-      {
-        cut: "2-1",
-        duration: "16초",
-        scene: "스님과 산 경치를 한 구도에 둔 고정 MS. 질문, AI 응답, 휴대폰을 내리고 하늘을 보는 마지막 정적까지 한 숏으로 연결합니다.",
-        dialogue: "“오늘 비가 올까요?” → AI 응답 → 세리 VO",
-        sound: "산바람과 새소리 위에 응답 알림음, 세리 VO와 낮은 전자 펄스가 순서대로 진입합니다.",
-        rule: "카메라·렌즈·프레이밍·포커스 변경과 중간 편집점 금지",
-      },
-      {
-        cut: "3-4",
-        duration: "8초",
-        scene: "도심 사거리의 고정 WS. 전광판 속보를 충분히 보여준 뒤 화면 자체가 검게 디졸브되고 완전한 검은 화면을 0.5초 유지합니다.",
-        dialogue: "세리 VO가 문장 중간에서 끊기며 다음 청문회 장면으로 넘어갑니다.",
-        sound: "속보 알림음 뒤 도시 소리와 BGM이 함께 사라지고 0.5초의 완전한 정적을 둡니다.",
-        rule: "속보 문구·검색어 순위는 생성하지 않고 후반 VFX로 합성",
-      },
-      {
-        cut: "4-33",
-        duration: "8초",
-        scene: "세리 정면 CU로 시작해 마지막 발언까지 고정합니다. 발언이 끝난 순간에만 실제 레일 돌리 아웃으로 증인석과 기자들을 드러냅니다.",
-        dialogue: "“저희 타이탄은 AI 답변을… 조작합니다.”",
-        sound: "발언 아래 완전한 정적. 직후 셔터 연사, 플래시 충전음과 낮은 임팩트 BGM 1회.",
-        rule: "발언 이전 카메라 이동 금지 · 디지털 줌아웃 금지",
-      },
-    ];
+    const storyboard = window.aiDramaStoryboardData;
+    if (!storyboard) return "";
+    const sceneMarkup = storyboard.scenes
+      .map(
+        (scene) => `
+          <details class="storyboard-scene">
+            <summary>
+              <span class="storyboard-scene-number">SCENE ${escapeHtml(scene.scene)}</span>
+              <span>
+                <strong>${escapeHtml(scene.slugline)}</strong>
+                <small>${escapeHtml(scene.cutRange)} · ${escapeHtml(scene.cutCount)}컷 · 약 ${escapeHtml(scene.durationSeconds)}초</small>
+              </span>
+              <b aria-hidden="true">＋</b>
+            </summary>
+            <p class="storyboard-scene-function">${escapeHtml(scene.function)}</p>
+            <div class="storyboard-cut-list">
+              ${scene.cuts
+                .map(
+                  (cut) => `
+                    <article class="storyboard-cut-row">
+                      <header>
+                        <strong>CUT ${escapeHtml(cut.cut)}</strong>
+                        <span>${escapeHtml(cut.note.match(/예상 [0-9.]+초/)?.[0] || "")}</span>
+                      </header>
+                      <dl>
+                        <div><dt>장면·카메라</dt><dd>${multilineHtml(cut.direction)}</dd></div>
+                        <div><dt>대사</dt><dd>${cut.dialogue ? multilineHtml(cut.dialogue) : "—"}</dd></div>
+                        <div><dt>사운드</dt><dd>${cut.sound ? multilineHtml(cut.sound) : "—"}</dd></div>
+                        <div><dt>제작 메모</dt><dd>${multilineHtml(cut.note)}</dd></div>
+                      </dl>
+                    </article>
+                  `,
+                )
+                .join("")}
+            </div>
+          </details>
+        `,
+      )
+      .join("");
+    const ruleMarkup = storyboard.rules
+      .map(
+        (item) => `
+          <div class="storyboard-rule-row">
+            <strong>${escapeHtml(item.category)}</strong>
+            <p>${escapeHtml(item.rule)}</p>
+            <span>${escapeHtml(item.note)}</span>
+          </div>
+        `,
+      )
+      .join("");
+    const setupMarkup = storyboard.setups
+      .map(
+        (item) => `
+          <article class="storyboard-setup">
+            <header><strong>${escapeHtml(item.id)}</strong><span>${escapeHtml(item.subject)} · ${escapeHtml(item.shot)}</span></header>
+            <dl>
+              <div><dt>카메라</dt><dd>${escapeHtml(item.camera)}</dd></div>
+              <div><dt>시선·배경</dt><dd>${escapeHtml(item.eyeline)}</dd></div>
+              <div><dt>사용 컷</dt><dd>${escapeHtml(item.cuts)}</dd></div>
+              <div><dt>고정 규칙</dt><dd>${escapeHtml(item.rule)}</dd></div>
+            </dl>
+          </article>
+        `,
+      )
+      .join("");
+    const sourceMarkup = storyboard.sources
+      .map(
+        (item) => `
+          <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">
+            <span>${escapeHtml(item.label)}</span><b aria-hidden="true">↗</b>
+          </a>
+        `,
+      )
+      .join("");
     return `
       <section class="artifact-block storyboard-document" aria-labelledby="storyboardDocumentTitle">
         <div class="artifact-heading">
-          <span>스토리보드 · XLSX 원본</span>
-          <h3 id="storyboardDocumentTitle">전체 캡처 대신, 제작 판단을 읽을 수 있는 컷 단위로 재구성</h3>
-          <p>원본 엑셀은 58개 컷의 장면·카메라·대사·사운드·제작 규칙을 관리하는 문서입니다. 화면에서는 서사의 전환점 네 컷을 확대해 보여주고, 전체 자료는 원본 파일로 제공합니다.</p>
+          <span>스토리보드 원문 · 4개 시트 통합</span>
+          <h3 id="storyboardDocumentTitle">58개 컷을 장면별로 직접 읽기</h3>
+          <p>엑셀에 기록한 장면·카메라·대사·사운드·제작 메모를 웹 문서로 옮겼습니다. 장면별 항목을 펼치면 원문의 58개 컷을 모두 확인할 수 있습니다.</p>
         </div>
         <div class="storyboard-summary" aria-label="스토리보드 문서 요약">
-          <div><span>화면비</span><strong>16:9</strong></div>
-          <div><span>구성</span><strong>4씬</strong></div>
-          <div><span>제작 단위</span><strong>58컷</strong></div>
+          <div><span>화면비</span><strong>${escapeHtml(storyboard.aspectRatio)}</strong></div>
+          <div><span>구성</span><strong>${escapeHtml(storyboard.sceneCount)}씬</strong></div>
+          <div><span>제작 단위</span><strong>${escapeHtml(storyboard.cutCount)}컷</strong></div>
           <div><span>예상 길이</span><strong>약 4분 34초</strong></div>
         </div>
         <div class="storyboard-sheet-list" aria-label="엑셀 시트 구성">
@@ -1011,38 +1055,33 @@ function portfolioArtifactMarkup(type) {
           <span>작성 기준</span>
           <span>고정 구도 바이블</span>
         </div>
-        <div class="storyboard-cuts">
-          ${cuts
-            .map(
-              (item) => `
-                <article class="storyboard-cut">
-                  <header><span>컷 ${escapeHtml(item.cut)}</span><strong>${escapeHtml(item.duration)}</strong></header>
-                  <dl>
-                    <div><dt>장면·카메라</dt><dd>${escapeHtml(item.scene)}</dd></div>
-                    <div><dt>대사</dt><dd>${escapeHtml(item.dialogue)}</dd></div>
-                    <div><dt>사운드</dt><dd>${escapeHtml(item.sound)}</dd></div>
-                    <div><dt>제작 규칙</dt><dd><mark>${escapeHtml(item.rule)}</mark></dd></div>
-                  </dl>
-                </article>
-              `,
-            )
-            .join("")}
-        </div>
-        <details class="storyboard-original-preview">
+        <details class="storyboard-source">
           <summary>
-            <span><small>전체 구조 확인용</small><strong>58개 컷 원본 문서 미리보기</strong></span>
+            <span><small>스토리보드 최종 v2</small><strong>58개 컷 전체 내용 보기</strong></span>
             <b aria-hidden="true">＋</b>
           </summary>
-          <a href="assets/projects/ai-drama/storyboard-final.jpg" target="_blank" rel="noreferrer" title="스토리보드 전체 미리보기 원본 열기">
-            <img src="assets/projects/ai-drama/storyboard-final.jpg" alt="AI 드라마 58개 컷 스토리보드 전체 미리보기" loading="lazy" />
-          </a>
-          <p>전체 미리보기는 장면별 행과 정보량을 확인하기 위한 보조 자료입니다. 컷의 장면·대사·사운드·제작 규칙은 위의 확대 카드 또는 엑셀 원본에서 확인할 수 있습니다.</p>
+          <div class="storyboard-source-body">
+            <p class="storyboard-classification">${escapeHtml(storyboard.classification.replace("분류 원칙: ", ""))}</p>
+            ${sceneMarkup}
+          </div>
         </details>
-        <a class="document-download" href="assets/projects/ai-drama/ai-drama-storyboard-final-v2.xlsx" download>
-          <span>엑셀 원본 · 시트 4개</span>
-          <strong>AI 드라마 스토리보드 최종본 v2</strong>
-          <b>원본 엑셀 내려받기 →</b>
-        </a>
+        <details class="storyboard-source storyboard-source--support">
+          <summary>
+            <span><small>작성 기준</small><strong>씬·컷 분류와 카메라 원칙</strong></span>
+            <b aria-hidden="true">＋</b>
+          </summary>
+          <div class="storyboard-rule-list">
+            ${ruleMarkup}
+            <div class="storyboard-source-links">${sourceMarkup}</div>
+          </div>
+        </details>
+        <details class="storyboard-source storyboard-source--support">
+          <summary>
+            <span><small>고정 구도 바이블</small><strong>청문회장 9개 반복 세팅</strong></span>
+            <b aria-hidden="true">＋</b>
+          </summary>
+          <div class="storyboard-setup-grid">${setupMarkup}</div>
+        </details>
       </section>
     `;
   }
