@@ -6,6 +6,9 @@ const projects = [
     label: "KAKAO ENTERTAINMENT · AI SHORT ANIMATION",
     title: "웹툰 IP를 AI 애니메이션으로 확장하는 제작 과정",
     shortTitle: "웹툰 AI 숏애니메이션",
+    thumbnail: "assets/thumbnails/project-01-ai-animation.jpg",
+    thumbnailAlt: "재생 버튼과 겹쳐진 프레임을 표현한 파랑·주황색 3D 아이콘",
+    homeMeta: ["카카오엔터테인먼트", "제작 전 과정", "워크플로우 정립"],
     summary:
       "웹툰 숏츠 제작 에이전트 출시 후 확인된 CP사의 요구를 바탕으로, 웹툰 IP를 움직임·음성·사운드가 있는 애니메이션 형식으로 확장했습니다. 전 공정을 직접 제작하며 AI가 반복할 작업과 제작자가 판단할 단계를 구분했습니다.",
     tags: ["Layer-in-Layer", "Image-to-Video", "TTS·Sound", "Post-production"],
@@ -24,6 +27,9 @@ const projects = [
     label: "PERSONAL PROJECT · ANTIFRAME",
     title: "자연어로 영상 초안을 만들고 수정하는 제작 워크플로우",
     shortTitle: "Antiframe",
+    thumbnail: "assets/thumbnails/project-02-antiframe.jpg",
+    thumbnailAlt: "말풍선 안의 편집 지점을 표현한 빨강·파랑·주황색 3D 아이콘",
+    homeMeta: ["개인 프로젝트", "기획·개발", "사용자 검증"],
     summary:
       "대본 입력부터 장면별 초안, 자연어 수정과 부분 재실행을 하나의 흐름으로 연결했습니다. 반복 입력은 자동화하고 콘텐츠 방향을 결정하는 단계에는 사용자의 확인을 남겼습니다.",
     tags: ["Product Workflow", "Natural-language Edit", "Human Checkpoint", "Retry"],
@@ -43,6 +49,9 @@ const projects = [
     label: "PERSONAL PROJECT · AI DRAMA",
     title: "AI 드라마의 인물·공간·구도를 고정하는 제작 방식",
     shortTitle: "AI 드라마",
+    thumbnail: "assets/thumbnails/project-03-ai-drama.jpg",
+    thumbnailAlt: "장면 사이의 일관성을 표현한 주황·빨강·파랑색 3D 아이콘",
+    homeMeta: ["개인 프로젝트", "제작 방식 설계", "진행 중"],
     summary:
       "숏애니에서 정립한 Layer-in-Layer를 실사형 장면으로 확장합니다. 스케치, Character Pack과 Space Pack을 기준으로 인물·공간·연기의 연속성을 설계하고 있습니다.",
     tags: ["Sketch", "Character Pack", "Space Pack", "Continuity QC"],
@@ -120,22 +129,25 @@ function renderProjects() {
   projectGrid.innerHTML = projects
     .map(
       (project) => `
-        <article class="project-card">
-          ${mediaMarkup(project)}
+        <a class="project-card" href="#project/${project.slug}">
+          <div class="project-thumbnail">
+            <img
+              src="${escapeHtml(project.thumbnail)}"
+              alt="${escapeHtml(project.thumbnailAlt)}"
+              width="800"
+              height="800"
+            />
+          </div>
           <div class="project-content">
             <p class="project-label">${project.label}</p>
             <h3>${escapeHtml(project.title)}</h3>
             <p class="project-summary">${escapeHtml(project.summary)}</p>
-            <p class="project-outcome">${escapeHtml(project.outcome)}</p>
             <div class="project-meta">
-              ${project.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
+              ${project.homeMeta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
             </div>
-            <a class="project-link" href="#project/${project.slug}">
-              <span>제작 방식과 워크플로우 보기</span>
-              <span aria-hidden="true">↗</span>
-            </a>
           </div>
-        </article>
+          <span class="project-arrow" aria-hidden="true">→</span>
+        </a>
       `,
     )
     .join("");
