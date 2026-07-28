@@ -18,63 +18,54 @@ const shortAnimationVideos = [
     group: "점괘보는 공녀님",
     episode: "9화",
     duration: "2분 24초",
-    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg",
     youtube: "https://youtube.com/shorts/PwsN7nyzPyk?feature=share",
   },
   {
     group: "점괘보는 공녀님",
     episode: "10화",
     duration: "2분 29초",
-    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep10.jpg",
     youtube: "https://youtube.com/shorts/W5mDMJXmhKc?feature=share",
   },
   {
     group: "점괘보는 공녀님",
     episode: "11화",
     duration: "1분 23초",
-    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep11.jpg",
     youtube: "https://youtube.com/shorts/qz6310ZOMho?feature=share",
   },
   {
     group: "점괘보는 공녀님",
     episode: "9화 프로모션 · 터치형",
-    duration: "YouTube Shorts",
-    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    duration: "15초",
     youtube: "https://youtube.com/shorts/Bt2eeOXGEI8?feature=share",
   },
   {
     group: "점괘보는 공녀님",
     episode: "10화 프로모션 · 터치형",
-    duration: "YouTube Shorts",
-    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    duration: "17초",
     youtube: "https://youtube.com/shorts/mzAJt61oDEk?feature=share",
   },
   {
     group: "점괘보는 공녀님",
     episode: "1~6화 프로모션",
-    duration: "YouTube Shorts",
-    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    duration: "53초",
     youtube: "https://youtube.com/shorts/Unnp3GSet9M?feature=share",
   },
   {
     group: "전령새 왕녀님",
     episode: "1화",
     duration: "1분 52초",
-    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep01.jpg",
     youtube: "https://youtube.com/shorts/wefQYggOTfQ?feature=share",
   },
   {
     group: "전령새 왕녀님",
     episode: "2화",
     duration: "1분 26초",
-    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep02.jpg",
     youtube: "https://youtube.com/shorts/XeuteDMTU98?feature=share",
   },
   {
     group: "전령새 왕녀님",
     episode: "3화",
     duration: "1분 58초",
-    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep03.jpg",
     youtube: "https://youtube.com/shorts/tGgkaAfPPBI",
   },
 ];
@@ -90,14 +81,6 @@ const projects = [
     role: "웹툰 IP 분석, 이미지·영상 생성, 음성·사운드 제작, 편집과 품질 검수 전 과정",
     contribution: "100%",
     contributionNote: "",
-    tools: [
-      ["Kling AI", "상"],
-      ["Premiere Pro", "상"],
-      ["Photoshop", "중"],
-      ["After Effects", "중"],
-      ["ElevenLabs", "중"],
-      ["Gemini · Firefly", "중"],
-    ],
     media: null,
     article: "content/posts/01-webtoon-ai-short-animation.md",
   },
@@ -111,13 +94,6 @@ const projects = [
     role: "제품 기획, UX·정보 구조, 프론트엔드·API, 생성 파이프라인, 렌더 워커 구현과 사용자 검증",
     contribution: "100%",
     contributionNote: "",
-    tools: [
-      ["ChatGPT · Gemini", "상"],
-      ["Next.js · TypeScript", "중"],
-      ["Supabase · API", "중"],
-      ["After Effects", "중"],
-      ["FFmpeg", "중"],
-    ],
     media: null,
     article: "content/posts/02-antiframe.md",
   },
@@ -131,14 +107,6 @@ const projects = [
     role: "대본·스토리보드, 인물·공간 설정 자료, 구도 스케치, 첫 프레임 생성과 장면 간 연속성 검수",
     contribution: "100%",
     contributionNote: "",
-    tools: [
-      ["ChatGPT · Codex", "상"],
-      ["Gemini Nano Banana Series", "상"],
-      ["ChatGPT Images Series", "상"],
-      ["Photoshop", "중"],
-      ["Premiere Pro", "상"],
-      ["ElevenLabs", "중"],
-    ],
     media: null,
     article: "content/posts/02-cinematic-layer-in-layer.md",
   },
@@ -152,12 +120,6 @@ const projects = [
     role: "서비스 기획, 프롬프트 콘텐츠 제작",
     contribution: "80%",
     contributionNote: "",
-    tools: [
-      ["ChatGPT · Gemini", "상"],
-      ["Adobe Firefly · Midjourney", "중"],
-      ["Kling AI", "중"],
-      ["ElevenLabs · Supertone Play", "중"],
-    ],
     media: null,
     article: "content/posts/04-prombank.md",
   },
@@ -200,9 +162,9 @@ function mediaMarkup(project) {
       <div class="video-shell youtube-pending">
         <img src="${escapeHtml(project.media.poster)}" alt="" />
         <div>
-          <span>YouTube 원본</span>
+          <span>고화질 원본</span>
           <strong>${escapeHtml(project.media.label)}</strong>
-          <small>YouTube 원본 링크 연결 후 이 자리에서 고화질로 재생됩니다.</small>
+          <small>원본 링크 연결 후 이 자리에서 고화질로 재생됩니다.</small>
         </div>
       </div>
     `;
@@ -302,7 +264,7 @@ function renderProjects() {
 
 function projectRequirementsMarkup(project) {
   return `
-    <section class="project-requirements" aria-label="담당 업무, 기여도와 사용 도구">
+    <section class="project-requirements" aria-label="담당 업무와 기여도">
       <div class="project-requirements-main">
         <div>
           <span>담당 업무</span>
@@ -312,14 +274,6 @@ function projectRequirementsMarkup(project) {
           <span>기여도</span>
           <strong>${escapeHtml(project.contribution)}</strong>
           ${project.contributionNote ? `<small>${escapeHtml(project.contributionNote)}</small>` : ""}
-        </div>
-      </div>
-      <div class="project-tools">
-        <span>사용 툴 · 숙련도</span>
-        <div>
-          ${project.tools
-            .map(([name, level]) => `<p><strong>${escapeHtml(name)}</strong><b>${escapeHtml(level)}</b></p>`)
-            .join("")}
         </div>
       </div>
     </section>
@@ -580,62 +534,64 @@ function portfolioArtifactMarkup(type) {
   if (type === "antiframe-demo") return antiframeDemoMarkup();
 
   if (type === "short-output-gallery") {
-    const featuredVideos = [shortAnimationVideos[0], shortAnimationVideos[6], shortAnimationVideos[3]];
-    const archiveVideos = shortAnimationVideos.filter((video) => !featuredVideos.includes(video));
     const groups = ["점괘보는 공녀님", "전령새 왕녀님"];
-    const videoCardMarkup = (video) => `
-      <figure class="youtube-card">
-        <iframe
-          src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
-          title="${escapeHtml(`${video.group} ${video.episode}`)}"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <figcaption>
-          <strong>${escapeHtml(video.group)} · ${escapeHtml(video.episode)}</strong>
-          <span>${escapeHtml(video.duration)} · 9:16</span>
-        </figcaption>
-      </figure>
+    const videoRowMarkup = (video, index) => `
+      <li class="final-video-row">
+        <span class="final-video-index">${String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <strong>${escapeHtml(video.episode)}</strong>
+          <span>${escapeHtml(video.duration)}</span>
+        </div>
+        <button
+          type="button"
+          data-final-video
+          data-video-src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
+          data-video-title="${escapeHtml(`${video.group} · ${video.episode}`)}"
+          data-video-duration="${escapeHtml(video.duration)}"
+          aria-haspopup="dialog"
+        >
+          영상 보기 <b aria-hidden="true">→</b>
+        </button>
+      </li>
     `;
     return `
-      <section class="artifact-block" aria-labelledby="outputGalleryTitle">
+      <section class="artifact-block final-video-library" aria-labelledby="outputGalleryTitle">
         <div class="artifact-heading">
-          <span>결과 영상 · YouTube 원본</span>
-          <h3 id="outputGalleryTitle">두 작품의 회차형·프로모션형 완성 영상 9편</h3>
-          <p>작품과 포맷의 차이를 빠르게 볼 수 있도록 회차형 2편과 프로모션형 1편을 먼저 배치했습니다. 나머지 6편도 아래 전체 결과물에서 확인할 수 있습니다.</p>
+          <span>최종 영상 · 9편</span>
+          <h3 id="outputGalleryTitle">완성 영상 바로 보기</h3>
+          <p>작품과 회차를 선택하면 현재 화면 위에서 원본 화질로 재생됩니다.</p>
         </div>
-        <div class="youtube-gallery youtube-gallery--featured">
-          ${featuredVideos.map(videoCardMarkup).join("")}
+        <div class="final-video-groups">
+          ${groups
+            .map((group) => {
+              const videos = shortAnimationVideos.filter((video) => video.group === group);
+              return `
+                <section class="final-video-group" aria-labelledby="finalVideoGroup${groups.indexOf(group)}">
+                  <h4 id="finalVideoGroup${groups.indexOf(group)}">${escapeHtml(group)}</h4>
+                  <ol>
+                    ${videos
+                      .map((video) => videoRowMarkup(video, shortAnimationVideos.indexOf(video)))
+                      .join("")}
+                  </ol>
+                </section>
+              `;
+            })
+            .join("")}
         </div>
-        <details class="video-archive">
-          <summary>
-            <span>전체 결과물</span>
-            <strong>나머지 6편 작품별로 보기</strong>
-            <b aria-hidden="true">＋</b>
-          </summary>
-          <div class="video-archive-body">
-            ${groups
-              .map((group) => {
-                const videos = archiveVideos.filter((video) => video.group === group);
-                return `
-                  <section class="video-group" aria-label="${escapeHtml(group)} 추가 결과 영상">
-                    <div class="video-group-title">
-                      <h4>${escapeHtml(group)}</h4>
-                      <span>${videos.length}편</span>
-                    </div>
-                    <div class="youtube-gallery youtube-gallery--archive">
-                      ${videos.map(videoCardMarkup).join("")}
-                    </div>
-                  </section>
-                `;
-              })
-              .join("")}
-          </div>
-        </details>
         <p class="artifact-note">회차형은 사건 순서와 감정 연결을, 프로모션형은 첫 장면의 후킹과 원작 유입을 기준으로 장면 선택과 편집 밀도를 달리했습니다.</p>
       </section>
+      <dialog class="video-modal" data-video-modal aria-labelledby="videoModalTitle">
+        <div class="video-modal-panel">
+          <header>
+            <div>
+              <strong id="videoModalTitle" data-video-modal-title></strong>
+              <span data-video-modal-duration></span>
+            </div>
+            <button type="button" data-video-modal-close aria-label="영상 닫기">×</button>
+          </header>
+          <div class="video-modal-player" data-video-modal-player></div>
+        </div>
+      </dialog>
     `;
   }
 
@@ -692,7 +648,7 @@ function portfolioArtifactMarkup(type) {
     return `
       <section class="artifact-block" aria-labelledby="postproductionVideoTitle">
         <div class="artifact-heading">
-          <span>후반 제작 결과 · YouTube 원본</span>
+          <span>후반 제작 결과</span>
           <h3 id="postproductionVideoTitle">생성 결과를 편집 문법으로 완성한 사례</h3>
           <p>생성 모델이 한 번에 해결하기 어려운 화자 제어와 씬 연결을 분리 생성·타임라인 합성·오디오 선행 방식으로 해결했습니다.</p>
         </div>
@@ -1117,6 +1073,48 @@ function initializeAntiframeDemo(container) {
   });
 }
 
+function initializeFinalVideoModal(container) {
+  const modal = container.querySelector("[data-video-modal]");
+  if (!modal) return;
+
+  const modalTitle = modal.querySelector("[data-video-modal-title]");
+  const modalDuration = modal.querySelector("[data-video-modal-duration]");
+  const modalPlayer = modal.querySelector("[data-video-modal-player]");
+  const closeButton = modal.querySelector("[data-video-modal-close]");
+  let triggerButton = null;
+
+  const closeModal = () => {
+    if (modal.open) modal.close();
+  };
+
+  container.querySelectorAll("[data-final-video]").forEach((button) => {
+    button.addEventListener("click", () => {
+      triggerButton = button;
+      modalTitle.textContent = button.dataset.videoTitle || "최종 영상";
+      modalDuration.textContent = button.dataset.videoDuration || "";
+
+      const iframe = document.createElement("iframe");
+      iframe.src = `${button.dataset.videoSrc}?autoplay=1&rel=0`;
+      iframe.title = `${button.dataset.videoTitle || "최종 영상"} 재생`;
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+      modalPlayer.replaceChildren(iframe);
+      modal.showModal();
+    });
+  });
+
+  closeButton.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  modal.addEventListener("close", () => {
+    modalPlayer.replaceChildren();
+    triggerButton?.focus();
+  });
+}
+
 async function renderArticle(project) {
   const requestId = ++renderRequest;
   homeView.hidden = true;
@@ -1145,6 +1143,7 @@ async function renderArticle(project) {
     const articleBody = articleView.querySelector(".article-body");
     articleBody.innerHTML = markdownToHtml(markdown);
     initializeAntiframeDemo(articleBody);
+    initializeFinalVideoModal(articleBody);
     const next = projects[(projects.indexOf(project) + 1) % projects.length];
     articleView.insertAdjacentHTML(
       "beforeend",
