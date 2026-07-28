@@ -78,14 +78,14 @@ const shortAnimationVideos = [
 const projects = [
   {
     slug: "webtoon-ai-short-animation",
-    title: "웹툰 IP 기반 AI 숏애니메이션 제작",
+    title: "자사 IP 기반 AI 애니메이션 제작",
     thumbnail: "assets/thumbnails/project-01-ai-animation.jpg",
     thumbnailAlt: "무표정 인물과 말풍선이 공중에 떠 있는 3D 아이콘",
     summary:
-      "두 개의 웹툰 IP를 회차형·프로모션형 애니메이션으로 제작했습니다. 원작 보존, 첫 프레임, 모션, TTS·사운드, 편집·QC와 Layer-in-Layer 정립 과정을 실제 소스로 공개합니다.",
-    role: "회차 분석·연출부터 이미지·영상·음성 생성, 편집과 QC까지 AI 애니메이션 제작 전담",
+      "웹툰 IP 분석부터 이미지·영상 생성, 음성·사운드 제작, 편집, 품질 검수까지 전 과정을 수행했습니다. 원작의 그림체를 유지하면서 필요한 동작만 제어하는 ‘레이어 인 레이어’ 제작 방식을 정립했습니다.",
+    role: "웹툰 IP 분석, 이미지·영상 생성, 음성·사운드 제작, 편집과 품질 검수 전 과정",
     contribution: "100%",
-    contributionNote: "사내 에이전트 개발 전체가 아니라, 배정된 AI 애니메이션 제작 공정 기준",
+    contributionNote: "",
     tools: [
       ["Kling AI", "상"],
       ["Premiere Pro", "상"],
@@ -102,14 +102,14 @@ const projects = [
   },
   {
     slug: "antiframe",
-    title: "자연어로 영상 초안을 만들고 수정하는 제작 워크플로우",
+    title: "자연어 기반 AI 영상 편집 툴 개발",
     thumbnail: "assets/thumbnails/project-02-antiframe.jpg",
     thumbnailAlt: "공중에 떠 있는 파란색과 보라색 채팅 말풍선 3D 아이콘",
     summary:
-      "대본 입력부터 장면별 초안, 자연어 수정과 부분 재실행을 하나의 흐름으로 연결했습니다. 반복 입력은 자동화하고 콘텐츠 방향을 결정하는 단계에는 사용자의 확인을 남겼습니다.",
-    role: "문제 정의, 제품 기획, UX·정보 구조, 프론트엔드·API, 생성 파이프라인, 렌더 워커와 QA",
+      "대본 입력–영상 초안 생성–장면 검토–자연어 수정–부분 재생성으로 이어지는 AI 영상 제작 과정을 구현했습니다. 제작 자동화 구조와 사용자 검증 과정을 수록했습니다.",
+    role: "제품 기획, UX·정보 구조, 프론트엔드·API, 생성 파이프라인, 렌더 워커 구현과 사용자 검증",
     contribution: "100%",
-    contributionNote: "기획·개발·검증 전 과정",
+    contributionNote: "",
     tools: [
       ["ChatGPT · Gemini", "상"],
       ["Next.js · TypeScript", "중"],
@@ -126,14 +126,14 @@ const projects = [
   },
   {
     slug: "ai-drama",
-    title: "AI 드라마의 인물·공간·구도를 고정하는 제작 워크플로우",
+    title: "AI 드라마 제작과 인물·공간의 일관성 연구",
     thumbnail: "assets/thumbnails/project-03-ai-drama.jpg",
     thumbnailAlt: "공중에 떠 있는 검은색 바디와 다채로운 상단의 영상 슬레이트 3D 아이콘",
     summary:
-      "텍스트 프롬프트만으로 통제되지 않던 구도를 사람의 스케치로 먼저 잠그고, 캐릭터 팩·공간 팩·후보 3안과 QC를 연결했습니다. 현재 실제 제작 자료와 진행 상태를 공개합니다.",
-    role: "대본·스토리보드, 구도 스케치, 캐스팅·레퍼런스 팩, 첫 프레임 생성·선택과 연속성 QC",
+      "인물과 공간의 설정 자료 및 장면 간 연속성 검수 기준을 활용해 등장인물의 외형, 공간, 동작을 일관되게 유지하는 제작 방식을 설계했습니다.",
+    role: "대본·스토리보드, 인물·공간 설정 자료, 구도 스케치, 첫 프레임 생성과 장면 간 연속성 검수",
     contribution: "100%",
-    contributionNote: "현재 프리프로덕션·첫 프레임 제작 단계 기준",
+    contributionNote: "",
     tools: [
       ["ChatGPT · Codex", "상"],
       ["이미지 생성 모델", "상"],
@@ -141,23 +141,19 @@ const projects = [
       ["Premiere Pro", "상"],
       ["ElevenLabs", "중"],
     ],
-    media: {
-      type: "image",
-      src: "assets/projects/ai-drama/preproduction-overview.jpg",
-      alt: "AI 드라마 캐릭터 팩과 공간 팩, 첫 프레임 제작 현황",
-    },
+    media: null,
     article: "content/posts/02-cinematic-layer-in-layer.md",
   },
   {
     slug: "prombank",
-    title: "생성형 AI 시행착오를 재사용 가능한 템플릿으로 만든 프롬뱅크",
+    title: "AI 콘텐츠 프롬프트 공유 플랫폼 ‘프롬뱅크’ 운영",
     thumbnail: "assets/thumbnails/project-04-prombank.jpg",
     thumbnailAlt: "네 개의 프롬프트 말풍선 상자가 공중에 떠 있는 3D 아이콘",
     summary:
-      "이미지·영상·TTS·사운드 생성의 성공·실패 사례를 수집하고, 사용 목적·변경 정보·고정 조건·결과 예시로 구조화해 공유한 프롬프트 플랫폼입니다.",
-    role: "문제 정의, 학회 제안, 사례 수집·분류, 템플릿 구조와 서비스 기획·제작·운영",
-    contribution: "100%",
-    contributionNote: "학회 구성원은 생성 사례 제공, 플랫폼 기획·제작·운영은 직접 수행",
+      "이미지·영상·TTS·효과음·배경음악 프롬프트와 생성 결과, 수정 과정을 분석해 재사용 가능한 정보로 분류했습니다. MVP 공개 후 첫 4주간 고유 방문자 1,311명과 3,285회의 방문 세션을 기록했습니다.",
+    role: "서비스 기획, 프롬프트 콘텐츠 제작",
+    contribution: "80%",
+    contributionNote: "",
     tools: [
       ["ChatGPT · Gemini", "상"],
       ["이미지·영상 생성 도구", "중"],
@@ -305,7 +301,7 @@ function projectRequirementsMarkup(project) {
         <div>
           <span>기여도</span>
           <strong>${escapeHtml(project.contribution)}</strong>
-          <small>${escapeHtml(project.contributionNote)}</small>
+          ${project.contributionNote ? `<small>${escapeHtml(project.contributionNote)}</small>` : ""}
         </div>
       </div>
       <div class="project-tools">
@@ -328,6 +324,7 @@ function inlineMarkdown(text) {
     '<a href="$2" target="_blank" rel="noreferrer">$1</a>',
   );
   result = result.replace(/`([^`]+)`/g, "<code>$1</code>");
+  result = result.replace(/==([^=]+)==/g, "<mark>$1</mark>");
   result = result.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   result = result.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   return result;
@@ -471,7 +468,9 @@ function parseMarkdownBlocks(lines, state = { sectionIndex: 0 }) {
       flushList();
       output.push(`
         <figure class="article-figure">
-          <img src="${escapeHtml(image[2])}" alt="${escapeHtml(image[1])}" loading="lazy" />
+          <a class="article-figure-link" href="${escapeHtml(image[2])}" target="_blank" rel="noreferrer" title="원본 크기로 보기">
+            <img src="${escapeHtml(image[2])}" alt="${escapeHtml(image[1])}" loading="lazy" />
+          </a>
           ${image[1] ? `<figcaption>${inlineMarkdown(image[1])}</figcaption>` : ""}
         </figure>
       `);
@@ -831,9 +830,88 @@ function portfolioArtifactMarkup(type) {
     `;
   }
 
+  if (type === "drama-storyboard-document") {
+    const cuts = [
+      {
+        cut: "1-1",
+        duration: "5초",
+        scene: "산사 전경을 정면 대칭에 가깝게 담는 새벽 EWS. 삼각대 고정, 팬·틸트·돌리·줌 없이 풍경의 미세한 변화만 허용합니다.",
+        dialogue: "대사 없음",
+        sound: "새벽 산바람, 먼 새소리, 낮고 긴 범종 1회. 단음 피아노와 얇은 저음 드론.",
+        rule: "인물 없이 고요함을 먼저 체감시키는 Establishing Shot",
+      },
+      {
+        cut: "2-1",
+        duration: "16초",
+        scene: "스님과 산 경치를 한 구도에 둔 고정 MS. 질문, AI 응답, 휴대폰을 내리고 하늘을 보는 마지막 정적까지 한 숏으로 연결합니다.",
+        dialogue: "“오늘 비가 올까요?” → AI 응답 → 세리 VO",
+        sound: "산바람과 새소리 위에 응답 알림음, 세리 VO와 낮은 전자 펄스가 순서대로 진입합니다.",
+        rule: "카메라·렌즈·프레이밍·포커스 변경과 중간 편집점 금지",
+      },
+      {
+        cut: "3-4",
+        duration: "8초",
+        scene: "도심 사거리의 고정 WS. 전광판 속보를 충분히 보여준 뒤 화면 자체가 검게 디졸브되고 완전한 검은 화면을 0.5초 유지합니다.",
+        dialogue: "세리 VO가 문장 중간에서 끊기며 다음 청문회 장면으로 넘어갑니다.",
+        sound: "속보 알림음 뒤 도시 소리와 BGM이 함께 사라지고 0.5초의 완전한 정적을 둡니다.",
+        rule: "속보 문구·검색어 순위는 생성하지 않고 후반 VFX로 합성",
+      },
+      {
+        cut: "4-33",
+        duration: "8초",
+        scene: "세리 정면 CU로 시작해 마지막 발언까지 고정합니다. 발언이 끝난 순간에만 실제 레일 돌리 아웃으로 증인석과 기자들을 드러냅니다.",
+        dialogue: "“저희 타이탄은 AI 답변을… 조작합니다.”",
+        sound: "발언 아래 완전한 정적. 직후 셔터 연사, 플래시 충전음과 낮은 임팩트 BGM 1회.",
+        rule: "발언 이전 카메라 이동 금지 · 디지털 줌아웃 금지",
+      },
+    ];
+    return `
+      <section class="artifact-block storyboard-document" aria-labelledby="storyboardDocumentTitle">
+        <div class="artifact-heading">
+          <span>스토리보드 · XLSX 원본</span>
+          <h3 id="storyboardDocumentTitle">전체 캡처 대신, 제작 판단을 읽을 수 있는 컷 단위로 재구성</h3>
+          <p>원본 엑셀은 58개 컷의 장면·카메라·대사·사운드·제작 규칙을 관리하는 문서입니다. 화면에서는 서사의 전환점 네 컷을 확대해 보여주고, 전체 자료는 원본 파일로 제공합니다.</p>
+        </div>
+        <div class="storyboard-summary" aria-label="스토리보드 문서 요약">
+          <div><span>화면비</span><strong>16:9</strong></div>
+          <div><span>구성</span><strong>4씬</strong></div>
+          <div><span>제작 단위</span><strong>58컷</strong></div>
+          <div><span>예상 길이</span><strong>약 4분 34초</strong></div>
+        </div>
+        <div class="storyboard-sheet-list" aria-label="엑셀 시트 구성">
+          <span>스토리보드 최종 v2</span>
+          <span>씬 요약</span>
+          <span>작성 기준</span>
+          <span>고정 구도 바이블</span>
+        </div>
+        <div class="storyboard-cuts">
+          ${cuts
+            .map(
+              (item) => `
+                <article class="storyboard-cut">
+                  <header><span>CUT ${escapeHtml(item.cut)}</span><strong>${escapeHtml(item.duration)}</strong></header>
+                  <dl>
+                    <div><dt>장면·카메라</dt><dd>${escapeHtml(item.scene)}</dd></div>
+                    <div><dt>대사</dt><dd>${escapeHtml(item.dialogue)}</dd></div>
+                    <div><dt>사운드</dt><dd>${escapeHtml(item.sound)}</dd></div>
+                    <div><dt>제작 규칙</dt><dd><mark>${escapeHtml(item.rule)}</mark></dd></div>
+                  </dl>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+        <a class="document-download" href="assets/projects/ai-drama/ai-drama-storyboard-final-v2.xlsx" download>
+          <span>XLSX · 4 SHEETS</span>
+          <strong>AI 드라마 스토리보드 최종본 v2</strong>
+          <b>원본 엑셀 내려받기 →</b>
+        </a>
+      </section>
+    `;
+  }
+
   if (type === "drama-preproduction-gallery") {
     const items = [
-      ["storyboard-final.jpg", "스토리보드 최종안", "대사·장면 기능·첫 프레임·움직임·음향과 길이를 컷 단위로 잠금"],
       ["casting-overview.jpg", "캐스팅 후보와 선택", "개별 이미지의 미감보다 반복 생성 가능한 얼굴 특징을 기준으로 비교"],
       ["character-angle-pack.jpg", "캐릭터 각도 팩", "정면·45도·측면에서 얼굴·헤어·체형이 유지되는 기준"],
       ["wardrobe-pack.jpg", "의상 팩", "장면과 인물별 의상·소재·실루엣을 컷마다 다시 정의하지 않도록 고정"],
@@ -841,6 +919,7 @@ function portfolioArtifactMarkup(type) {
       ["location-pack.jpg", "청문회장 공간 팩", "좌석·출입구·증인석·카메라 축과 광원을 여러 시점으로 잠금"],
       ["preproduction-overview.jpg", "첫 프레임 전 준비", "캐릭터·공간·의상·표정 기준을 한 화면에서 점검"],
       ["generated-candidates-01.jpg", "컷별 후보 3안", "구도 정확도·인물 일관성·영상화 가능성·앞뒤 연결성으로 선택"],
+      ["generated-candidates-02.jpg", "추가 컷 후보 3안", "같은 인물과 공간 기준을 재사용해 컷마다 선택·탈락 근거를 기록"],
     ];
     return `
       <section class="artifact-block" aria-labelledby="dramaEvidenceTitle">
@@ -849,13 +928,15 @@ function portfolioArtifactMarkup(type) {
           <h3 id="dramaEvidenceTitle">대본에서 첫 프레임 후보까지 실제 제작 자료</h3>
           <p>완성 예정 항목을 설명으로 채우지 않고, 현재까지 제작이 끝난 자료와 그 자료가 다음 공정에서 수행하는 역할을 함께 제시합니다.</p>
         </div>
-        <div class="evidence-gallery">
+        <div class="evidence-reader">
           ${items
             .map(
               ([src, title, description]) => `
                 <figure>
-                  <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
-                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                  <a href="assets/projects/ai-drama/${src}" target="_blank" rel="noreferrer" title="${title} 원본 크기로 보기">
+                    <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
+                  </a>
+                  <figcaption><strong>${title}</strong><span>${description}</span><b>이미지를 누르면 원본 크기로 열립니다.</b></figcaption>
                 </figure>
               `,
             )
