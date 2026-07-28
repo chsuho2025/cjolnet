@@ -4,6 +4,9 @@ const toolMatrix = [
   { name: "Photoshop", level: "중", use: "레이어 분리, 마스킹, 이미지 합성·보정" },
 ];
 
+const shortVideoContribution = "100%";
+const shortVideoTools = "Kling AI, ElevenLabs, Gemini Nano Banana Series";
+
 const shortAnimationVideos = [
   {
     group: "점괘보는 공녀님",
@@ -623,6 +626,8 @@ function portfolioArtifactMarkup(type) {
           data-video-title="${escapeHtml(shortAnimationDisplayTitle(video))}"
           data-video-duration="${escapeHtml(video.duration)}"
           data-video-description="${escapeHtml(shortAnimationVideoDescription(video))}"
+          data-video-contribution="${shortVideoContribution}"
+          data-video-tools="${escapeHtml(shortVideoTools)}"
           aria-haspopup="dialog"
         >
           영상 보기 <b aria-hidden="true">→</b>
@@ -639,7 +644,9 @@ function portfolioArtifactMarkup(type) {
             data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
             data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
             data-video-duration="${escapeHtml(representative.duration)}"
-            data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
+            data-video-description=""
+            data-video-contribution="${shortVideoContribution}"
+            data-video-tools="${escapeHtml(shortVideoTools)}"
             aria-label="${escapeHtml(shortAnimationDisplayTitle(representative))} 영상 보기"
             aria-haspopup="dialog"
           >
@@ -659,7 +666,9 @@ function portfolioArtifactMarkup(type) {
                 data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
                 data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
                 data-video-duration="${escapeHtml(representative.duration)}"
-                data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
+                data-video-description=""
+                data-video-contribution="${shortVideoContribution}"
+                data-video-tools="${escapeHtml(shortVideoTools)}"
                 aria-haspopup="dialog"
               >
                 영상 보기
@@ -695,31 +704,86 @@ function portfolioArtifactMarkup(type) {
             <button type="button" data-video-modal-close aria-label="영상 닫기">×</button>
           </header>
           <div class="video-modal-player" data-video-modal-player></div>
+          <dl class="video-modal-meta">
+            <div><dt>기여도</dt><dd data-video-modal-contribution></dd></div>
+            <div><dt>사용 툴</dt><dd data-video-modal-tools></dd></div>
+          </dl>
           <p class="video-modal-description" data-video-modal-description></p>
         </div>
       </dialog>
     `;
   }
 
-  if (type === "motion-comparison") {
+  if (type === "first-frame-layout") {
     return `
-      <section class="artifact-block" aria-labelledby="motionCompareTitle">
+      <section class="artifact-block editorial-split first-frame-layout" aria-labelledby="firstFrameLayoutTitle">
+        <figure class="editorial-split-visual">
+          <img src="assets/projects/short-animation/first-frame-vertical.png" alt="9대16 화면비에 맞춰 배경과 여백을 재구성한 첫 프레임" loading="lazy" />
+          <figcaption>9:16 영상 생성 입력 프레임</figcaption>
+        </figure>
+        <div class="editorial-split-copy">
+          <span>원작 컷 → 영상 입력 프레임</span>
+          <h3 id="firstFrameLayoutTitle">보존할 인물과 확장할 배경을 분리했습니다</h3>
+          <figure class="editorial-inset">
+            <img src="assets/projects/short-animation/first-frame-original.png" alt="원작 컷에서 영상에 사용할 인물과 화면 정보를 확인한 단계" loading="lazy" />
+            <figcaption>원작 컷에서 인물·의상·소품과 화면 구조를 확인한 단계</figcaption>
+          </figure>
+          <p>얼굴형·눈매·헤어·의상과 주요 소품은 원작 영역으로 고정하고, 하늘·벽·바닥처럼 사건에 영향을 주지 않는 부분만 세로 화면에 맞춰 확장했습니다.</p>
+          <ul>
+            <li><strong>보존</strong><span>인물의 얼굴·의상·소품과 원작 그림체</span></li>
+            <li><strong>정리</strong><span>영상화에서 불안정해질 효과선·파티클·말풍선</span></li>
+            <li><strong>확장</strong><span>동작 여백이 필요한 배경과 비서사 영역</span></li>
+          </ul>
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "layer-in-layer-layout") {
+    return `
+      <section class="artifact-block editorial-split layer-editorial-layout" aria-labelledby="layerEditorialTitle">
+        <figure class="editorial-split-visual editorial-split-visual--landscape">
+          <img src="assets/projects/explainers/short-layer-in-layer.jpg" alt="배경·인물·표정을 독립된 레이어로 나눈 Layer-in-Layer 구조" loading="lazy" />
+          <figcaption>고정·주요 동작·행동 디테일을 분리한 제어 구조</figcaption>
+        </figure>
+        <div class="editorial-split-copy">
+          <span>Layer-in-Layer</span>
+          <h3 id="layerEditorialTitle">한 장면을 한 번에 움직이지 않았습니다</h3>
+          <p>원작 보존에 영향을 크게 주는 조건부터 작은 연기 요소까지 순서대로 나눴습니다. 결과가 흔들리면 전체 프롬프트를 다시 쓰지 않고 문제가 발생한 레이어만 좁혀 수정했습니다.</p>
+          <ol class="layer-summary-list">
+            <li><b>1</b><span><strong>장면 고정</strong>카메라·배경·그림체와 공간 관계 유지</span></li>
+            <li><b>2</b><span><strong>주요 동작</strong>이번 클립에서 반드시 일어날 한 가지 변화</span></li>
+            <li><b>3</b><span><strong>행동 디테일</strong>시선·호흡·표정의 순서와 강도</span></li>
+          </ol>
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "motion-prompt-pair") {
+    const prompts = [
+      ["object-motion.png", "사물 동선 제어", "숟가락의 시작점·도착점·프레임 이탈 방향을 지정"],
+      ["camera-roll.png", "카메라 롤 제어", "피사체는 고정하고 시작·통과·종료 각도만 허용"],
+    ];
+    return `
+      <section class="artifact-block" aria-labelledby="motionPromptPairTitle">
         <div class="artifact-heading">
-          <span>모션 후보 비교</span>
-          <h3 id="motionCompareTitle">동일 장면의 모션 후보를 나란히 검수</h3>
-          <p>한 번의 결과를 정답으로 채택하지 않고, 같은 첫 프레임에서 생성한 후보를 얼굴 보존·행동 순서·종료 프레임 기준으로 비교했습니다.</p>
+          <span>실제 모션 지시</span>
+          <h3 id="motionPromptPairTitle">장면 목적에 따라 사물과 카메라 제어를 분리</h3>
+          <p>정방형 제작 자료는 두 사례를 한 행에서 비교할 수 있도록 배치했습니다.</p>
         </div>
-        <div class="clip-comparison">
-          <figure>
-            <video controls preload="metadata" playsinline aria-label="모션 후보 A 재생" src="assets/projects/short-animation/clips/motion-candidate-a.mp4"></video>
-            <figcaption><strong>후보 A</strong><span>표정, 시선과 인물 고정 상태 확인</span></figcaption>
-          </figure>
-          <figure>
-            <video controls preload="metadata" playsinline aria-label="모션 후보 B 재생" src="assets/projects/short-animation/clips/motion-candidate-b.mp4"></video>
-            <figcaption><strong>후보 B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
-          </figure>
+        <div class="motion-prompt-pair">
+          ${prompts
+            .map(
+              ([src, title, description]) => `
+                <figure>
+                  <img src="assets/projects/short-animation/prompts/${src}" alt="${title} 실제 모션 지시" loading="lazy" />
+                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
         </div>
-        <p class="artifact-note">같은 5초 장면의 생성 후보를 얼굴 보존, 행동 순서와 편집 가능한 구간 기준으로 비교한 기록입니다.</p>
       </section>
     `;
   }
@@ -730,27 +794,31 @@ function portfolioArtifactMarkup(type) {
         title: "에피소드형 애니메이션 · 9화",
         description: "사건 전개와 인물 감정의 연결을 우선한 세로형 에피소드",
         youtube: shortAnimationVideos[0].youtube,
+        thumbnail: "episode-09.jpg",
       },
       {
         title: "에피소드형 애니메이션 · 11화",
         description: "대사·리액션·전환을 에피소드 단위로 조립한 완결형 구성",
         youtube: shortAnimationVideos[2].youtube,
+        thumbnail: "episode-11.jpg",
       },
       {
         title: "프로모션형 애니메이션 · 1~6화",
         description: "원작의 핵심 사건을 짧은 시간 안에 재배열한 유입용 구성",
         youtube: shortAnimationVideos[5].youtube,
+        thumbnail: "summary.jpg",
       },
       {
         title: "프로모션형 애니메이션 · 9화",
         description: "첫 장면의 후킹과 다음 행동 유도를 우선한 15초 터치형 편집",
         youtube: shortAnimationVideos[3].youtube,
+        thumbnail: "teaser.jpg",
       },
     ];
     return `
       <section class="artifact-block" aria-labelledby="shortFormatTitle">
         <div class="artifact-heading">
-          <span>포맷별 완성 영상 · YouTube 원본</span>
+          <span>포맷별 완성 영상</span>
           <h3 id="shortFormatTitle">같은 IP를 목적이 다른 네 가지 편집 구조로 제작</h3>
           <p>에피소드형·프로모션형은 단순히 길이만 다르지 않습니다. 관객이 먼저 알아야 할 정보와 컷의 종료 조건을 포맷별로 다시 정의했습니다.</p>
         </div>
@@ -759,14 +827,22 @@ function portfolioArtifactMarkup(type) {
             .map(
               (format) => `
                 <figure class="format-video-card">
-                  <iframe
-                    src="${escapeHtml(youtubeEmbedUrl(format.youtube))}?rel=0&amp;playsinline=1"
-                    title="${escapeHtml(format.title)}"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
+                  <button
+                    type="button"
+                    class="format-video-poster"
+                    data-final-video
+                    data-video-src="${escapeHtml(youtubeEmbedUrl(format.youtube))}"
+                    data-video-title="${escapeHtml(format.title)}"
+                    data-video-duration=""
+                    data-video-description=""
+                    data-video-contribution="${shortVideoContribution}"
+                    data-video-tools="${escapeHtml(shortVideoTools)}"
+                    aria-label="${escapeHtml(format.title)} 영상 보기"
+                    aria-haspopup="dialog"
+                  >
+                    <img src="assets/projects/short-animation/outputs/${escapeHtml(format.thumbnail)}" alt="" loading="lazy" />
+                    <span aria-hidden="true">▶</span>
+                  </button>
                   <figcaption><strong>${escapeHtml(format.title)}</strong><span>${escapeHtml(format.description)}</span></figcaption>
                 </figure>
               `,
@@ -779,9 +855,24 @@ function portfolioArtifactMarkup(type) {
 
   if (type === "speaker-scene-comparison") {
     const speakerScenes = [
-      ["speaker-female.png", "여성 화자 중심 생성", "여성 화자의 발화 구간만 움직이고 상대 인물은 고정"],
-      ["speaker-male.png", "남성 화자 중심 생성", "남성 화자의 입·턱 움직임과 시선 변화만 분리 생성"],
-      ["speaker-composite.jpg", "발화 주체별 결과 합성", "두 결과의 통과 구간을 편집해 하나의 대화 장면으로 연결"],
+      {
+        type: "local",
+        src: "assets/projects/short-animation/clips/motion-candidate-a.mp4",
+        title: "여성 화자 중심 생성",
+        description: "여성 화자의 발화 구간만 움직이고 상대 인물은 고정",
+      },
+      {
+        type: "local",
+        src: "assets/projects/short-animation/clips/motion-candidate-b.mp4",
+        title: "남성 화자 중심 생성",
+        description: "남성 화자의 입·턱 움직임과 시선 변화만 분리 생성",
+      },
+      {
+        type: "youtube",
+        src: "https://youtube.com/shorts/ahtOHt9TQtE?feature=share",
+        title: "다중 화자 분리 생성 합성",
+        description: "화자별 통과 구간을 편집해 하나의 대화 장면으로 연결",
+      },
     ];
     return `
       <section class="artifact-block speaker-scene-comparison" aria-labelledby="speakerSceneTitle">
@@ -793,12 +884,23 @@ function portfolioArtifactMarkup(type) {
         <div class="speaker-scene-grid">
           ${speakerScenes
             .map(
-              ([src, title, description]) => `
+              (scene) => `
                 <figure>
                   <div class="speaker-scene-frame">
-                    <img src="assets/projects/short-animation/${src}" alt="${title}" loading="lazy" />
+                    ${
+                      scene.type === "youtube"
+                        ? `<iframe
+                            src="${escapeHtml(youtubeEmbedUrl(scene.src))}?rel=0&amp;playsinline=1"
+                            title="${escapeHtml(scene.title)}"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                          ></iframe>`
+                        : `<video controls preload="metadata" playsinline aria-label="${escapeHtml(scene.title)} 영상" src="${escapeHtml(scene.src)}"></video>`
+                    }
                   </div>
-                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                  <figcaption><strong>${escapeHtml(scene.title)}</strong><span>${escapeHtml(scene.description)}</span></figcaption>
                 </figure>
               `,
             )
@@ -853,11 +955,6 @@ function portfolioArtifactMarkup(type) {
   if (type === "short-postproduction-videos") {
     const processVideos = [
       {
-        title: "다중 화자 분리 생성·합성",
-        description: "화자별 발화 구간을 따로 생성한 뒤 Premiere Pro에서 타이밍을 맞춰 합성한 결과",
-        youtube: "https://youtube.com/shorts/ahtOHt9TQtE?feature=share",
-      },
-      {
         title: "오디오 선행 씬 전환",
         description: "다음 장면의 BGM·효과음을 화면보다 먼저 들려줘 장면 전환을 준비한 편집 결과",
         youtube: "https://youtube.com/shorts/RMEUm-_Mjfg?feature=share",
@@ -867,10 +964,10 @@ function portfolioArtifactMarkup(type) {
       <section class="artifact-block" aria-labelledby="postproductionVideoTitle">
         <div class="artifact-heading">
           <span>후반 제작 결과</span>
-          <h3 id="postproductionVideoTitle">생성 결과를 편집 문법으로 완성한 사례</h3>
-          <p>생성 모델이 한 번에 해결하기 어려운 화자 제어와 씬 연결을 분리 생성·타임라인 합성·오디오 선행 방식으로 해결했습니다.</p>
+          <h3 id="postproductionVideoTitle">오디오를 먼저 진입시켜 장면 전환을 설계</h3>
+          <p>다음 장면의 소리를 화면 전환보다 먼저 들려줘 공간과 사건의 변화를 준비했습니다.</p>
         </div>
-        <div class="clip-comparison">
+        <div class="clip-comparison clip-comparison--single">
           ${processVideos
             .map(
               (video) => `
@@ -1439,6 +1536,8 @@ function initializeFinalVideoModal(container) {
   const libraryCloseButton = libraryModal?.querySelector("[data-video-library-close]");
   const modalTitle = modal.querySelector("[data-video-modal-title]");
   const modalDuration = modal.querySelector("[data-video-modal-duration]");
+  const modalContribution = modal.querySelector("[data-video-modal-contribution]");
+  const modalTools = modal.querySelector("[data-video-modal-tools]");
   const modalDescription = modal.querySelector("[data-video-modal-description]");
   const modalPlayer = modal.querySelector("[data-video-modal-player]");
   const closeButton = modal.querySelector("[data-video-modal-close]");
@@ -1468,7 +1567,12 @@ function initializeFinalVideoModal(container) {
       returnToLibrary = Boolean(button.closest("[data-video-library-modal]"));
       modalTitle.textContent = button.dataset.videoTitle || "최종 영상";
       modalDuration.textContent = button.dataset.videoDuration || "";
-      modalDescription.textContent = button.dataset.videoDescription || "";
+      if (modalContribution) modalContribution.textContent = button.dataset.videoContribution || "";
+      if (modalTools) modalTools.textContent = button.dataset.videoTools || "";
+      if (modalDescription) {
+        modalDescription.textContent = button.dataset.videoDescription || "";
+        modalDescription.hidden = !modalDescription.textContent;
+      }
 
       const iframe = document.createElement("iframe");
       const videoUrl = new URL(button.dataset.videoSrc, window.location.href);

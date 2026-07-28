@@ -46,9 +46,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="src/styles.css?v=24" />
-    <script src="src/storyboard-data.js?v=24" defer></script>
-    <script src="src/app.js?v=24" defer></script>
+    <link rel="stylesheet" href="src/styles.css?v=25" />
+    <script src="src/storyboard-data.js?v=25" defer></script>
+    <script src="src/app.js?v=25" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -103,7 +103,9 @@
                 data-video-src="https://www.youtube-nocookie.com/embed/PwsN7nyzPyk"
                 data-video-title="점괘보는 공녀님 AI 애니메이션 9화"
                 data-video-duration="2분 24초"
-                data-video-description="원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다."
+                data-video-description=""
+                data-video-contribution="100%"
+                data-video-tools="Kling AI, ElevenLabs, Gemini Nano Banana Series"
                 aria-label="점괘보는 공녀님 AI 애니메이션 9화 영상 보기"
                 aria-haspopup="dialog"
               >
@@ -131,6 +133,10 @@
                   <button type="button" data-video-modal-close aria-label="영상 닫기">×</button>
                 </header>
                 <div class="video-modal-player" data-video-modal-player></div>
+                <dl class="video-modal-meta">
+                  <div><dt>기여도</dt><dd data-video-modal-contribution></dd></div>
+                  <div><dt>사용 툴</dt><dd data-video-modal-tools></dd></div>
+                </dl>
                 <p class="video-modal-description" data-video-modal-description></p>
               </div>
             </dialog>

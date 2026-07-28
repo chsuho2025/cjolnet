@@ -91,18 +91,7 @@
 
 원본 웹툰 컷은 세로형 영상의 첫 프레임으로 바로 쓸 수 없었습니다. 단순 확대하면 인물이나 말풍선이 잘리고, 생성 확장만 사용하면 얼굴·의상·배경 구조가 달라졌습니다.
 
-![웹툰 원본 컷에서 세로형 모션 준비 프레임까지 재구성하는 과정](assets/projects/explainers/short-first-frame-reconstruction.jpg)
-
-![원작 컷에서 영상에 사용할 인물과 화면 정보를 확인한 단계](assets/projects/short-animation/first-frame-original.png)
-
-먼저 PSD와 원본 이미지를 확인해 무엇을 지키고 무엇을 새로 만들지 나눴습니다.
-
-- 얼굴형, 눈매, 헤어, 의상과 주요 소품은 보존합니다.
-- 하늘, 벽, 바닥과 비서사 영역은 9:16에 맞게 확장합니다.
-- 생성 단계에서 불안정해질 효과선, 파티클과 겹친 말풍선은 정리합니다.
-- 다음 Image-to-Video 단계에서 움직여야 할 요소 주변에 충분한 여백을 둡니다.
-
-![9:16 화면비에 맞춰 배경과 여백을 재구성한 첫 프레임](assets/projects/short-animation/first-frame-vertical.png)
+[[first-frame-layout]]
 
 Gemini 이미지 생성과 Adobe Firefly 등을 같은 장면에 적용해 비교했습니다. 평가는 이미지 자체의 화려함이 아니라 다음 공정까지 포함해 진행했습니다.
 
@@ -111,8 +100,6 @@ Gemini 이미지 생성과 Adobe Firefly 등을 같은 장면에 적용해 비�
 3. 확장 영역이 장면의 공간 구조를 바꾸지 않는가
 4. 영상 생성 후에도 얼굴과 의상이 안정적인가
 5. 재작업 시 어느 조건을 바꿔야 하는지 설명할 수 있는가
-
-![영상 생성에 사용할 수 있도록 정리한 최종 첫 프레임](assets/projects/short-animation/first-frame-final.png)
 
 이 과정을 통해 이미지 생성과 영상 생성을 별개로 보지 않게 됐습니다. **좋은 첫 프레임은 완성 이미지가 아니라, 다음 생성 단계가 안정적으로 움직일 수 있는 입력값**이었습니다.
 
@@ -154,7 +141,7 @@ Gemini 이미지 생성과 Adobe Firefly 등을 같은 장면에 적용해 비�
 
 이를 줄이기 위해 화면을 영향 범위가 큰 요소부터 세부 요소까지 나누고, 각 제어 단계에 서로 다른 조건을 부여했습니다.
 
-![Layer-in-Layer 구조 개념도 — 배경·인물·표정을 독립된 레이어로 나누고 필요한 부분만 수정](assets/projects/explainers/short-layer-in-layer.jpg)
+[[layer-in-layer-layout]]
 
 ### Layer 1 · Scene Lock
 
@@ -213,11 +200,9 @@ Gemini 이미지 생성과 Adobe Firefly 등을 같은 장면에 적용해 비�
 
 중요한 점은 모든 장면에 같은 길이의 지시를 적용하지 않는 것입니다. 숟가락처럼 한 사물의 경로가 중요한 장면은 인물의 감정 설명보다 시작점·도착점·프레임 이탈 방향을 구체화했습니다.
 
-![숟가락이 그릇에 들어갔다가 화면 밖으로 이동하는 경로를 지정한 실제 모션 지시](assets/projects/short-animation/prompts/object-motion.png)
-
 반대로 장면 전체가 회전하는 연출에서는 인물의 동작을 추가하지 않고 모든 피사체를 고정한 채 카메라 롤만 허용했습니다. `카메라가 역동적으로 움직인다`가 아니라 시작 각도, 통과 각도와 종료 각도를 명시했습니다.
 
-![피사체를 정지시키고 카메라 롤의 시작·통과·종료 각도를 지정한 실제 모션 지시](assets/projects/short-animation/prompts/camera-roll.png)
+[[motion-prompt-pair]]
 
 ### Layer-in-Layer가 실패 분석에 유효했던 이유
 
@@ -244,8 +229,6 @@ Kling 기반 Image-to-Video 결과는 첫 프레임 보존과 후속 에이전�
 - 동작이 끝난 뒤의 프레임 안정성
 
 통과하지 못한 결과도 버리지 않고 원인을 분류했습니다. 첫 프레임 문제인지, 모션 범위 문제인지, 한 클립에 너무 많은 변화를 요구한 문제인지 구분해 돌아갈 단계를 정했습니다.
-
-[[motion-comparison]]
 
 ### 후보를 선택하는 네 단계
 
