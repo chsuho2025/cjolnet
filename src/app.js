@@ -1631,6 +1631,7 @@ function updateProgress() {
 renderProjects();
 renderToolOverview();
 initializeAiToolsModal();
+initializeFinalVideoModal(homeView);
 route();
 window.addEventListener("hashchange", route);
 window.addEventListener("scroll", updateProgress, { passive: true });

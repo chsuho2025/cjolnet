@@ -46,9 +46,9 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="src/styles.css?v=22" />
-    <script src="src/storyboard-data.js?v=22" defer></script>
-    <script src="src/app.js?v=22" defer></script>
+    <link rel="stylesheet" href="src/styles.css?v=23" />
+    <script src="src/storyboard-data.js?v=23" defer></script>
+    <script src="src/app.js?v=23" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -79,11 +79,15 @@
           <section class="tool-overview" aria-labelledby="toolTitle">
             <div class="home-panel-heading">
               <h2 id="toolTitle">사용 Tool 및 숙련도</h2>
-              <button type="button" class="ai-tools-open" data-ai-tools-open aria-haspopup="dialog">
-                생성형 AI 활용 역량 <span aria-hidden="true">↗</span>
-              </button>
             </div>
             <div class="tool-overview-grid" id="toolOverview"></div>
+            <button type="button" class="ai-tools-open" data-ai-tools-open aria-haspopup="dialog">
+              <span>
+                <strong>생성형 AI 활용 역량</strong>
+                <small>이미지 · 비디오 · 오디오 생성</small>
+              </span>
+              <b>도구 및 활용 범위 보기 <i aria-hidden="true">↗</i></b>
+            </button>
           </section>
 
           <section class="featured-work" aria-labelledby="featuredWorkTitle">
@@ -92,22 +96,44 @@
               <a href="#project/webtoon-ai-short-animation">제작 기록 보기 <span aria-hidden="true">→</span></a>
             </div>
             <div class="featured-work-card">
-              <div class="featured-work-player">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/PwsN7nyzPyk"
-                  title="점괘보는 공녀님 AI 애니메이션 9화"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
+              <button
+                type="button"
+                class="featured-work-player"
+                data-final-video
+                data-video-src="https://www.youtube-nocookie.com/embed/PwsN7nyzPyk"
+                data-video-title="점괘보는 공녀님 AI 애니메이션 9화"
+                data-video-duration="2분 24초"
+                data-video-description="원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다."
+                aria-label="점괘보는 공녀님 AI 애니메이션 9화 재생"
+                aria-haspopup="dialog"
+              >
+                <img
+                  src="assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg"
+                  alt=""
+                  width="720"
+                  height="1280"
+                />
+                <span aria-hidden="true">▶</span>
+              </button>
               <div class="featured-work-copy">
-                <span>회차형 AI 애니메이션 · 2분 24초</span>
+                <span>에피소드형 애니메이션 · 2분 24초</span>
                 <h3>점괘보는 공녀님<br />AI 애니메이션 9화</h3>
                 <p>원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다.</p>
               </div>
             </div>
+            <dialog class="video-modal" data-video-modal aria-labelledby="featuredVideoModalTitle">
+              <div class="video-modal-panel">
+                <header>
+                  <div>
+                    <strong id="featuredVideoModalTitle" data-video-modal-title></strong>
+                    <span data-video-modal-duration></span>
+                  </div>
+                  <button type="button" data-video-modal-close aria-label="영상 닫기">×</button>
+                </header>
+                <div class="video-modal-player" data-video-modal-player></div>
+                <p class="video-modal-description" data-video-modal-description></p>
+              </div>
+            </dialog>
           </section>
         </section>
 
@@ -137,16 +163,32 @@
             <span>01</span>
             <h3>이미지 생성</h3>
             <p>레퍼런스 분석, 스타일·캐릭터 일관성 설계, 첫 프레임과 합성용 소스 제작</p>
+            <ul aria-label="이미지 생성 도구">
+              <li>Adobe Firefly</li>
+              <li>Gemini Nano Banana Series</li>
+              <li>ChatGPT Images Series</li>
+              <li>Midjourney</li>
+            </ul>
           </article>
           <article>
             <span>02</span>
             <h3>비디오 생성</h3>
             <p>첫 프레임 기반 모션 설계, 카메라·동작 제어, 후보 비교와 부분 재생성</p>
+            <ul aria-label="비디오 생성 도구">
+              <li>Kling AI</li>
+              <li>Gemini Omni Series</li>
+            </ul>
           </article>
           <article>
             <span>03</span>
             <h3>오디오 생성</h3>
             <p>캐릭터별 TTS, 발음·감정 디렉팅, 효과음·배경음악 생성과 최종 믹싱</p>
+            <ul aria-label="오디오 생성 도구">
+              <li>ElevenLabs · TTS</li>
+              <li>ElevenLabs · Sound Effects</li>
+              <li>Eleven Music</li>
+              <li>Supertone Play</li>
+            </ul>
           </article>
         </div>
       </div>
