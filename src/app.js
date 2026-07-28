@@ -75,12 +75,23 @@ function shortAnimationDisplayTitle(video) {
   return `${video.group} AI 애니메이션 ${episode}`;
 }
 
+function shortAnimationVideoDescription(video) {
+  if (video.episode.includes("프로모션")) {
+    return "프로모션 편집 · 첫 장면의 주목도와 핵심 사건 전달에 맞춰 장면 길이와 사운드 밀도를 조정했습니다.";
+  }
+  if (video.group === "전령새 왕녀님") {
+    return "회차형 애니메이션 · 인물 관계와 대화 흐름이 이어지도록 발화와 리액션을 장면 단위로 편집했습니다.";
+  }
+  return "회차형 애니메이션 · 원작의 사건 순서와 감정선을 유지하면서 모션·대사·사운드를 한 편으로 구성했습니다.";
+}
+
 const projects = [
   {
     slug: "webtoon-ai-short-animation",
     title: "자사 IP 기반 AI 애니메이션 제작",
-    thumbnail: "assets/thumbnails/project-01-ai-animation.jpg",
-    thumbnailAlt: "무표정 인물과 말풍선이 공중에 떠 있는 3D 아이콘",
+    thumbnail: "assets/thumbnails/project-01-ai-animation-v2.jpg",
+    thumbnailAlt: "컷과 말풍선이 있는 펼친 만화책 3D 아이콘",
+    recommended: true,
     summary:
       "웹툰 IP 분석부터 이미지·영상 생성, 음성·사운드 제작, 편집, 품질 검수까지 전 과정을 수행했습니다. 원작의 그림체를 유지하면서 필요한 동작만 제어하는 ‘레이어 인 레이어’ 제작 방식을 정립했습니다.",
     role: "웹툰 IP 분석, 이미지·영상 생성, 음성·사운드 제작, 편집과 품질 검수 전 과정",
@@ -88,6 +99,11 @@ const projects = [
     contributionNote: "",
     media: null,
     article: "content/posts/01-webtoon-ai-short-animation.md",
+    annotations: [
+      ["첫 프레임", "영상 생성의 출발 이미지입니다. 인물·배경·구도와 움직임이 시작될 상태를 이 단계에서 확정했습니다."],
+      ["Layer-in-Layer", "화면을 고정 영역, 주요 동작, 미세 연기와 금지 조건으로 나눠 필요한 요소만 움직이는 제작 방식입니다."],
+      ["발화 단위", "한 인물이 말하기 전, 말하는 동안, 말이 끝난 뒤의 반응을 나눈 편집 단위입니다."],
+    ],
   },
   {
     slug: "antiframe",
@@ -101,6 +117,11 @@ const projects = [
     contributionNote: "",
     media: null,
     article: "content/posts/02-antiframe.md",
+    annotations: [
+      ["부분 재실행", "수정 요청과 관련된 장면·음성·자료만 다시 만들고 승인된 결과는 유지하는 방식입니다."],
+      ["Human Checkpoint", "제작 비용이나 결과 방향이 크게 바뀌는 지점에서 사용자가 확인하고 다음 단계로 넘기는 절차입니다."],
+      ["렌더 워커", "웹에서 확정한 제작 패키지를 받아 After Effects 렌더링을 수행하는 별도 실행 프로그램입니다."],
+    ],
   },
   {
     slug: "ai-drama",
@@ -114,6 +135,11 @@ const projects = [
     contributionNote: "",
     media: null,
     article: "content/posts/02-cinematic-layer-in-layer.md",
+    annotations: [
+      ["캐릭터 팩", "같은 인물을 여러 컷에서 유지하기 위해 얼굴 각도, 의상과 표정 기준을 묶은 참조 자료입니다."],
+      ["공간 팩", "세트 구조, 좌석과 출입구, 촬영 축과 광원을 여러 시점에서 고정한 참조 자료입니다."],
+      ["시선축", "마주 보는 인물과 카메라의 방향 관계입니다. 컷 사이에서 뒤집히면 인물의 위치가 바뀐 것처럼 보일 수 있습니다."],
+    ],
   },
   {
     slug: "prombank",
@@ -127,6 +153,30 @@ const projects = [
     contributionNote: "",
     media: null,
     article: "content/posts/04-prombank.md",
+    annotations: [
+      ["프롬프트 템플릿", "문장 하나를 복사하는 자료가 아니라, 바꿀 정보·고정 조건·생성 결과·수정 기록을 함께 묶은 제작 양식입니다."],
+      ["고유 방문자", "집계 기간에 같은 사용자의 중복 방문을 제외해 센 방문자 수입니다."],
+      ["방문 세션", "사용자가 사이트에 들어와 활동한 한 번의 방문 단위입니다."],
+    ],
+  },
+  {
+    slug: "music-tts-pronunciation",
+    title: "AI 음성 콘텐츠를 위한 음악 고유명사 발음사전",
+    thumbnail: "assets/thumbnails/project-05-tts-pronunciation.jpg",
+    thumbnailAlt: "스튜디오 마이크 형태의 3D 아이콘",
+    summary:
+      "곡명·아티스트명 약 3만 5천 개를 발음사전 후보로 정리하고, 초기 약 3,500건을 직접 조사했습니다. 등록 뒤에는 실제 추천 문장으로 발음과 끊어읽기를 다시 검수했습니다.",
+    role: "발음 수동 조사, 근거·소요 시간 기록, 테스트 문장 제작, 주 단위 적용 확인",
+    contribution: "인턴 실무",
+    contributionLabel: "참여 형태",
+    contributionNote: "최종 규칙 정리와 적용은 담당 멘토와 협업",
+    media: null,
+    article: "content/posts/05-music-tts-pronunciation.md",
+    annotations: [
+      ["발음사전", "화면의 표기는 유지하면서 TTS가 읽을 발음을 별도로 연결하는 데이터입니다."],
+      ["끊어읽기", "문장 안에서 의미 단위에 맞춰 쉬는 위치와 호흡을 조정하는 검수 항목입니다."],
+      ["Op.", "Opus의 약어로 클래식 작품 번호를 나타냅니다. 곡 번호나 악장 번호와 구분해 읽었습니다."],
+    ],
   },
 ];
 
@@ -217,8 +267,9 @@ function youtubeEmbedUrl(url) {
 function renderToolOverview() {
   if (!toolOverview) return;
   toolOverview.innerHTML = toolMatrix
-    .map(
-      (tool) => `
+    .map((tool) => {
+      const filledDots = { 상: 3, 중: 2, 하: 1 }[tool.level] || 0;
+      return `
         <div class="tool-item${tool.wide ? " tool-item--wide" : ""}">
           <div>
             <strong>${escapeHtml(tool.name)}</strong>
@@ -236,10 +287,18 @@ function renderToolOverview() {
                 : `<span>${escapeHtml(tool.use)}</span>`
             }
           </div>
-          ${tool.level ? `<b class="tool-level">${escapeHtml(tool.level)}</b>` : ""}
+          ${
+            tool.level
+              ? `<span class="proficiency-dots" role="img" aria-label="숙련도 ${escapeHtml(tool.level)}">
+                  ${[1, 2, 3]
+                    .map((dot) => `<i class="${dot <= filledDots ? "is-filled" : ""}" aria-hidden="true"></i>`)
+                    .join("")}
+                </span>`
+              : ""
+          }
         </div>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -247,8 +306,9 @@ function renderProjects() {
   projectGrid.innerHTML = projects
     .map(
       (project) => `
-        <a class="project-card" href="#project/${project.slug}">
+        <a class="project-card${project.recommended ? " project-card--recommended" : ""}" href="#project/${project.slug}">
           <div class="project-thumbnail">
+            ${project.recommended ? '<span class="recommendation-badge">추천</span>' : ""}
             <img
               src="${escapeHtml(project.thumbnail)}"
               alt="${escapeHtml(project.thumbnailAlt)}"
@@ -276,7 +336,7 @@ function projectRequirementsMarkup(project) {
           <strong>${escapeHtml(project.role)}</strong>
         </div>
         <div>
-          <span>기여도</span>
+          <span>${escapeHtml(project.contributionLabel || "기여도")}</span>
           <strong>${escapeHtml(project.contribution)}</strong>
           ${project.contributionNote ? `<small>${escapeHtml(project.contributionNote)}</small>` : ""}
         </div>
@@ -479,9 +539,9 @@ function antiframeDemoMarkup() {
   return `
     <section class="antiframe-demo" data-antiframe-demo aria-labelledby="demoTitle">
       <div class="demo-head">
-        <p>포트폴리오용 정적 데모 · 외부 API 미연결</p>
+        <p>인터랙션 데모</p>
         <h3 id="demoTitle">필요한 장면만 말로 수정해보기</h3>
-        <span>아래 입력은 외부 API를 호출하지 않습니다. 실제 제품의 장면 선택 → 자연어 요청 → 변경 범위 확인 흐름만 재현했습니다.</span>
+        <span>장면 선택 → 자연어 요청 → 변경 범위 확인 순서로 부분 수정 흐름을 직접 확인할 수 있습니다.</span>
       </div>
       <div class="demo-layout">
         <div class="demo-scenes" role="list" aria-label="영상 초안 장면">
@@ -554,6 +614,7 @@ function portfolioArtifactMarkup(type) {
           data-video-src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
           data-video-title="${escapeHtml(shortAnimationDisplayTitle(video))}"
           data-video-duration="${escapeHtml(video.duration)}"
+          data-video-description="${escapeHtml(shortAnimationVideoDescription(video))}"
           aria-haspopup="dialog"
         >
           영상 보기 <b aria-hidden="true">→</b>
@@ -562,33 +623,43 @@ function portfolioArtifactMarkup(type) {
     `;
     return `
       <section class="artifact-block final-video-library" aria-labelledby="outputGalleryTitle">
-        <div class="artifact-heading">
-          <span>대표작</span>
-          <h3 id="outputGalleryTitle">점괘보는 공녀님 AI 애니메이션 9화</h3>
-        </div>
         <div class="representative-video">
-          <div class="representative-video-meta">
-            <span>01</span>
-            <div>
-              <strong>${escapeHtml(shortAnimationDisplayTitle(representative))}</strong>
-              <small>${escapeHtml(representative.duration)}</small>
+          <button
+            class="representative-poster"
+            type="button"
+            data-final-video
+            data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
+            data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
+            data-video-duration="${escapeHtml(representative.duration)}"
+            data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
+            aria-label="${escapeHtml(shortAnimationDisplayTitle(representative))} 재생"
+            aria-haspopup="dialog"
+          >
+            <img src="assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg" alt="" />
+            <span aria-hidden="true"><b>▶</b> 재생</span>
+          </button>
+          <div class="representative-video-copy">
+            <span class="representative-kicker">추천 · 대표작</span>
+            <h3 id="outputGalleryTitle">${escapeHtml(shortAnimationDisplayTitle(representative))}</h3>
+            <p>${escapeHtml(representative.duration)} · 회차형 애니메이션</p>
+            <small>원작 장면을 세로형 영상으로 재구성하고 모션·대사·사운드를 한 편으로 완성했습니다.</small>
+            <div class="representative-actions">
+              <button
+                class="representative-play"
+                type="button"
+                data-final-video
+                data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
+                data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
+                data-video-duration="${escapeHtml(representative.duration)}"
+                data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
+                aria-haspopup="dialog"
+              >
+                대표작 재생 <b aria-hidden="true">→</b>
+              </button>
+              <button class="video-library-open" type="button" data-video-library-open aria-haspopup="dialog">
+                다른 애니메이션 <span>${additionalVideos.length}편</span>
+              </button>
             </div>
-          </div>
-          <div class="representative-actions">
-            <button
-              class="representative-play"
-              type="button"
-              data-final-video
-              data-video-src="${escapeHtml(youtubeEmbedUrl(representative.youtube))}"
-              data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
-              data-video-duration="${escapeHtml(representative.duration)}"
-              aria-haspopup="dialog"
-            >
-              대표작 보기 <b aria-hidden="true">→</b>
-            </button>
-            <button class="video-library-open" type="button" data-video-library-open aria-haspopup="dialog">
-              애니메이션 더 보기 <span>${additionalVideos.length}편</span>
-            </button>
           </div>
         </div>
       </section>
@@ -616,6 +687,7 @@ function portfolioArtifactMarkup(type) {
             <button type="button" data-video-modal-close aria-label="영상 닫기">×</button>
           </header>
           <div class="video-modal-player" data-video-modal-player></div>
+          <p class="video-modal-description" data-video-modal-description></p>
         </div>
       </dialog>
     `;
@@ -639,7 +711,7 @@ function portfolioArtifactMarkup(type) {
             <figcaption><strong>후보 B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
           </figure>
         </div>
-        <p class="artifact-note">두 클립은 완성본이 아니라 편집 전 생성 후보입니다. 좋은 결과만 제시하지 않고, 실제로 비교하고 선택한 단위를 함께 남겼습니다.</p>
+        <p class="artifact-note">같은 5초 장면의 생성 후보를 얼굴 보존, 행동 순서와 편집 가능한 구간 기준으로 비교한 기록입니다.</p>
       </section>
     `;
   }
@@ -1039,7 +1111,7 @@ function portfolioArtifactMarkup(type) {
       ],
       [
         "sources/first-frame-round07-overview-01.jpg",
-        "Round 07 · 미완성 컷 보강",
+        "Round 07 · 잔여 컷 제작",
         "프롬프트마다 의도적으로 다른 카메라 위치와 정보 밀도를 부여했습니다. 반복 샘플링이 아니라 연출 선택지를 비교하기 위한 A/B/C입니다.",
       ],
       [
@@ -1135,6 +1207,39 @@ function portfolioArtifactMarkup(type) {
           <div><span>MVP 공개 후 첫 4주</span><strong>1,311</strong><small>고유 방문자</small></div>
           <div><span>동일 기간</span><strong>3,285</strong><small>방문 세션</small></div>
         </div>
+      </section>
+    `;
+  }
+
+  if (type === "tts-data-flow") {
+    const steps = [
+      ["01", "후보 추출", "영어·숫자가 포함된 곡명과 아티스트명"],
+      ["02", "공개 자료 조사", "통용 발음·언어권·활동 정보 확인"],
+      ["03", "근거 기록", "확인 자료·판단 이유·처리 시간 보존"],
+      ["04", "사전 등록", "반복 표기와 예외를 나눠 주 단위 반영"],
+      ["05", "문장 청취", "조사 연결·호흡·고유명사 전달력 확인"],
+      ["06", "재검수", "같은 문장으로 반영 여부와 부작용 확인"],
+    ];
+    return `
+      <section class="artifact-block tts-data-flow" aria-labelledby="ttsFlowTitle">
+        <div class="artifact-heading">
+          <span>발음 데이터 제작 기록</span>
+          <h3 id="ttsFlowTitle">조사 결과를 실제 음성 출력까지 연결한 흐름</h3>
+        </div>
+        <div class="tts-metrics" aria-label="발음사전 작업 규모">
+          <div><span>전체 후보</span><strong>약 35,000개</strong></div>
+          <div><span>초기 수동 조사</span><strong>약 3,500건</strong></div>
+          <div><span>적용 확인</span><strong>주 1회</strong></div>
+        </div>
+        <ol class="tts-flow-list">
+          ${steps
+            .map(
+              ([number, title, description]) => `
+                <li><span>${number}</span><strong>${title}</strong><p>${description}</p></li>
+              `,
+            )
+            .join("")}
+        </ol>
       </section>
     `;
   }
@@ -1239,6 +1344,7 @@ function initializeFinalVideoModal(container) {
   const libraryCloseButton = libraryModal?.querySelector("[data-video-library-close]");
   const modalTitle = modal.querySelector("[data-video-modal-title]");
   const modalDuration = modal.querySelector("[data-video-modal-duration]");
+  const modalDescription = modal.querySelector("[data-video-modal-description]");
   const modalPlayer = modal.querySelector("[data-video-modal-player]");
   const closeButton = modal.querySelector("[data-video-modal-close]");
   let triggerButton = null;
@@ -1267,6 +1373,7 @@ function initializeFinalVideoModal(container) {
       returnToLibrary = Boolean(button.closest("[data-video-library-modal]"));
       modalTitle.textContent = button.dataset.videoTitle || "최종 영상";
       modalDuration.textContent = button.dataset.videoDuration || "";
+      modalDescription.textContent = button.dataset.videoDescription || "";
 
       const iframe = document.createElement("iframe");
       iframe.src = `${button.dataset.videoSrc}?autoplay=1&rel=0`;
@@ -1294,6 +1401,41 @@ function initializeFinalVideoModal(container) {
       triggerButton?.focus();
     }
   });
+}
+
+function decorateArticleContent(container, project) {
+  (project.annotations || []).forEach(([term, explanation]) => {
+    wrapFirstTextMatch(container, term, (text) => {
+      const note = document.createElement("span");
+      note.className = "term-note";
+      note.tabIndex = 0;
+      note.dataset.note = explanation;
+      note.setAttribute("aria-label", `${text}: ${explanation}`);
+      note.textContent = text;
+      return note;
+    });
+  });
+}
+
+function wrapFirstTextMatch(container, phrase, createElement) {
+  const blocked = "a, button, code, pre, audio, video, .term-note";
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  let node;
+
+  while ((node = walker.nextNode())) {
+    if (!node.parentElement || node.parentElement.closest(blocked)) continue;
+    const index = node.textContent.indexOf(phrase);
+    if (index === -1) continue;
+
+    const fragment = document.createDocumentFragment();
+    const before = node.textContent.slice(0, index);
+    const after = node.textContent.slice(index + phrase.length);
+    if (before) fragment.append(document.createTextNode(before));
+    fragment.append(createElement(phrase));
+    if (after) fragment.append(document.createTextNode(after));
+    node.replaceWith(fragment);
+    return;
+  }
 }
 
 async function renderArticle(project) {
@@ -1324,6 +1466,7 @@ async function renderArticle(project) {
     articleBody.innerHTML = markdownToHtml(markdown);
     initializeAntiframeDemo(articleBody);
     initializeFinalVideoModal(articleBody);
+    decorateArticleContent(articleBody, project);
     const next = projects[(projects.indexOf(project) + 1) % projects.length];
     articleView.insertAdjacentHTML(
       "beforeend",
