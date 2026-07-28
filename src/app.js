@@ -78,21 +78,13 @@ const shortAnimationVideos = [
 const projects = [
   {
     slug: "webtoon-ai-short-animation",
-    number: "PROJECT 01",
-    status: "완성 영상",
-    label: "KAKAO ENTERTAINMENT · AI SHORT ANIMATION",
     title: "웹툰 IP 기반 AI 숏애니메이션 제작",
-    shortTitle: "웹툰 AI 숏애니메이션",
     thumbnail: "assets/thumbnails/project-01-ai-animation.jpg",
     thumbnailAlt: "무표정 인물과 말풍선이 공중에 떠 있는 3D 아이콘",
-    homeMeta: ["팀 프로젝트", "AI 애니메이션 제작 전담", "담당 범위 100%"],
     summary:
       "두 개의 웹툰 IP를 회차형·프로모션형 애니메이션으로 제작했습니다. 원작 보존, 첫 프레임, 모션, TTS·사운드, 편집·QC와 Layer-in-Layer 정립 과정을 실제 소스로 공개합니다.",
-    tags: ["Layer-in-Layer", "Image-to-Video", "TTS·Sound", "Post-production"],
-    outcome: "핵심 결과 · Layer-in-Layer가 에이전트 모션 지시 방식의 정식 개발 대상으로 선정",
-    projectType: "팀 프로젝트",
     role: "회차 분석·연출부터 이미지·영상·음성 생성, 편집과 QC까지 AI 애니메이션 제작 전담",
-    contribution: "담당 제작 범위 100%",
+    contribution: "100%",
     contributionNote: "사내 에이전트 개발 전체가 아니라, 배정된 AI 애니메이션 제작 공정 기준",
     tools: [
       ["Kling AI", "상"],
@@ -102,7 +94,6 @@ const projects = [
       ["ElevenLabs", "중"],
       ["Gemini · Firefly", "중"],
     ],
-    facts: ["팀 프로젝트", "완성 영상 9편", "Layer-in-Layer", "일부 결과 if(kakao)25 소개"],
     media: {
       type: "youtube",
       youtube: "https://youtube.com/shorts/PwsN7nyzPyk?feature=share",
@@ -111,21 +102,13 @@ const projects = [
   },
   {
     slug: "antiframe",
-    number: "PROJECT 02",
-    status: "API 없는 데모",
-    label: "PERSONAL PROJECT · ANTIFRAME",
     title: "자연어로 영상 초안을 만들고 수정하는 제작 워크플로우",
-    shortTitle: "Antiframe",
     thumbnail: "assets/thumbnails/project-02-antiframe.jpg",
     thumbnailAlt: "공중에 떠 있는 파란색과 보라색 채팅 말풍선 3D 아이콘",
-    homeMeta: ["개인 프로젝트", "기여도 100%", "42명 초기 사용"],
     summary:
       "대본 입력부터 장면별 초안, 자연어 수정과 부분 재실행을 하나의 흐름으로 연결했습니다. 반복 입력은 자동화하고 콘텐츠 방향을 결정하는 단계에는 사용자의 확인을 남겼습니다.",
-    tags: ["Product Workflow", "Natural-language Edit", "Human Checkpoint", "Retry"],
-    outcome: "초기 검증 · 설문 응답자 39명 중 33명이 지속 사용 의향",
-    projectType: "개인 프로젝트",
     role: "문제 정의, 제품 기획, UX·정보 구조, 프론트엔드·API, 생성 파이프라인, 렌더 워커와 QA",
-    contribution: "기여도 100%",
+    contribution: "100%",
     contributionNote: "기획·개발·검증 전 과정",
     tools: [
       ["ChatGPT · Gemini", "상"],
@@ -134,7 +117,6 @@ const projects = [
       ["After Effects", "중"],
       ["FFmpeg", "중"],
     ],
-    facts: ["개인 프로젝트", "기여도 100%", "초기 사용자 42명", "39명 중 33명 지속 사용 의향"],
     media: {
       type: "image",
       src: "assets/projects/antiframe/format-select.png",
@@ -144,21 +126,13 @@ const projects = [
   },
   {
     slug: "ai-drama",
-    number: "PROJECT 03",
-    status: "제작 중",
-    label: "PERSONAL PROJECT · AI DRAMA",
     title: "AI 드라마의 인물·공간·구도를 고정하는 제작 워크플로우",
-    shortTitle: "AI 드라마",
     thumbnail: "assets/thumbnails/project-03-ai-drama.jpg",
     thumbnailAlt: "공중에 떠 있는 검은색 바디와 다채로운 상단의 영상 슬레이트 3D 아이콘",
-    homeMeta: ["개인 프로젝트", "기여도 100%", "프리프로덕션 진행 중"],
     summary:
       "텍스트 프롬프트만으로 통제되지 않던 구도를 사람의 스케치로 먼저 잠그고, 캐릭터 팩·공간 팩·후보 3안과 QC를 연결했습니다. 현재 실제 제작 자료와 진행 상태를 공개합니다.",
-    tags: ["Sketch", "Character Pack", "Space Pack", "Continuity QC"],
-    outcome: "현재 단계 · 대본·스토리보드, 캐릭터·공간 팩, 첫 프레임 후보와 QC 구축",
-    projectType: "개인 프로젝트",
     role: "대본·스토리보드, 구도 스케치, 캐스팅·레퍼런스 팩, 첫 프레임 생성·선택과 연속성 QC",
-    contribution: "기여도 100%",
+    contribution: "100%",
     contributionNote: "현재 프리프로덕션·첫 프레임 제작 단계 기준",
     tools: [
       ["ChatGPT · Codex", "상"],
@@ -167,7 +141,6 @@ const projects = [
       ["Premiere Pro", "상"],
       ["ElevenLabs", "중"],
     ],
-    facts: ["개인 프로젝트", "기여도 100%", "프리프로덕션 진행 중", "완료·예정 산출물 구분"],
     media: {
       type: "image",
       src: "assets/projects/ai-drama/preproduction-overview.jpg",
@@ -177,21 +150,13 @@ const projects = [
   },
   {
     slug: "prombank",
-    number: "PROJECT 04",
-    status: "운영 결과",
-    label: "PERSONAL PROJECT · PROMBANK",
     title: "생성형 AI 시행착오를 재사용 가능한 템플릿으로 만든 프롬뱅크",
-    shortTitle: "프롬뱅크",
     thumbnail: "assets/thumbnails/project-04-prombank.jpg",
     thumbnailAlt: "네 개의 프롬프트 말풍선 상자가 공중에 떠 있는 3D 아이콘",
-    homeMeta: ["개인 프로젝트", "기여도 100%", "첫 4주 1,311명"],
     summary:
       "이미지·영상·TTS·사운드 생성의 성공·실패 사례를 수집하고, 사용 목적·변경 정보·고정 조건·결과 예시로 구조화해 공유한 프롬프트 플랫폼입니다.",
-    tags: ["Prompt Template", "Failure Taxonomy", "Content Operations", "MVP"],
-    outcome: "MVP 공개 첫 4주 · 고유 방문자 1,311명 · 방문 세션 3,285회",
-    projectType: "개인 제작·운영",
     role: "문제 정의, 학회 제안, 사례 수집·분류, 템플릿 구조와 서비스 기획·제작·운영",
-    contribution: "기여도 100%",
+    contribution: "100%",
     contributionNote: "학회 구성원은 생성 사례 제공, 플랫폼 기획·제작·운영은 직접 수행",
     tools: [
       ["ChatGPT · Gemini", "상"],
@@ -199,12 +164,7 @@ const projects = [
       ["TTS · 사운드 생성", "중"],
       ["서비스 기획·운영", "상"],
     ],
-    facts: ["개인 제작·운영", "기여도 100%", "첫 4주 1,311명", "방문 세션 3,285회"],
-    media: {
-      type: "image",
-      src: "assets/thumbnails/project-04-prombank.jpg",
-      alt: "프롬뱅크의 재사용 가능한 프롬프트 템플릿을 나타내는 말풍선 아이콘",
-    },
+    media: null,
     article: "content/posts/04-prombank.md",
   },
 ];
@@ -276,29 +236,11 @@ function mediaMarkup(project) {
           alt="${escapeHtml(project.media.alt || project.title)}"
           loading="lazy"
         />
-        <div class="media-image-label">
-          <span>${escapeHtml(project.number)}</span>
-          <strong>${escapeHtml(project.status)}</strong>
-        </div>
       </div>
     `;
   }
 
-  return `
-    <div class="video-shell">
-      <div class="video-placeholder">
-        <div class="video-placeholder-top">
-          <span class="video-index">${escapeHtml(project.number)}</span>
-          <span class="video-status">${escapeHtml(project.status)}</span>
-        </div>
-        <span class="placeholder-title" aria-hidden="true">IN PRODUCTION</span>
-        <div class="video-placeholder-bottom">
-          <strong>${escapeHtml(project.shortTitle)}</strong>
-          <small>완성 장면과 제작 기록이 이 위치에 업데이트됩니다.</small>
-        </div>
-      </div>
-    </div>
-  `;
+  return "";
 }
 
 function youtubeEmbedUrl(url) {
@@ -342,12 +284,8 @@ function renderProjects() {
             />
           </div>
           <div class="project-content">
-            <p class="project-label">${project.label}</p>
             <h3>${escapeHtml(project.title)}</h3>
             <p class="project-summary">${escapeHtml(project.summary)}</p>
-            <div class="project-meta">
-              ${project.homeMeta.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}
-            </div>
           </div>
           <span class="project-arrow" aria-hidden="true">→</span>
         </a>
@@ -358,24 +296,20 @@ function renderProjects() {
 
 function projectRequirementsMarkup(project) {
   return `
-    <section class="project-requirements" aria-label="프로젝트 역할과 도구">
+    <section class="project-requirements" aria-label="담당 업무, 기여도와 사용 도구">
       <div class="project-requirements-main">
         <div>
-          <span>PROJECT TYPE</span>
-          <strong>${escapeHtml(project.projectType)}</strong>
+          <span>담당 업무</span>
+          <strong>${escapeHtml(project.role)}</strong>
         </div>
         <div>
-          <span>CONTRIBUTION</span>
+          <span>기여도</span>
           <strong>${escapeHtml(project.contribution)}</strong>
           <small>${escapeHtml(project.contributionNote)}</small>
         </div>
-        <div class="project-role">
-          <span>ROLE</span>
-          <strong>${escapeHtml(project.role)}</strong>
-        </div>
       </div>
       <div class="project-tools">
-        <span>TOOL · PROFICIENCY</span>
+        <span>사용 툴 · 숙련도</span>
         <div>
           ${project.tools
             .map(([name, level]) => `<p><strong>${escapeHtml(name)}</strong><b>${escapeHtml(level)}</b></p>`)
@@ -387,31 +321,42 @@ function projectRequirementsMarkup(project) {
 }
 
 function inlineMarkdown(text) {
-  return escapeHtml(text)
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/`(.+?)`/g, "<code>$1</code>")
-    .replace(
-      /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
-      '<a href="$2" target="_blank" rel="noreferrer">$1</a>',
-    );
+  let result = escapeHtml(String(text));
+  result = result.replace(/&lt;small&gt;([\s\S]*?)&lt;\/small&gt;/g, "<small>$1</small>");
+  result = result.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,
+    '<a href="$2" target="_blank" rel="noreferrer">$1</a>',
+  );
+  result = result.replace(/`([^`]+)`/g, "<code>$1</code>");
+  result = result.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  result = result.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return result;
 }
 
 function markdownToHtml(markdown) {
-  const lines = markdown.replace(/\r/g, "").split("\n");
+  return parseMarkdownBlocks(markdown.replace(/\r/g, "").split("\n"));
+}
+
+function parseMarkdownBlocks(lines, state = { sectionIndex: 0 }) {
   const output = [];
   let paragraph = [];
   let listType = null;
   let listItems = [];
-  let sectionIndex = 0;
+  let tableRows = [];
+  let codeLines = [];
+  let inCode = false;
 
   const flushParagraph = () => {
     if (!paragraph.length) return;
-    output.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+    const text = paragraph
+      .map((line) => (line.endsWith("  ") ? `${line.trimEnd()}\u0000BR\u0000` : line))
+      .join(" ");
+    output.push(`<p>${inlineMarkdown(text).replaceAll("\u0000BR\u0000", "<br>")}</p>`);
     paragraph = [];
   };
 
   const flushList = () => {
-    if (!listType) return;
+    if (!listItems.length) return;
     output.push(
       `<${listType}>${listItems.map((item) => `<li>${inlineMarkdown(item)}</li>`).join("")}</${listType}>`,
     );
@@ -419,9 +364,83 @@ function markdownToHtml(markdown) {
     listItems = [];
   };
 
-  lines.forEach((line) => {
+  const flushTable = () => {
+    if (!tableRows.length) return;
+    const rows = tableRows.map((row) =>
+      row
+        .slice(1, -1)
+        .split("|")
+        .map((cell) => cell.trim()),
+    );
+    const hasSeparator = rows[1]?.every((cell) => /^:?-{3,}:?$/.test(cell));
+    const head = rows[0];
+    const body = hasSeparator ? rows.slice(2) : rows.slice(1);
+    output.push(`
+      <div class="table-scroll">
+        <table>
+          <thead><tr>${head.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("")}</tr></thead>
+          <tbody>
+            ${body
+              .map(
+                (row) =>
+                  `<tr>${row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("")}</tr>`,
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    `);
+    tableRows = [];
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
     const trimmed = line.trim();
-    const heading = trimmed.match(/^(#{2,3})\s+(.+)$/);
+
+    if (inCode) {
+      if (trimmed.startsWith("```")) {
+        output.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        codeLines = [];
+        inCode = false;
+      } else {
+        codeLines.push(line);
+      }
+      continue;
+    }
+
+    if (trimmed.startsWith("```")) {
+      flushParagraph();
+      flushList();
+      flushTable();
+      inCode = true;
+      continue;
+    }
+
+    if (trimmed.startsWith(">")) {
+      flushParagraph();
+      flushList();
+      flushTable();
+      const quoteLines = [];
+      while (index < lines.length && lines[index].trim().startsWith(">")) {
+        quoteLines.push(lines[index].trim().replace(/^>\s?/, ""));
+        index += 1;
+      }
+      index -= 1;
+      output.push(`<blockquote>${parseMarkdownBlocks(quoteLines, state)}</blockquote>`);
+      continue;
+    }
+
+    if (/^\|.*\|\s*$/.test(trimmed)) {
+      flushParagraph();
+      flushList();
+      tableRows.push(trimmed);
+      const next = lines[index + 1]?.trim() || "";
+      if (!/^\|.*\|\s*$/.test(next)) flushTable();
+      continue;
+    }
+    flushTable();
+
+    const heading = trimmed.match(/^(#{2,4})\s+(.+)$/);
     const unordered = trimmed.match(/^[-*]\s+(.+)$/);
     const ordered = trimmed.match(/^\d+\.\s+(.+)$/);
     const image = trimmed.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
@@ -429,14 +448,14 @@ function markdownToHtml(markdown) {
     if (!trimmed) {
       flushParagraph();
       flushList();
-      return;
+      continue;
     }
 
     if (trimmed === "---") {
       flushParagraph();
       flushList();
       output.push("<hr />");
-      return;
+      continue;
     }
 
     const artifact = trimmed.match(/^\[\[([a-z0-9-]+)\]\]$/i);
@@ -444,7 +463,7 @@ function markdownToHtml(markdown) {
       flushParagraph();
       flushList();
       output.push(portfolioArtifactMarkup(artifact[1]));
-      return;
+      continue;
     }
 
     if (image) {
@@ -456,23 +475,16 @@ function markdownToHtml(markdown) {
           ${image[1] ? `<figcaption>${inlineMarkdown(image[1])}</figcaption>` : ""}
         </figure>
       `);
-      return;
+      continue;
     }
 
     if (heading) {
       flushParagraph();
       flushList();
       const level = heading[1].length;
-      const id = level === 2 ? `section-${++sectionIndex}` : "";
+      const id = level === 2 ? `section-${++state.sectionIndex}` : "";
       output.push(`<h${level}${id ? ` id="${id}"` : ""}>${inlineMarkdown(heading[2])}</h${level}>`);
-      return;
-    }
-
-    if (trimmed.startsWith("> ")) {
-      flushParagraph();
-      flushList();
-      output.push(`<blockquote>${inlineMarkdown(trimmed.slice(2))}</blockquote>`);
-      return;
+      continue;
     }
 
     if (unordered || ordered) {
@@ -481,35 +493,18 @@ function markdownToHtml(markdown) {
       if (listType && listType !== nextType) flushList();
       listType = nextType;
       listItems.push((unordered || ordered)[1]);
-      return;
+      continue;
     }
 
     flushList();
     paragraph.push(trimmed);
-  });
+  }
 
+  if (inCode) output.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
   flushParagraph();
   flushList();
+  flushTable();
   return output.join("");
-}
-
-function articleTocMarkup(markdown) {
-  const headings = markdown
-    .replace(/\r/g, "")
-    .split("\n")
-    .filter((line) => /^##\s+/.test(line.trim()))
-    .map((line) => line.trim().replace(/^##\s+/, ""));
-  if (headings.length < 3) return "";
-  return `
-    <nav class="article-toc" aria-label="상세 글 목차">
-      <p>이 글에서 다루는 내용</p>
-      <ol>
-        ${headings
-          .map((heading, index) => `<li><a href="#section-${index + 1}"><span>${String(index + 1).padStart(2, "0")}</span>${inlineMarkdown(heading)}</a></li>`)
-          .join("")}
-      </ol>
-    </nav>
-  `;
 }
 
 function antiframeDemoMarkup() {
@@ -1024,16 +1019,19 @@ async function renderArticle(project) {
     <header class="article-hero">
       <div class="article-hero-inner">
         <a class="back-link" href="#work"><span aria-hidden="true">←</span> 프로젝트 목록</a>
-        <p class="article-label">${project.label}</p>
         <h1>${escapeHtml(project.title)}</h1>
         <p class="article-lead">${escapeHtml(project.summary)}</p>
-        <div class="article-facts">
-          ${project.facts.map((fact) => `<span>${escapeHtml(fact)}</span>`).join("")}
+        <div class="article-byline">
+          <div class="author-avatar" aria-hidden="true">S</div>
+          <div>
+            <strong>최수호</strong>
+            <p data-read-meta>상세 제작 기록 · 분량 계산 중</p>
+          </div>
         </div>
       </div>
     </header>
     ${projectRequirementsMarkup(project)}
-    <div class="article-video">${mediaMarkup(project)}</div>
+    ${project.media ? `<div class="article-video">${mediaMarkup(project)}</div>` : ""}
     <div class="article-body"><p class="article-loading">제작 기록을 불러오는 중입니다.</p></div>
   `;
   window.scrollTo({ top: 0, behavior: "auto" });
@@ -1044,7 +1042,15 @@ async function renderArticle(project) {
     const markdown = await response.text();
     if (requestId !== renderRequest || location.hash !== `#project/${project.slug}`) return;
     const articleBody = articleView.querySelector(".article-body");
-    articleBody.innerHTML = articleTocMarkup(markdown) + markdownToHtml(markdown);
+    const articleCharacterCount = markdown
+      .replace(/!\[[^\]]*\]\([^)]+\)|\[\[[^\]]+\]\]|[#>*`|_-]/g, "")
+      .replace(/\s/g, "").length;
+    const readMinutes = Math.max(4, Math.ceil(articleCharacterCount / 800));
+    const readMeta = articleView.querySelector("[data-read-meta]");
+    if (readMeta) {
+      readMeta.textContent = `${articleCharacterCount.toLocaleString("ko-KR")}자 · 약 ${readMinutes}분 분량`;
+    }
+    articleBody.innerHTML = markdownToHtml(markdown);
     initializeAntiframeDemo(articleBody);
     const next = projects[(projects.indexOf(project) + 1) % projects.length];
     articleView.insertAdjacentHTML(
