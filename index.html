@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#e4002b" />
     <meta
       name="description"
-      content="웹툰 AI 숏애니, 자연어 영상 제작 도구 Antiframe, AI 드라마의 결과물과 제작 워크플로우를 정리한 포트폴리오입니다."
+      content="웹툰 AI 숏애니, 자연어 영상 제작 도구 Antiframe, AI 드라마, 프롬뱅크의 결과물과 제작 워크플로우를 정리한 포트폴리오입니다."
     />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="AI 콘텐츠 제작과 제작 워크플로우" />
@@ -23,7 +23,7 @@
     <meta name="twitter:title" content="AI 콘텐츠 제작과 제작 워크플로우" />
     <meta
       name="twitter:description"
-      content="웹툰 AI 숏애니, Antiframe, AI 드라마 제작 기록"
+      content="웹툰 AI 숏애니, Antiframe, AI 드라마, 프롬뱅크 제작 기록"
     />
     <meta
       name="twitter:image"
@@ -46,8 +46,8 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="src/styles.css?v=8" />
-    <script src="src/app.js?v=8" defer></script>
+    <link rel="stylesheet" href="src/styles.css?v=10" />
+    <script src="src/app.js?v=10" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -57,9 +57,9 @@
 
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="#home" aria-label="AI 콘텐츠 포트폴리오 홈">
+        <a class="brand" href="#home" aria-label="최수호 포트폴리오 블로그 홈">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span>AI CONTENT PORTFOLIO</span>
+          <span>최수호 포트폴리오 블로그</span>
         </a>
       </div>
     </header>
@@ -67,12 +67,20 @@
     <main id="main-content" tabindex="-1">
       <div id="homeView">
         <section class="hero wrap" aria-labelledby="heroTitle">
-          <h1 id="heroTitle">AI 콘텐츠 제작과<br />제작 워크플로우</h1>
+          <h1 id="heroTitle">생성형 AI 콘텐츠 제작<br />포트폴리오</h1>
           <p class="hero-description">
-            IP의 특성을 지키며 새로운 영상 형식으로 확장하고, 제작 과정에서
-            얻은 기준을 자연어 영상 제작과 실사형 AI 드라마에 적용한 작업을
+            실제 결과물과 제작 소스, 실패 원인과 수정 기준을 중심으로
+            이미지·영상·음성 생성부터 후반 작업과 제작 파이프라인까지
             정리했습니다.
           </p>
+        </section>
+
+        <section class="tool-overview wrap" aria-labelledby="toolTitle">
+          <div class="tool-overview-heading">
+            <h2 id="toolTitle">사용 Tool 및 숙련도</h2>
+            <p>상 · 핵심 공정 독립 수행 / 중 · 실제 프로젝트 반복 사용</p>
+          </div>
+          <div class="tool-overview-grid" id="toolOverview"></div>
         </section>
 
         <section class="showcase wrap" id="work" aria-labelledby="workTitle">
@@ -91,7 +99,7 @@
       <div class="wrap footer-inner">
         <a class="brand brand--footer" href="#home">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span>AI CONTENT PORTFOLIO</span>
+          <span>최수호 포트폴리오 블로그</span>
         </a>
         <p>2026</p>
       </div>

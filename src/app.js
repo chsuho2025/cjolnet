@@ -1,22 +1,111 @@
+const toolMatrix = [
+  { name: "Kling AI", level: "상", use: "Image-to-Video · 모션 제어" },
+  { name: "ChatGPT · Gemini", level: "상", use: "기획 · 구조화 · 프롬프트" },
+  { name: "Premiere Pro", level: "상", use: "영상 편집 · 사운드 · 출력" },
+  { name: "Photoshop", level: "중", use: "레이어 분리 · 첫 프레임" },
+  { name: "After Effects", level: "중", use: "합성 · 템플릿 렌더" },
+  { name: "ElevenLabs", level: "중", use: "TTS · 연기 지시 · SFX" },
+  { name: "Next.js · TypeScript", level: "중", use: "AI 제작 도구 구현" },
+  { name: "Supabase · API", level: "중", use: "상태 · 작업 큐 · 생성 연동" },
+];
+
+const shortAnimationVideos = [
+  {
+    group: "점괘보는 공녀님",
+    episode: "9화",
+    duration: "2분 24초",
+    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg",
+    youtube: "https://youtube.com/shorts/PwsN7nyzPyk?feature=share",
+  },
+  {
+    group: "점괘보는 공녀님",
+    episode: "10화",
+    duration: "2분 29초",
+    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep10.jpg",
+    youtube: "https://youtube.com/shorts/W5mDMJXmhKc?feature=share",
+  },
+  {
+    group: "점괘보는 공녀님",
+    episode: "11화",
+    duration: "1분 23초",
+    poster: "assets/projects/short-animation/final-videos/fortune-princess-ep11.jpg",
+    youtube: "https://youtube.com/shorts/qz6310ZOMho?feature=share",
+  },
+  {
+    group: "점괘보는 공녀님",
+    episode: "9화 프로모션 · 터치형",
+    duration: "YouTube Shorts",
+    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    youtube: "https://youtube.com/shorts/Bt2eeOXGEI8?feature=share",
+  },
+  {
+    group: "점괘보는 공녀님",
+    episode: "10화 프로모션 · 터치형",
+    duration: "YouTube Shorts",
+    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    youtube: "https://youtube.com/shorts/mzAJt61oDEk?feature=share",
+  },
+  {
+    group: "점괘보는 공녀님",
+    episode: "1~6화 프로모션",
+    duration: "YouTube Shorts",
+    poster: "assets/projects/short-animation/outputs/teaser.jpg",
+    youtube: "https://youtube.com/shorts/Unnp3GSet9M?feature=share",
+  },
+  {
+    group: "전령새 왕녀님",
+    episode: "1화",
+    duration: "1분 52초",
+    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep01.jpg",
+    youtube: "https://youtube.com/shorts/wefQYggOTfQ?feature=share",
+  },
+  {
+    group: "전령새 왕녀님",
+    episode: "2화",
+    duration: "1분 26초",
+    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep02.jpg",
+    youtube: "https://youtube.com/shorts/XeuteDMTU98?feature=share",
+  },
+  {
+    group: "전령새 왕녀님",
+    episode: "3화",
+    duration: "1분 58초",
+    poster: "assets/projects/short-animation/final-videos/messenger-bird-ep03.jpg",
+    youtube: "https://youtube.com/shorts/tGgkaAfPPBI",
+  },
+];
+
 const projects = [
   {
     slug: "webtoon-ai-short-animation",
     number: "PROJECT 01",
-    status: "영상 재생",
+    status: "완성 영상",
     label: "KAKAO ENTERTAINMENT · AI SHORT ANIMATION",
-    title: "웹툰 IP를 AI 애니메이션으로 확장하는 제작 과정",
+    title: "웹툰 IP 기반 AI 숏애니메이션 제작",
     shortTitle: "웹툰 AI 숏애니메이션",
     thumbnail: "assets/thumbnails/project-01-ai-animation.jpg",
-    thumbnailAlt: "움직임을 표현한 곡선과 함께 공중에 떠 있는 애니메이션 캐릭터 3D 아이콘",
-    homeMeta: ["카카오엔터테인먼트", "제작 전 과정", "워크플로우 정립"],
+    thumbnailAlt: "무표정 인물과 말풍선이 공중에 떠 있는 3D 아이콘",
+    homeMeta: ["팀 프로젝트", "AI 애니메이션 제작 전담", "담당 범위 100%"],
     summary:
-      "웹툰 숏츠 제작 에이전트 출시 후 확인된 CP사의 요구를 바탕으로, 웹툰 IP를 움직임·음성·사운드가 있는 애니메이션 형식으로 확장했습니다. 전 공정을 직접 제작하며 AI가 반복할 작업과 제작자가 판단할 단계를 구분했습니다.",
+      "두 개의 웹툰 IP를 회차형·프로모션형 애니메이션으로 제작했습니다. 원작 보존, 첫 프레임, 모션, TTS·사운드, 편집·QC와 Layer-in-Layer 정립 과정을 실제 소스로 공개합니다.",
     tags: ["Layer-in-Layer", "Image-to-Video", "TTS·Sound", "Post-production"],
     outcome: "핵심 결과 · Layer-in-Layer가 에이전트 모션 지시 방식의 정식 개발 대상으로 선정",
-    facts: ["카카오엔터테인먼트", "AI 숏애니메이션", "Layer-in-Layer", "일부 결과 if(kakao)25 소개"],
+    projectType: "팀 프로젝트",
+    role: "회차 분석·연출부터 이미지·영상·음성 생성, 편집과 QC까지 AI 애니메이션 제작 전담",
+    contribution: "담당 제작 범위 100%",
+    contributionNote: "사내 에이전트 개발 전체가 아니라, 배정된 AI 애니메이션 제작 공정 기준",
+    tools: [
+      ["Kling AI", "상"],
+      ["Premiere Pro", "상"],
+      ["Photoshop", "중"],
+      ["After Effects", "중"],
+      ["ElevenLabs", "중"],
+      ["Gemini · Firefly", "중"],
+    ],
+    facts: ["팀 프로젝트", "완성 영상 9편", "Layer-in-Layer", "일부 결과 if(kakao)25 소개"],
     media: {
-      type: "embed",
-      src: "https://drive.google.com/file/d/1gT5jJt-nunGOnDp9vPUxLPh1JDAZqSDY/preview",
+      type: "youtube",
+      youtube: "https://youtube.com/shorts/PwsN7nyzPyk?feature=share",
     },
     article: "content/posts/01-webtoon-ai-short-animation.md",
   },
@@ -29,12 +118,23 @@ const projects = [
     shortTitle: "Antiframe",
     thumbnail: "assets/thumbnails/project-02-antiframe.jpg",
     thumbnailAlt: "공중에 떠 있는 파란색과 보라색 채팅 말풍선 3D 아이콘",
-    homeMeta: ["개인 프로젝트", "기획·개발", "사용자 검증"],
+    homeMeta: ["개인 프로젝트", "기여도 100%", "42명 초기 사용"],
     summary:
       "대본 입력부터 장면별 초안, 자연어 수정과 부분 재실행을 하나의 흐름으로 연결했습니다. 반복 입력은 자동화하고 콘텐츠 방향을 결정하는 단계에는 사용자의 확인을 남겼습니다.",
     tags: ["Product Workflow", "Natural-language Edit", "Human Checkpoint", "Retry"],
-    outcome: "초기 검증 · 설문 응답자 39명 중 37명이 지속 사용 의향",
-    facts: ["개인 프로젝트", "기획·개발 100%", "초기 사용자 42명", "설문 39명 중 37명 지속 사용 의향"],
+    outcome: "초기 검증 · 설문 응답자 39명 중 33명이 지속 사용 의향",
+    projectType: "개인 프로젝트",
+    role: "문제 정의, 제품 기획, UX·정보 구조, 프론트엔드·API, 생성 파이프라인, 렌더 워커와 QA",
+    contribution: "기여도 100%",
+    contributionNote: "기획·개발·검증 전 과정",
+    tools: [
+      ["ChatGPT · Gemini", "상"],
+      ["Next.js · TypeScript", "중"],
+      ["Supabase · API", "중"],
+      ["After Effects", "중"],
+      ["FFmpeg", "중"],
+    ],
+    facts: ["개인 프로젝트", "기여도 100%", "초기 사용자 42명", "39명 중 33명 지속 사용 의향"],
     media: {
       type: "image",
       src: "assets/projects/antiframe/format-select.png",
@@ -47,18 +147,65 @@ const projects = [
     number: "PROJECT 03",
     status: "제작 중",
     label: "PERSONAL PROJECT · AI DRAMA",
-    title: "AI 드라마의 인물·공간·구도를 고정하는 제작 방식",
+    title: "AI 드라마의 인물·공간·구도를 고정하는 제작 워크플로우",
     shortTitle: "AI 드라마",
     thumbnail: "assets/thumbnails/project-03-ai-drama.jpg",
     thumbnailAlt: "공중에 떠 있는 검은색 바디와 다채로운 상단의 영상 슬레이트 3D 아이콘",
-    homeMeta: ["개인 프로젝트", "제작 방식 설계", "진행 중"],
+    homeMeta: ["개인 프로젝트", "기여도 100%", "프리프로덕션 진행 중"],
     summary:
-      "숏애니에서 정립한 Layer-in-Layer를 실사형 장면으로 확장합니다. 스케치, Character Pack과 Space Pack을 기준으로 인물·공간·연기의 연속성을 설계하고 있습니다.",
+      "텍스트 프롬프트만으로 통제되지 않던 구도를 사람의 스케치로 먼저 잠그고, 캐릭터 팩·공간 팩·후보 3안과 QC를 연결했습니다. 현재 실제 제작 자료와 진행 상태를 공개합니다.",
     tags: ["Sketch", "Character Pack", "Space Pack", "Continuity QC"],
-    outcome: "현재 단계 · 대본 기반 Character Pack·Space Pack·Shot Sketch 설계",
-    facts: ["개인 프로젝트", "AI 드라마", "제작 중", "기여도 100%"],
-    media: { type: "placeholder" },
+    outcome: "현재 단계 · 대본·스토리보드, 캐릭터·공간 팩, 첫 프레임 후보와 QC 구축",
+    projectType: "개인 프로젝트",
+    role: "대본·스토리보드, 구도 스케치, 캐스팅·레퍼런스 팩, 첫 프레임 생성·선택과 연속성 QC",
+    contribution: "기여도 100%",
+    contributionNote: "현재 프리프로덕션·첫 프레임 제작 단계 기준",
+    tools: [
+      ["ChatGPT · Codex", "상"],
+      ["이미지 생성 모델", "상"],
+      ["Photoshop", "중"],
+      ["Premiere Pro", "상"],
+      ["ElevenLabs", "중"],
+    ],
+    facts: ["개인 프로젝트", "기여도 100%", "프리프로덕션 진행 중", "완료·예정 산출물 구분"],
+    media: {
+      type: "image",
+      src: "assets/projects/ai-drama/preproduction-overview.jpg",
+      alt: "AI 드라마 캐릭터 팩과 공간 팩, 첫 프레임 제작 현황",
+    },
     article: "content/posts/02-cinematic-layer-in-layer.md",
+  },
+  {
+    slug: "prombank",
+    number: "PROJECT 04",
+    status: "운영 결과",
+    label: "PERSONAL PROJECT · PROMBANK",
+    title: "생성형 AI 시행착오를 재사용 가능한 템플릿으로 만든 프롬뱅크",
+    shortTitle: "프롬뱅크",
+    thumbnail: "assets/thumbnails/project-04-prombank.jpg",
+    thumbnailAlt: "네 개의 프롬프트 말풍선 상자가 공중에 떠 있는 3D 아이콘",
+    homeMeta: ["개인 프로젝트", "기여도 100%", "첫 4주 1,311명"],
+    summary:
+      "이미지·영상·TTS·사운드 생성의 성공·실패 사례를 수집하고, 사용 목적·변경 정보·고정 조건·결과 예시로 구조화해 공유한 프롬프트 플랫폼입니다.",
+    tags: ["Prompt Template", "Failure Taxonomy", "Content Operations", "MVP"],
+    outcome: "MVP 공개 첫 4주 · 고유 방문자 1,311명 · 방문 세션 3,285회",
+    projectType: "개인 제작·운영",
+    role: "문제 정의, 학회 제안, 사례 수집·분류, 템플릿 구조와 서비스 기획·제작·운영",
+    contribution: "기여도 100%",
+    contributionNote: "학회 구성원은 생성 사례 제공, 플랫폼 기획·제작·운영은 직접 수행",
+    tools: [
+      ["ChatGPT · Gemini", "상"],
+      ["이미지·영상 생성 도구", "중"],
+      ["TTS · 사운드 생성", "중"],
+      ["서비스 기획·운영", "상"],
+    ],
+    facts: ["개인 제작·운영", "기여도 100%", "첫 4주 1,311명", "방문 세션 3,285회"],
+    media: {
+      type: "image",
+      src: "assets/thumbnails/project-04-prombank.jpg",
+      alt: "프롬뱅크의 재사용 가능한 프롬프트 템플릿을 나타내는 말풍선 아이콘",
+    },
+    article: "content/posts/04-prombank.md",
   },
 ];
 
@@ -66,6 +213,7 @@ const projectGrid = document.querySelector("#projectGrid");
 const homeView = document.querySelector("#homeView");
 const articleView = document.querySelector("#articleView");
 const readingProgress = document.querySelector("#readingProgress");
+const toolOverview = document.querySelector("#toolOverview");
 let renderRequest = 0;
 
 function escapeHtml(value) {
@@ -78,6 +226,34 @@ function escapeHtml(value) {
 }
 
 function mediaMarkup(project) {
+  if (project.media?.type === "youtube" && project.media.youtube) {
+    return `
+      <div class="video-shell media-embed">
+        <iframe
+          src="${escapeHtml(youtubeEmbedUrl(project.media.youtube))}"
+          title="${escapeHtml(project.title)} 영상"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    `;
+  }
+
+  if (project.media?.type === "youtube-pending") {
+    return `
+      <div class="video-shell youtube-pending">
+        <img src="${escapeHtml(project.media.poster)}" alt="" />
+        <div>
+          <span>YOUTUBE MASTER</span>
+          <strong>${escapeHtml(project.media.label)}</strong>
+          <small>YouTube 원본 링크 연결 후 이 자리에서 고화질로 재생됩니다.</small>
+        </div>
+      </div>
+    `;
+  }
+
   if (project.media?.type === "embed") {
     return `
       <div class="video-shell media-embed">
@@ -125,6 +301,33 @@ function mediaMarkup(project) {
   `;
 }
 
+function youtubeEmbedUrl(url) {
+  const value = String(url || "").trim();
+  const shortLinkMatch = value.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
+  const shortsMatch = value.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]{6,})/);
+  const watchMatch = value.match(/[?&]v=([a-zA-Z0-9_-]{6,})/);
+  const embedMatch = value.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]{6,})/);
+  const id = shortLinkMatch?.[1] || shortsMatch?.[1] || watchMatch?.[1] || embedMatch?.[1] || value;
+  return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}`;
+}
+
+function renderToolOverview() {
+  if (!toolOverview) return;
+  toolOverview.innerHTML = toolMatrix
+    .map(
+      (tool) => `
+        <div class="tool-item">
+          <div>
+            <strong>${escapeHtml(tool.name)}</strong>
+            <span>${escapeHtml(tool.use)}</span>
+          </div>
+          <b>${escapeHtml(tool.level)}</b>
+        </div>
+      `,
+    )
+    .join("");
+}
+
 function renderProjects() {
   projectGrid.innerHTML = projects
     .map(
@@ -151,6 +354,36 @@ function renderProjects() {
       `,
     )
     .join("");
+}
+
+function projectRequirementsMarkup(project) {
+  return `
+    <section class="project-requirements" aria-label="프로젝트 역할과 도구">
+      <div class="project-requirements-main">
+        <div>
+          <span>PROJECT TYPE</span>
+          <strong>${escapeHtml(project.projectType)}</strong>
+        </div>
+        <div>
+          <span>CONTRIBUTION</span>
+          <strong>${escapeHtml(project.contribution)}</strong>
+          <small>${escapeHtml(project.contributionNote)}</small>
+        </div>
+        <div class="project-role">
+          <span>ROLE</span>
+          <strong>${escapeHtml(project.role)}</strong>
+        </div>
+      </div>
+      <div class="project-tools">
+        <span>TOOL · PROFICIENCY</span>
+        <div>
+          ${project.tools
+            .map(([name, level]) => `<p><strong>${escapeHtml(name)}</strong><b>${escapeHtml(level)}</b></p>`)
+            .join("")}
+        </div>
+      </div>
+    </section>
+  `;
 }
 
 function inlineMarkdown(text) {
@@ -343,30 +576,58 @@ function portfolioArtifactMarkup(type) {
   if (type === "antiframe-demo") return antiframeDemoMarkup();
 
   if (type === "short-output-gallery") {
+    const groups = ["점괘보는 공녀님", "전령새 왕녀님"];
     return `
       <section class="artifact-block" aria-labelledby="outputGalleryTitle">
         <div class="artifact-heading">
-          <span>DELIVERABLE RANGE</span>
-          <h3 id="outputGalleryTitle">하나의 IP를 목적이 다른 영상 포맷으로 확장</h3>
-          <p>같은 원작도 회차 감상, 신규 유입, 빠른 맥락 전달이라는 목적에 따라 장면 선택과 편집 밀도를 다르게 설계했습니다.</p>
+          <span>FINAL DELIVERABLES · YOUTUBE MASTER</span>
+          <h3 id="outputGalleryTitle">두 작품의 회차형·프로모션형 완성 영상 9편</h3>
+          <p>네이버웹툰 지원용 포트폴리오 PDF에 수록한 YouTube 원본을 직접 연결했습니다. 사이트용 재압축 없이 화질과 사운드를 그대로 검토할 수 있습니다.</p>
         </div>
-        <div class="output-gallery">
-          ${[
-            ["outputs/episode-09.jpg", "에피소드형", "회차의 감정선과 장면 연결을 따라가는 포맷"],
-            ["outputs/episode-11.jpg", "에피소드형", "대사·리액션·사운드가 이어지는 감상 중심 포맷"],
-            ["outputs/teaser.jpg", "티저형", "갈등과 질문을 먼저 제시해 원작 유입을 만드는 포맷"],
-            ["outputs/summary.jpg", "회차 요약형", "여러 회차의 핵심 관계와 사건을 압축하는 포맷"],
-          ]
-            .map(
-              ([src, title, description]) => `
-                <figure>
-                  <img src="assets/projects/short-animation/${src}" alt="${title} 결과물 썸네일" loading="lazy" />
-                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
-                </figure>
-              `,
-            )
-            .join("")}
-        </div>
+        ${groups
+          .map((group) => {
+            const videos = shortAnimationVideos.filter((video) => video.group === group);
+            return `
+              <section class="video-group" aria-label="${escapeHtml(group)} 결과 영상">
+                <div class="video-group-title">
+                  <h4>${escapeHtml(group)}</h4>
+                  <span>${videos.length} DELIVERABLES</span>
+                </div>
+                <div class="youtube-gallery">
+                  ${videos
+                    .map(
+                      (video) => `
+                        <figure class="youtube-card">
+                          ${
+                            video.youtube
+                              ? `<iframe
+                                  src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
+                                  title="${escapeHtml(`${video.group} ${video.episode}`)}"
+                                  loading="lazy"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  referrerpolicy="strict-origin-when-cross-origin"
+                                  allowfullscreen
+                                ></iframe>`
+                              : `<div class="youtube-card-pending">
+                                  <img src="${escapeHtml(video.poster)}" alt="" loading="lazy" />
+                                  <span>YOUTUBE LINK</span>
+                                  <strong>고화질 영상 연결 예정</strong>
+                                </div>`
+                          }
+                          <figcaption>
+                            <strong>${escapeHtml(video.episode)}</strong>
+                            <span>${escapeHtml(video.duration)} · 9:16</span>
+                          </figcaption>
+                        </figure>
+                      `,
+                    )
+                    .join("")}
+                </div>
+              </section>
+            `;
+          })
+          .join("")}
+        <p class="artifact-note">회차형은 사건 순서와 감정 연결을, 프로모션형은 첫 장면의 후킹과 원작 유입을 기준으로 장면 선택과 편집 밀도를 달리했습니다.</p>
       </section>
     `;
   }
@@ -381,15 +642,75 @@ function portfolioArtifactMarkup(type) {
         </div>
         <div class="clip-comparison">
           <figure>
-            <video src="assets/projects/short-animation/clips/motion-candidate-a.mp4" controls playsinline preload="metadata"></video>
+            <iframe
+              src="${escapeHtml(youtubeEmbedUrl("https://youtube.com/shorts/rfWtxjCl_Ek?feature=share"))}"
+              title="Kling 생성 샘플 01"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
             <figcaption><strong>Candidate A</strong><span>표정, 시선과 인물 고정 상태 확인</span></figcaption>
           </figure>
           <figure>
-            <video src="assets/projects/short-animation/clips/motion-candidate-b.mp4" controls playsinline preload="metadata"></video>
+            <iframe
+              src="${escapeHtml(youtubeEmbedUrl("https://youtube.com/shorts/pBQAog5Hy1M?feature=share"))}"
+              title="Kling 생성 샘플 02"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
             <figcaption><strong>Candidate B</strong><span>동작 순서, 움직임 범위와 연결 가능 구간 확인</span></figcaption>
           </figure>
         </div>
         <p class="artifact-note">두 클립은 완성본이 아니라 편집 전 생성 후보입니다. 포트폴리오에서는 좋은 결과만 숨기지 않고 실제 선택 단위를 함께 제시합니다.</p>
+      </section>
+    `;
+  }
+
+  if (type === "short-postproduction-videos") {
+    const processVideos = [
+      {
+        title: "다중 화자 분리 생성·합성",
+        description: "화자별 발화 구간을 따로 생성한 뒤 Premiere Pro에서 타이밍을 맞춰 합성한 결과",
+        youtube: "https://youtube.com/shorts/ahtOHt9TQtE?feature=share",
+      },
+      {
+        title: "오디오 선행 씬 전환",
+        description: "다음 장면의 BGM·효과음을 화면보다 먼저 들려줘 장면 전환을 준비한 편집 결과",
+        youtube: "https://youtube.com/shorts/RMEUm-_Mjfg?feature=share",
+      },
+    ];
+    return `
+      <section class="artifact-block" aria-labelledby="postproductionVideoTitle">
+        <div class="artifact-heading">
+          <span>POST-PRODUCTION EVIDENCE · YOUTUBE</span>
+          <h3 id="postproductionVideoTitle">생성 결과를 편집 문법으로 완성한 사례</h3>
+          <p>생성 모델이 한 번에 해결하기 어려운 화자 제어와 씬 연결을 분리 생성·타임라인 합성·오디오 선행 방식으로 해결했습니다.</p>
+        </div>
+        <div class="clip-comparison">
+          ${processVideos
+            .map(
+              (video) => `
+                <figure>
+                  <iframe
+                    src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
+                    title="${escapeHtml(video.title)}"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                  <figcaption>
+                    <strong>${escapeHtml(video.title)}</strong>
+                    <span>${escapeHtml(video.description)}</span>
+                  </figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
+        </div>
       </section>
     `;
   }
@@ -515,6 +836,93 @@ function portfolioArtifactMarkup(type) {
     `;
   }
 
+  if (type === "drama-preproduction-gallery") {
+    const items = [
+      ["storyboard-final.jpg", "스토리보드 최종안", "대사·장면 기능·첫 프레임·움직임·음향과 길이를 컷 단위로 잠금"],
+      ["casting-overview.jpg", "캐스팅 후보와 선택", "개별 이미지의 미감보다 반복 생성 가능한 얼굴 특징을 기준으로 비교"],
+      ["character-angle-pack.jpg", "캐릭터 각도 팩", "정면·45도·측면에서 얼굴·헤어·체형이 유지되는 기준"],
+      ["wardrobe-pack.jpg", "의상 팩", "장면과 인물별 의상·소재·실루엣을 컷마다 다시 정의하지 않도록 고정"],
+      ["expression-pack.jpg", "표정 팩", "중립부터 압박·당황·긴장까지 허용할 연기 범위를 기준 이미지로 관리"],
+      ["location-pack.jpg", "청문회장 공간 팩", "좌석·출입구·증인석·카메라 축과 광원을 여러 시점으로 잠금"],
+      ["preproduction-overview.jpg", "첫 프레임 전 준비", "캐릭터·공간·의상·표정 기준을 한 화면에서 점검"],
+      ["generated-candidates-01.jpg", "컷별 후보 3안", "구도 정확도·인물 일관성·영상화 가능성·앞뒤 연결성으로 선택"],
+    ];
+    return `
+      <section class="artifact-block" aria-labelledby="dramaEvidenceTitle">
+        <div class="artifact-heading">
+          <span>ACTUAL PRODUCTION ARTIFACTS</span>
+          <h3 id="dramaEvidenceTitle">대본에서 첫 프레임 후보까지 실제 제작 자료</h3>
+          <p>완성 예정 항목을 설명으로 채우지 않고, 현재까지 제작이 끝난 자료와 그 자료가 다음 공정에서 수행하는 역할을 함께 제시합니다.</p>
+        </div>
+        <div class="evidence-gallery">
+          ${items
+            .map(
+              ([src, title, description]) => `
+                <figure>
+                  <img src="assets/projects/ai-drama/${src}" alt="${title}" loading="lazy" />
+                  <figcaption><strong>${title}</strong><span>${description}</span></figcaption>
+                </figure>
+              `,
+            )
+            .join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "drama-failure-gallery") {
+    return `
+      <section class="artifact-block" aria-labelledby="dramaFailureTitle">
+        <div class="artifact-heading">
+          <span>REJECTED OUTPUTS · REVISION ROUTE</span>
+          <h3 id="dramaFailureTitle">그럴듯해도 편집할 수 없는 결과를 탈락시킨 기준</h3>
+          <p>AI가 임의의 글자·아이콘·UI를 생성하면 개별 이미지는 풍부해 보이지만 컷 간 정보와 후반 합성 기준이 무너집니다.</p>
+        </div>
+        <div class="failure-gallery">
+          <figure>
+            <img src="assets/projects/ai-drama/rejected-ui-error.jpg" alt="청문회 명패와 화면에 임의 기호가 생성된 탈락 결과" loading="lazy" />
+            <figcaption><strong>임의 기호·제어 아이콘</strong><span>정확한 그래픽이 필요한 영역은 비워 두고 후반 합성하도록 입력 단계로 되돌림</span></figcaption>
+          </figure>
+          <figure>
+            <img src="assets/projects/ai-drama/rejected-pseudo-ui.jpg" alt="화면에 가짜 텍스트와 UI가 생성된 탈락 결과" loading="lazy" />
+            <figcaption><strong>가짜 텍스트·정보 위계 붕괴</strong><span>시각적 풍부함보다 편집 가능한 빈 영역과 정보 책임을 우선해 탈락</span></figcaption>
+          </figure>
+        </div>
+      </section>
+    `;
+  }
+
+  if (type === "prombank-template") {
+    const cards = [
+      ["01", "사용 목적", "어떤 콘텐츠와 장면을 만들기 위한 템플릿인지 먼저 설명"],
+      ["02", "변경 정보", "인물·표정·시선·카메라·장소처럼 사용자가 바꿀 변수를 분리"],
+      ["03", "고정 조건", "유지할 대상, 금지 변형, 출력 길이와 형식을 명시"],
+      ["04", "결과·수정 기록", "생성 예시와 실패 원인, 다음 시도에서 바꾼 조건을 함께 보관"],
+    ];
+    return `
+      <section class="artifact-block prombank-artifact" aria-labelledby="prombankTemplateTitle">
+        <div class="artifact-heading">
+          <span>REUSABLE PROMPT CASE</span>
+          <h3 id="prombankTemplateTitle">한 문장을 복사하는 자료가 아닌 네 칸의 제작 기록</h3>
+          <p>프롬프트의 길이를 경쟁하지 않고, 다른 제작자가 자신의 장면에 맞게 바꾸면서도 핵심 조건을 잃지 않도록 사례를 구조화했습니다.</p>
+        </div>
+        <ol class="template-cards">
+          ${cards
+            .map(
+              ([number, title, description]) => `
+                <li><span>${number}</span><strong>${title}</strong><p>${description}</p></li>
+              `,
+            )
+            .join("")}
+        </ol>
+        <div class="prombank-metrics">
+          <div><span>MVP 공개 후 첫 4주</span><strong>1,311</strong><small>고유 방문자</small></div>
+          <div><span>동일 기간</span><strong>3,285</strong><small>방문 세션</small></div>
+        </div>
+      </section>
+    `;
+  }
+
   return "";
 }
 
@@ -624,6 +1032,7 @@ async function renderArticle(project) {
         </div>
       </div>
     </header>
+    ${projectRequirementsMarkup(project)}
     <div class="article-video">${mediaMarkup(project)}</div>
     <div class="article-body"><p class="article-loading">제작 기록을 불러오는 중입니다.</p></div>
   `;
@@ -699,6 +1108,7 @@ function updateProgress() {
 }
 
 renderProjects();
+renderToolOverview();
 route();
 window.addEventListener("hashchange", route);
 window.addEventListener("scroll", updateProgress, { passive: true });
