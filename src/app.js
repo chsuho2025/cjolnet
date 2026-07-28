@@ -640,7 +640,7 @@ function portfolioArtifactMarkup(type) {
             data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
             data-video-duration="${escapeHtml(representative.duration)}"
             data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
-            aria-label="${escapeHtml(shortAnimationDisplayTitle(representative))} 재생"
+            aria-label="${escapeHtml(shortAnimationDisplayTitle(representative))} 영상 보기"
             aria-haspopup="dialog"
           >
             <img src="assets/projects/short-animation/final-videos/fortune-princess-ep09.jpg" alt="" />
@@ -662,10 +662,10 @@ function portfolioArtifactMarkup(type) {
                 data-video-description="${escapeHtml(shortAnimationVideoDescription(representative))}"
                 aria-haspopup="dialog"
               >
-                영상 보기 <b aria-hidden="true">▶</b>
+                영상 보기
               </button>
               <button class="video-library-open" type="button" data-video-library-open aria-haspopup="dialog">
-                다른 작품 보기 <span>${additionalVideos.length}편</span>
+                다른 작품 보기
               </button>
             </div>
           </div>
