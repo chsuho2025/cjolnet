@@ -162,7 +162,7 @@ const projects = [
     summary:
       "이미지·영상·TTS·효과음·배경음악 프롬프트와 생성 결과, 수정 과정을 분석해 재사용 가능한 정보로 분류했습니다. MVP 공개 후 첫 4주간 고유 방문자 1,311명과 3,285회의 방문 세션을 기록했습니다.",
     role: "서비스 기획, 프롬프트 콘텐츠 제작",
-    contribution: "80%",
+    contribution: "80% (개발 제외)",
     contributionNote: "",
     media: null,
     article: "content/posts/04-prombank.md",
