@@ -7,6 +7,21 @@ const toolMatrix = [
 const shortVideoContribution = "100%";
 const shortVideoTools = "Kling AI, ElevenLabs, Gemini Nano Banana Series";
 
+function shortAnimationIpCredit(video) {
+  if (video.group === "점괘보는 공녀님") {
+    return {
+      original: "사이딘",
+      creatorLabel: "글 / 그림 / 발행",
+      creator: "슈퍼코믹스스튜디오",
+    };
+  }
+  return {
+    original: "한류이",
+    creatorLabel: "웹툰 참여",
+    creator: "삼월에, 동전, 한류이",
+  };
+}
+
 const shortAnimationVideos = [
   {
     group: "점괘보는 공녀님",
@@ -755,29 +770,36 @@ function portfolioArtifactMarkup(type) {
 
   if (type === "short-output-gallery") {
     const representative = shortAnimationVideos[0];
+    const representativeCredit = shortAnimationIpCredit(representative);
     const additionalVideos = shortAnimationVideos.slice(1);
-    const videoRowMarkup = (video, index) => `
-      <li class="final-video-row">
-        <span class="final-video-index">${String(index + 2).padStart(2, "0")}</span>
-        <div>
-          <strong>${escapeHtml(shortAnimationDisplayTitle(video))}</strong>
-          <span>${escapeHtml(video.duration)}</span>
-        </div>
-        <button
-          type="button"
-          data-final-video
-          data-video-src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
-          data-video-title="${escapeHtml(shortAnimationDisplayTitle(video))}"
-          data-video-duration="${escapeHtml(video.duration)}"
-          data-video-description="${escapeHtml(shortAnimationVideoDescription(video))}"
-          data-video-contribution="${shortVideoContribution}"
-          data-video-tools="${escapeHtml(shortVideoTools)}"
-          aria-haspopup="dialog"
-        >
-          영상 보기 <b aria-hidden="true">→</b>
-        </button>
-      </li>
-    `;
+    const videoRowMarkup = (video, index) => {
+      const credit = shortAnimationIpCredit(video);
+      return `
+        <li class="final-video-row">
+          <span class="final-video-index">${String(index + 2).padStart(2, "0")}</span>
+          <div>
+            <strong>${escapeHtml(shortAnimationDisplayTitle(video))}</strong>
+            <span>${escapeHtml(video.duration)}</span>
+          </div>
+          <button
+            type="button"
+            data-final-video
+            data-video-src="${escapeHtml(youtubeEmbedUrl(video.youtube))}"
+            data-video-title="${escapeHtml(shortAnimationDisplayTitle(video))}"
+            data-video-duration="${escapeHtml(video.duration)}"
+            data-video-description="${escapeHtml(shortAnimationVideoDescription(video))}"
+            data-video-original="${escapeHtml(credit.original)}"
+            data-video-creator-label="${escapeHtml(credit.creatorLabel)}"
+            data-video-creator="${escapeHtml(credit.creator)}"
+            data-video-contribution="${shortVideoContribution}"
+            data-video-tools="${escapeHtml(shortVideoTools)}"
+            aria-haspopup="dialog"
+          >
+            영상 보기 <b aria-hidden="true">→</b>
+          </button>
+        </li>
+      `;
+    };
     return `
       <section class="artifact-block final-video-library" aria-labelledby="outputGalleryTitle">
         <div class="representative-video">
@@ -789,6 +811,9 @@ function portfolioArtifactMarkup(type) {
             data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
             data-video-duration="${escapeHtml(representative.duration)}"
             data-video-description=""
+            data-video-original="${escapeHtml(representativeCredit.original)}"
+            data-video-creator-label="${escapeHtml(representativeCredit.creatorLabel)}"
+            data-video-creator="${escapeHtml(representativeCredit.creator)}"
             data-video-contribution="${shortVideoContribution}"
             data-video-tools="${escapeHtml(shortVideoTools)}"
             aria-label="${escapeHtml(shortAnimationDisplayTitle(representative))} 영상 보기"
@@ -811,6 +836,9 @@ function portfolioArtifactMarkup(type) {
                 data-video-title="${escapeHtml(shortAnimationDisplayTitle(representative))}"
                 data-video-duration="${escapeHtml(representative.duration)}"
                 data-video-description=""
+                data-video-original="${escapeHtml(representativeCredit.original)}"
+                data-video-creator-label="${escapeHtml(representativeCredit.creatorLabel)}"
+                data-video-creator="${escapeHtml(representativeCredit.creator)}"
                 data-video-contribution="${shortVideoContribution}"
                 data-video-tools="${escapeHtml(shortVideoTools)}"
                 aria-haspopup="dialog"
@@ -849,6 +877,8 @@ function portfolioArtifactMarkup(type) {
           </header>
           <div class="video-modal-player" data-video-modal-player></div>
           <dl class="video-modal-meta">
+            <div data-video-modal-original-row><dt>원작</dt><dd data-video-modal-original></dd></div>
+            <div data-video-modal-creator-row><dt data-video-modal-creator-label>글 / 그림 / 발행</dt><dd data-video-modal-creator></dd></div>
             <div><dt>기여도</dt><dd data-video-modal-contribution></dd></div>
             <div><dt>사용 툴</dt><dd data-video-modal-tools></dd></div>
           </dl>
@@ -979,6 +1009,9 @@ function portfolioArtifactMarkup(type) {
                     data-video-title="${escapeHtml(format.title)}"
                     data-video-duration=""
                     data-video-description=""
+                    data-video-original="사이딘"
+                    data-video-creator-label="글 / 그림 / 발행"
+                    data-video-creator="슈퍼코믹스스튜디오"
                     data-video-contribution="${shortVideoContribution}"
                     data-video-tools="${escapeHtml(shortVideoTools)}"
                     aria-label="${escapeHtml(format.title)} 영상 보기"
@@ -1985,6 +2018,11 @@ function initializeFinalVideoModal(container) {
   const libraryCloseButton = libraryModal?.querySelector("[data-video-library-close]");
   const modalTitle = modal.querySelector("[data-video-modal-title]");
   const modalDuration = modal.querySelector("[data-video-modal-duration]");
+  const modalOriginal = modal.querySelector("[data-video-modal-original]");
+  const modalOriginalRow = modal.querySelector("[data-video-modal-original-row]");
+  const modalCreatorLabel = modal.querySelector("[data-video-modal-creator-label]");
+  const modalCreator = modal.querySelector("[data-video-modal-creator]");
+  const modalCreatorRow = modal.querySelector("[data-video-modal-creator-row]");
   const modalContribution = modal.querySelector("[data-video-modal-contribution]");
   const modalTools = modal.querySelector("[data-video-modal-tools]");
   const modalDescription = modal.querySelector("[data-video-modal-description]");
@@ -2016,6 +2054,13 @@ function initializeFinalVideoModal(container) {
       returnToLibrary = Boolean(button.closest("[data-video-library-modal]"));
       modalTitle.textContent = button.dataset.videoTitle || "최종 영상";
       modalDuration.textContent = button.dataset.videoDuration || "";
+      if (modalOriginal) modalOriginal.textContent = button.dataset.videoOriginal || "";
+      if (modalOriginalRow) modalOriginalRow.hidden = !button.dataset.videoOriginal;
+      if (modalCreatorLabel) {
+        modalCreatorLabel.textContent = button.dataset.videoCreatorLabel || "글 / 그림 / 발행";
+      }
+      if (modalCreator) modalCreator.textContent = button.dataset.videoCreator || "";
+      if (modalCreatorRow) modalCreatorRow.hidden = !button.dataset.videoCreator;
       if (modalContribution) modalContribution.textContent = button.dataset.videoContribution || "";
       if (modalTools) modalTools.textContent = button.dataset.videoTools || "";
       if (modalDescription) {

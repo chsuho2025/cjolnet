@@ -307,6 +307,7 @@ a { color: inherit; text-decoration: none; }
 .video-modal-player iframe { display: block; width: 100%; height: 100%; border: 0; background: #111; }
 .video-modal-meta { display: grid; width: min(360px, 100%); margin: 13px auto 0; border-top: 1px solid var(--ink); }
 .video-modal-meta div { display: grid; grid-template-columns: 68px minmax(0, 1fr); gap: 12px; padding: 10px 2px; border-bottom: 1px solid var(--line); }
+.video-modal-meta [hidden] { display: none; }
 .video-modal-meta dt { color: var(--soft); font-size: 10px; font-weight: 700; }
 .video-modal-meta dd { margin: 0; color: var(--ink); font-size: 11px; font-weight: 700; line-height: 1.55; }
 .video-modal-description { width: min(360px, 100%); margin: 13px auto 2px !important; color: var(--muted) !important; font-size: 12px !important; line-height: 1.65 !important; }
